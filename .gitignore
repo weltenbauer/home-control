@@ -1,0 +1,7 @@
+.grunt
+.idea
+.DS_Store
+node-modules
+npm-debug.log
+container
+build

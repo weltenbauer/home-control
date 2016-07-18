@@ -1,0 +1,19 @@
+{
+  "name": "home-control",
+  "version": "0.0.1",
+  "description": "openHAB HTML5 Client ",
+  "main": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weltenbauer/home-control.git"
+  },
+  "author": "weltenbauer. Software Entwicklung GmbH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/weltenbauer/home-control/issues"
+  },
+  "homepage": "https://github.com/weltenbauer/home-control#readme"
+}
