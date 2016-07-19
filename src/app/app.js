@@ -7,23 +7,34 @@
 
 //-----------------------------------------------------------------------------
 
+// Import factories and services
+import Settings from 'services/misc/settings-factory';
+import OpenhabRestCommunication from 'services/communication/openhab-rest-factory';
+import OpenhabRealtimeCommunication from 'services/communication/openhab-realtime-factory';
+
+//-----------------------------------------------------------------------------
+
+// Init App
 const app = angular.module('homeControl', [
 	'ngRoute',
 	'ngAnimate',
 	'ngMessages'
-]);/*.config(['$animateProvider', '$compileProvider', '$routeProvider', '$sceDelegateProvider', 'NavigationProvider',
-	function($animateProvider, $compileProvider, $routeProvider, $sceDelegateProvider, NavigationProvider){
+]).config(['$animateProvider', '$compileProvider', function($animateProvider, $compileProvider){
 
-		// Only animated elements which have the class animation (performance improvement for mobile devices)
-		$animateProvider.classNameFilter(/animation|animated/);
+	// Only animated elements which have the class animation (performance improvement for mobile devices)
+	$animateProvider.classNameFilter(/animation|animated/);
 
-		// Whitelists non-http protocols
-		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto):/);
+	// Whitelists non-http protocols
+	$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto):/);
 
-		// Configure the routes
-		NavigationProvider.configureRoute($routeProvider);
-	}
-]).run(function($rootScope, $location, $q, $window){
+}]).run(function($rootScope, $q){
+	//Settings.init();
 	$rootScope.$broadcast('app.initalized');
-	Navigation.openWindow('project-overview', 'welcome');
-});*/
+});
+
+//-----------------------------------------------------------------------------
+
+// Register factories and services
+app.factory('Settings', Settings);
+app.factory('OpenhabRestCommunication', OpenhabRestCommunication);
+app.factory('OpenhabRealtimeCommunication', OpenhabRealtimeCommunication);
