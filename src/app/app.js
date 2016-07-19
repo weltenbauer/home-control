@@ -8,14 +8,19 @@
 //-----------------------------------------------------------------------------
 
 // Import factories and services
+import register from 'utils/register';
 import Settings from 'services/misc/settings-factory';
 import OpenhabRestCommunication from 'services/communication/openhab-rest-factory';
 import OpenhabRealtimeCommunication from 'services/communication/openhab-realtime-factory';
 
 //-----------------------------------------------------------------------------
 
+const appName = 'homeControl';
+
+//-----------------------------------------------------------------------------
+
 // Init App
-const app = angular.module('homeControl', [
+const app = angular.module(appName, [
 	'ngRoute',
 	'ngAnimate',
 	'ngMessages'
@@ -27,14 +32,14 @@ const app = angular.module('homeControl', [
 	// Whitelists non-http protocols
 	$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto):/);
 
-}]).run(function($rootScope, $q){
-	//Settings.init();
+}]).run(function($rootScope, $q, Settings){
+	Settings.init();
 	$rootScope.$broadcast('app.initalized');
 });
 
 //-----------------------------------------------------------------------------
 
 // Register factories and services
-app.factory('Settings', Settings);
-app.factory('OpenhabRestCommunication', OpenhabRestCommunication);
-app.factory('OpenhabRealtimeCommunication', OpenhabRealtimeCommunication);
+register(appName).factory('Settings', Settings);
+register(appName).factory('OpenhabRestCommunication', OpenhabRestCommunication);
+register(appName).factory('OpenhabRealtimeCommunication', OpenhabRealtimeCommunication);

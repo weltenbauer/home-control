@@ -36,3 +36,4 @@ export default class Settings{
 //-----------------------------------------------------------------------------
 
 Settings.$inject = ['$q'];
+//register('homeControl').factory('Settings', Settings);
