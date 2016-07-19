@@ -3,8 +3,9 @@
 .sass-cache
 .DS_Store
 .tmp
+
 node_modules
 bower_components
 npm-debug.log
 container
-build
+dist

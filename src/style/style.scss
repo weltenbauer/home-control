@@ -1,0 +1,17 @@
+/*
+ * brief    Home-Control styles
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     July 2017
+ */
+
+//-----------------------------------------------------------------------------
+
+// Base styles
+@import 'base/mixins';
+@import 'base/definitions';
+@import 'base/base';
+
+// Attention: gulp-sass-glob don't support nested glob imports (17.06.2016)
+@import 'external/**/*.scss';
+@import 'modules/**/*.scss';
