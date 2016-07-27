@@ -11,29 +11,39 @@ export default class Settings{
 
 	constructor($q){
 		this.$q = $q;
-		this.settings = null;
-	}
-
-	//-------------------------------------------------------------------------
-
-	init(){
-		const deferred = this.$q.defer();
-		return deferred.promise;
+		this.settings = {
+			url: 'http://home-control:8080',
+			username: 'christian',
+			password: 'secret'
+		};
 	}
 
 	//-------------------------------------------------------------------------
 
 	getProperty(key){
-
+		return this.settings[key];
 	}
 
 	//-------------------------------------------------------------------------
 
 	setProperty(key, value){
+		this.settings[key] = value;
+		this.save();
+	}
+
+	//-------------------------------------------------------------------------
+
+	save(){
+
+	}
+
+	//-------------------------------------------------------------------------
+
+	isAppInitalized(){
+		return false;
 	}
 }
 
 //-----------------------------------------------------------------------------
 
 Settings.$inject = ['$q'];
-//register('homeControl').factory('Settings', Settings);

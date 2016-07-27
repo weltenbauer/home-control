@@ -26,7 +26,8 @@ var plugins = {
 	uglifyify: require('uglifyify'),						// https://www.npmjs.com/package/uglifyify
 	util: require('gulp-util'),								// https://www.npmjs.com/package/gulp-util
 	uglify: require('gulp-uglify'),							// https://www.npmjs.com/package/gulp-uglify
-	watchify: require('watchify')							// https://www.npmjs.com/package/watchify
+	watchify: require('watchify'),							// https://www.npmjs.com/package/watchify
+	webserver: require('gulp-webserver')					// https://www.npmjs.com/package/gulp-webserver
 };
 
 //-----------------------------------------------------------------------------
@@ -48,7 +49,7 @@ gulp.task('default', function(){
 });
 
 gulp.task('_build', function(){
-	plugins.runSequence('welcome', ['copy', 'scripts', 'sass'], 'watch', function(){
+	plugins.runSequence('welcome', ['copy', 'scripts', 'sass'], 'watch', 'webserver', function(){
 		return plugins.util.log(plugins.util.colors.blue('I\'ve finished my work. You\'re free to take it from here, I\'ll watch your back.'));
 	});
 });
@@ -72,7 +73,7 @@ gulp.task('welcome', function(){
 //-----------------------------------------------------------------------------
 
 gulp.task('watch', function () {
-	
+
 	// The JS is watched from the browserify component watchify
 	// Watch HTML
 	gulp.watch(srcDir + '/**/*.html', ['copy-html'], function(event) {
@@ -217,4 +218,15 @@ gulp.task('sass', function(){
 		.pipe(plugins.sassGlob())
 		.pipe(plugins.sass.sync().on('error', plugins.sass.logError))
 		.pipe(gulp.dest(distDir + '/style'));
+});
+
+//-----------------------------------------------------------------------------
+
+gulp.task('webserver', function() {
+	gulp.src(distDir)
+		.pipe(plugins.webserver({
+			livereload: true,
+			directoryListing: false,
+			open: true
+		}));
 });

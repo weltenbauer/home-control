@@ -9,11 +9,23 @@
 
 export default class OpenhabRestCommunication{
 
-	constructor($q){
+	constructor($q, Settings){
 		this.$q = $q;
+	}
+
+	//-------------------------------------------------------------------------
+
+	getSitemaps(){
+
+	}
+
+	//-------------------------------------------------------------------------
+
+	getSitemapData(sitemap){
+
 	}
 }
 
 //-----------------------------------------------------------------------------
 
-OpenhabRestCommunication.$inject = ['$q'];
+OpenhabRestCommunication.$inject = ['$q', 'Settings'];
