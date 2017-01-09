@@ -4,8 +4,10 @@
   "description": "A SmartHome User-Interface based on HTML5",
   "main": "src/index.js",
   "scripts": {
-    "build": "rimraf dist && webpack --progress --display-error-details",
-    "server": "webpack-dev-server --inline --progress --port 8080",
+    "build": "npm run build:development",
+    "build:development": "rimraf dist && webpack --progress --display-error-details --env=development",
+    "build:production": "rimraf dist && webpack --progress --display-error-details --env=production",
+    "server": "webpack-dev-server --inline --progress --env=development --port 8080",
     "start": "npm run server"
   },
   "repository": {
@@ -34,9 +36,11 @@
     "zone.js": "^0.7.4"
   },
   "devDependencies": {
+    "@types/node": "^6.0.59",
     "angular2-template-loader": "^0.6.0",
     "autoprefixer": "^6.6.1",
     "awesome-typescript-loader": "^3.0.0-beta.17",
+    "codelyzer": "^2.0.0-beta.4",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
@@ -52,10 +56,11 @@
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.0",
     "ts-helpers": "^1.1.1",
-    "tslint": "^3.4.0",
-    "tslint-loader": "^2.1.0",
+    "tslint": "^4.0.0",
+    "tslint-loader": "^3.2.1",
     "typescript": "2.0.10",
     "webpack": "^2.2.0-rc.3",
-    "webpack-dev-server": "^2.2.0-rc.0"
+    "webpack-dev-server": "^2.2.0-rc.0",
+    "webpack-merge": "^2.3.1"
   }
 }

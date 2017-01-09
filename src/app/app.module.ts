@@ -8,20 +8,23 @@ import { ApiService } from './services/api.service';
 import { routing } from './app.routing';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    HttpModule,
-    FormsModule,
-    routing
-  ],
-  declarations: [
-    AppComponent
-  ],
-  providers: [
-    ApiService
-  ],
-  bootstrap: [AppComponent]
+	imports: [
+		BrowserModule,
+		HttpModule,
+		FormsModule,
+		routing
+	],
+	declarations: [
+		AppComponent
+	],
+	providers: [
+		ApiService
+	],
+	bootstrap: [
+		AppComponent
+	]
 })
+
 export class AppModule {
-  constructor(public appRef: ApplicationRef) {}
+	constructor(public appRef: ApplicationRef) {}
 }
