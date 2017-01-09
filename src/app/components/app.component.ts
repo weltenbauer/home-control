@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { ApiService } from './services';
+import { ApiService } from '../services/api.service';
 
-import '../style/app.scss';
+import '../../style/app.scss';
 
 @Component({
   selector: 'my-app', // <my-app></my-app>

@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './components/app.component';
-import { ApiService } from './components/api.service';
+import { ApiService } from './services/api.service';
 import { routing } from './app.routing';
 
 @NgModule({
