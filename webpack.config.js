@@ -12,77 +12,56 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 //-----------------------------------------------------------------------------
 
-/**
- * Env
- * Get npm lifecycle event to identify the environment
- */
-var ENV = process.env.npm_lifecycle_event;
-var isProd = ENV === 'production';
-console.log(isProd);
+// Get environment
+var environement = process.env.NODE_ENV.trim();
+var isProduction = (environement === 'production');
+
+// Log
+console.log('=====================================================\nStart Webpack process in environment ' + environement + '\n=====================================================\n');
 
 //-----------------------------------------------------------------------------
 
 function createWebpackConfig() {
 	
-	/**
-	 * Config
-	 * Reference: http://webpack.github.io/docs/configuration.html
-	 * This is the object where all configuration gets set
-	 */
 	var config = {};
 
-	//-------------------------------------------------------------------------
+	// Sourcemap
+	config.devtool = isProduction ? 'source-map' : 'eval-source-map';
 	
-	/**
-	 * Devtool
-	 * Reference: http://webpack.github.io/docs/configuration.html#devtool
-	 * Type of sourcemap to use per build type
-	 */
-	config.devtool = isProd ? 'source-map' : 'eval-source-map';
-	
-	//-------------------------------------------------------------------------
-
-	/**
-	 * Entry
-	 * Reference: http://webpack.github.io/docs/configuration.html#entry
-	 */
+	// Starpoints
 	config.entry = {
 		'polyfills': './src/polyfills.ts',
 		'vendor': './src/vendor.ts',
 		'app': './src/main.ts'
 	};
 
-	/**
-	 * Output
-	 * Reference: http://webpack.github.io/docs/configuration.html#output
-	 */
+	// Output setup
 	config.output = {
 		path: root('dist'),
-		publicPath: isProd ? '/' : 'http://localhost:8080/',
-		filename: isProd ? 'js/[name].[hash].js' : 'js/[name].js',
-		chunkFilename: isProd ? '[id].[hash].chunk.js' : '[id].chunk.js'
+		publicPath: isProduction ? '/' : 'http://localhost:8080/',
+		filename: isProduction ? 'js/[name].[hash].js' : 'js/[name].js',
+		chunkFilename: isProduction ? '[id].[hash].chunk.js' : '[id].chunk.js'
 	};
 	
-	//-------------------------------------------------------------------------
-
-	/**
-	 * Resolve
-	 * Reference: http://webpack.github.io/docs/configuration.html#resolve
-	 */
+	// Resolve filenames
 	config.resolve = {
 		extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html'],
 	};
 	
+	// Dev Server
+	config.devServer = {
+		contentBase: './src/public',
+		historyApiFallback: true,
+		quiet: true,
+		stats: 'minimal'
+	};
+	
 	//-------------------------------------------------------------------------
 
-	/**
-	 * Loaders
-	 * Reference: http://webpack.github.io/docs/configuration.html#module-loaders
-	 * List: http://webpack.github.io/docs/list-of-loaders.html
-	 * This handles most of the magic responsible for converting modules
-	 */
+	// Loaders
 	config.module = {
 		rules: [
+		
 			// Support for .ts files.
 			{
 				test: /\.ts$/,
@@ -151,18 +130,13 @@ function createWebpackConfig() {
 	
 	//-------------------------------------------------------------------------
 
-	/**
-	 * Plugins
-	 * Reference: http://webpack.github.io/docs/configuration.html#plugins
-	 * List: http://webpack.github.io/docs/list-of-plugins.html
-	 */
+	// Plugins
 	config.plugins = [
 		
 		// Define env variables to help with builds
-		// Reference: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
 		new webpack.DefinePlugin({
 			'process.env': {
-				ENV: JSON.stringify(ENV)
+				'ENV': JSON.stringify(environement)
 			}
 		}),
 
@@ -176,27 +150,16 @@ function createWebpackConfig() {
 		// Tslint configuration for webpack 2
 		new webpack.LoaderOptionsPlugin({
 			options: {
-				/**
-				 * Apply the tslint loader as pre/postLoader
-				 * Reference: https://github.com/wbuchwalter/tslint-loader
-				 */
+				
 				tslint: {
 					emitErrors: false,
 					failOnHint: false
 				},
-				/**
-				 * Sass
-				 * Reference: https://github.com/jtangelder/sass-loader
-				 * Transforms .scss files to .css
-				 */
+				
 				sassLoader: {
 					//includePaths: [path.resolve(__dirname, "node_modules/foundation-sites/scss")]
 				},
-				/**
-				 * PostCSS
-				 * Reference: https://github.com/postcss/autoprefixer-core
-				 * Add vendor prefixes to your css
-				 */
+				
 				postcss: [
 					autoprefixer({
 						browsers: ['last 2 version']
@@ -206,60 +169,38 @@ function createWebpackConfig() {
 		}),
 	
 		// Generate common chunks if necessary
-		// Reference: https://webpack.github.io/docs/code-splitting.html
-		// Reference: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
 		new CommonsChunkPlugin({
 			name: ['vendor', 'polyfills']
 		}),
 
 		// Inject script and link tags into html files
-		// Reference: https://github.com/ampedandwired/html-webpack-plugin
 		new HtmlWebpackPlugin({
 			template: './src/public/index.html',
 			chunksSortMode: 'dependency'
 		}),
 
 		// Extract css files
-		// Reference: https://github.com/webpack/extract-text-webpack-plugin
-		// Disabled when in test mode or not in build mode
-		new ExtractTextPlugin({filename: 'css/[name].[hash].css', disable: !isProd})
+		new ExtractTextPlugin({filename: 'css/[name].[hash].css', disable: !isProduction})
 	];
 	
 	//-------------------------------------------------------------------------
 
 	// Add build specific plugins
-	if (isProd) {
+	if (isProduction) {
 		config.plugins.push(
 		
-			// Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
 			// Only emit files when there are no errors
 			new webpack.NoErrorsPlugin(),
 
-			// Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
 			// Minify all javascript, switch loaders to minimizing mode
 			new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: { keep_fnames: true }}),
 
 			// Copy assets from the public folder
-			// Reference: https://github.com/kevlened/copy-webpack-plugin
 			new CopyWebpackPlugin([{
 				from: root('src/public')
 			}])
 		);
 	}
-	
-	//-------------------------------------------------------------------------
-
-	/**
-	 * Dev server configuration
-	 * Reference: http://webpack.github.io/docs/configuration.html#devserver
-	 * Reference: http://webpack.github.io/docs/webpack-dev-server.html
-	 */
-	config.devServer = {
-		contentBase: './src/public',
-		historyApiFallback: true,
-		quiet: true,
-		stats: 'minimal' // none (or false), errors-only, minimal, normal (or true) and verbose
-	};
 
 	return config;
 };
