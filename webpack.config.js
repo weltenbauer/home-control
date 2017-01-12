@@ -17,7 +17,9 @@ var environement = process.env.NODE_ENV.trim();
 var isProduction = (environement === 'production');
 
 // Log
-console.log('=====================================================\nStart Webpack process in environment ' + environement + '\n=====================================================\n');
+console.log('====================================================');
+console.log('Start Webpack process in environment ' + environement);
+console.log('====================================================\n');
 
 //-----------------------------------------------------------------------------
 
@@ -142,7 +144,6 @@ function createWebpackConfig() {
 
 		// Workaround needed for angular 2 angular/angular#11580
 		new webpack.ContextReplacementPlugin(
-			// The (\\|\/) piece accounts for path separators in *nix and Windows
 			/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
 			root('./src') // location of your src
 		),
@@ -154,10 +155,6 @@ function createWebpackConfig() {
 				tslint: {
 					emitErrors: false,
 					failOnHint: false
-				},
-				
-				sassLoader: {
-					//includePaths: [path.resolve(__dirname, "node_modules/foundation-sites/scss")]
 				},
 				
 				postcss: [
@@ -180,7 +177,10 @@ function createWebpackConfig() {
 		}),
 
 		// Extract css files
-		new ExtractTextPlugin({filename: 'css/[name].[hash].css', disable: !isProduction})
+		new ExtractTextPlugin({
+			filename: 'css/[name].[hash].css', 
+			disable: !isProduction}
+		)
 	];
 	
 	//-------------------------------------------------------------------------

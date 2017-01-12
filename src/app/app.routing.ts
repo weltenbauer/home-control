@@ -1,11 +1,24 @@
+/*
+ * brief    Define routes
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     January 2016
+ */
+
+//-----------------------------------------------------------------------------
+
 import { RouterModule, Routes } from '@angular/router';
 
-//import { HomeComponent } from './home/home.component';
-//import { AboutComponent } from './about/about.component';
+import { MainComponent } from './components/route-main/main.component';
+import { SettingsComponent } from './components/route-settings/settings.component';
+
+//-----------------------------------------------------------------------------
 
 const routes: Routes = [
-//	{ path: '', component: AppComponent },
-//  { path: 'about', component: AboutComponent}
+	{ path: '', component: MainComponent },
+	{ path: 'settings', component: SettingsComponent}
 ];
 
-export const routing = RouterModule.forRoot(routes);
+//-----------------------------------------------------------------------------
+
+export const Routing = RouterModule.forRoot(routes);

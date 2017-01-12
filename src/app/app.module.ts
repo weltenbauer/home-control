@@ -1,21 +1,37 @@
+/*
+ * brief    Define module
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     January 2016
+ */
+
+//-----------------------------------------------------------------------------
+
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { AppComponent } from './components/app.component';
 import { ApiService } from './services/api.service';
-import { routing } from './app.routing';
+import { Routing } from './app.routing';
+
+import { AppComponent } from './components/app/app.component';
+import { MainComponent } from './components/route-main/main.component';
+import { SettingsComponent } from './components/route-settings/settings.component';
+
+//-----------------------------------------------------------------------------
 
 @NgModule({
 	imports: [
 		BrowserModule,
 		HttpModule,
 		FormsModule,
-		routing
+		Routing
 	],
 	declarations: [
-		AppComponent
+		AppComponent,
+		MainComponent,
+		SettingsComponent
 	],
 	providers: [
 		ApiService
@@ -24,6 +40,8 @@ import { routing } from './app.routing';
 		AppComponent
 	]
 })
+
+//-----------------------------------------------------------------------------
 
 export class AppModule {
 	constructor(public appRef: ApplicationRef) {}

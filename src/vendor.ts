@@ -1,4 +1,12 @@
-﻿// Angular 2
+﻿/*
+ * brief    Import vendor scripts
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     January 2016
+ */
+
+//-----------------------------------------------------------------------------
+
 import '@angular/platform-browser';
 import '@angular/platform-browser-dynamic';
 import '@angular/core';

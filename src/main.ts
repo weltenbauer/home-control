@@ -1,19 +1,31 @@
-﻿import { enableProdMode } from '@angular/core';
+﻿/*
+ * brief    Main start point
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     January 2016
+ */
+
+//-----------------------------------------------------------------------------
+
+import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 
-// depending on the env mode, enable prod mode or add debugging modules
-if (process.env.ENV === 'build') {
+//-----------------------------------------------------------------------------
+
+// Enable production mode
+if (process.env.ENV === 'production') {
 	enableProdMode();
 }
 
+//-----------------------------------------------------------------------------
+
+// Main start function
 export function main() {
 	return platformBrowserDynamic().bootstrapModule(AppModule);
 }
 
-if (document.readyState === 'complete') {
-	main();
-}
-else {
-	document.addEventListener('DOMContentLoaded', main);
-}
+//-----------------------------------------------------------------------------
+
+// Wait for browser
+document.readyState === 'complete' ? main() : document.addEventListener('DOMContentLoaded', main);
