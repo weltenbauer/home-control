@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------
 
 import { Component } from '@angular/core';
-import { ApiService } from '../../services/api.service';
+import { DataProviderService } from '../../services/dataProvider.service';
 
 import '../../../style/app.scss';
 
@@ -22,7 +22,7 @@ import '../../../style/app.scss';
 export class AppComponent {
 	url = 'http://www.weltenbauer-se.com';
 
-	constructor(private api: ApiService) {
+	constructor(private api: DataProviderService) {
 		// Do something with api
 	}
 }

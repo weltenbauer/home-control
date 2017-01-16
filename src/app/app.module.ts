@@ -12,7 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { ApiService } from './services/api.service';
+import { DataProviderService } from './services/dataProvider.service';
 import { Routing } from './app.routing';
 
 import { AppComponent } from './components/app/app.component';
@@ -34,7 +34,7 @@ import { SettingsComponent } from './components/route-settings/settings.componen
 		SettingsComponent
 	],
 	providers: [
-		ApiService
+		DataProviderService
 	],
 	bootstrap: [
 		AppComponent
