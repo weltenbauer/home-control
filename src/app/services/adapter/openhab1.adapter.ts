@@ -1,5 +1,5 @@
 /*
- * brief    Provide mock data for development and testing
+ * brief    Interface to a OpenHAB 1 REST API
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
  * date     January 2016
@@ -7,14 +7,21 @@
 
 //-----------------------------------------------------------------------------
 
+import { Http } from '@angular/http';
 import { BaseAdapter } from './base.adapter';
-import { BackendDataModel } from '../models/backendData.model';
+import { Settings } from '../settings.service';
 
 //-----------------------------------------------------------------------------
 
-export class MockAdapter extends BaseAdapter{
+export class Openhab1Adapter extends BaseAdapter{
 
-	init(backendData : BackendDataModel){
+	constructor(http : Http, settings : Settings){
+		super();
+	}
+
+	//-------------------------------------------------------------------------
+
+	init(){
 		return Promise.resolve();
 	}
 	
@@ -23,7 +30,7 @@ export class MockAdapter extends BaseAdapter{
 	getItemData(){
 		return {
 			'main': {
-				label: 'Main',
+				label: 'Main Openhab',
 				items: {
 					'main.lamp.1': {
 						type: 'switch',

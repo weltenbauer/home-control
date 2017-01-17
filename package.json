@@ -6,7 +6,7 @@
   "scripts": {
     "build:development": "rimraf dist && set NODE_ENV=development && webpack --progress --display-error-details",
     "build:production": "rimraf dist && set NODE_ENV=production && webpack --progress --display-error-details",
-    "server": "set NODE_ENV=development && webpack-dev-server --inline --progress --port 8080",
+    "server": "set NODE_ENV=development && webpack-dev-server --inline --progress --open --port 8080",
     "build": "npm run build:development",
     "start": "npm run server"
   },

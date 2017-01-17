@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------
 
 import { Component } from '@angular/core';
-import { DataProviderService } from '../../services/dataProvider.service';
+import { DataProvider } from '../../services/dataProvider.service';
 
 import '../../../style/app.scss';
 
@@ -20,9 +20,14 @@ import '../../../style/app.scss';
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	url = 'http://www.weltenbauer-se.com';
-
-	constructor(private api: DataProviderService) {
-		// Do something with api
+	
+	private url = 'http://www.weltenbauer-se.com';
+	private items = {};
+	
+	constructor(private dataProvider: DataProvider) {
+		dataProvider.getItems('main').then((data) => {
+			console.log(data);
+			this.items = data;
+		});
 	}
 }

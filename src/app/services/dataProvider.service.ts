@@ -10,42 +10,29 @@
 import { Injectable } from '@angular/core';
 
 import { BackendDataModel } from '../logic/models/backendData.model';
-
-import { BaseAdapter } from '../logic/adapter/base.adapter';
-import { MockAdapter } from '../logic/adapter/mock.adapter';
-import { Openhab1Adapter } from '../logic/adapter/openhab1.adapter';
+import { BaseAdapter } from '../services/adapter/base.adapter';
 
 //-----------------------------------------------------------------------------
 
 @Injectable()
-export class DataProviderService {
+export class DataProvider {
 
-	private currentAdapter : BaseAdapter = null;
-	private items = {};
-	
-	//-------------------------------------------------------------------------
-	
-	constructor(){
-		this.init(null);
+	constructor(public currentAdapter : BaseAdapter){
+		this.init();
 	}
 	
 	//-------------------------------------------------------------------------
 
-	public init(backendData : BackendDataModel){
+	public init(){
 	
 		// Create Promise
 		return new Promise((resolve, reject) => {
 			
-			// Create new adapter with the given promise data
-			this.currentAdapter = this.createAdapter(backendData);
-			
 			// Init Adapter
-			this.currentAdapter.init(backendData).then(() => {
+			this.currentAdapter.init().then(() => {
 				resolve();
-				this.items = this.currentAdapter.getItemData();
 			}).catch((ex) => {
-				console.log('Error while init backend');
-				reject();
+				reject('Error while init backend');
 			});
 		});
 	}
@@ -53,12 +40,9 @@ export class DataProviderService {
 	//-------------------------------------------------------------------------
 	
 	public getItems(area : string){
-		return this.items[area] || null;
-	}
-	
-	//-------------------------------------------------------------------------
-	
-	private createAdapter(backendData : BackendDataModel){
-		return new MockAdapter();
+		return new Promise((resolve, reject) => {
+			const itemData = this.currentAdapter.getItemData();
+			resolve(itemData[area] || null);
+		});
 	}
 }

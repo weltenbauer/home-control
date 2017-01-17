@@ -1,5 +1,5 @@
 /*
- * brief    Interface to a OpenHAB 1 REST API
+ * brief    Abstarct base class for all adapters
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
  * date     January 2016
@@ -7,7 +7,7 @@
 
 //-----------------------------------------------------------------------------
 
-export class Openhab1Adapter {
-
-	
+export abstract class BaseAdapter {
+	abstract init();
+	abstract getItemData();
 }

@@ -1,5 +1,5 @@
 /*
- * brief    Abstarct base class for all adapters
+ * brief    Manage settings of the application and persists them
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
  * date     January 2016
@@ -7,11 +7,18 @@
 
 //-----------------------------------------------------------------------------
 
-import { BackendDataModel } from '../models/backendData.model';
+import { Injectable } from '@angular/core';
 
 //-----------------------------------------------------------------------------
 
-export abstract class BaseAdapter {
-	abstract init(backendData : BackendDataModel);
-	abstract getItemData();
+@Injectable()
+export class Settings {
+
+	constructor(){}
+	
+	//-------------------------------------------------------------------------
+
+	public getSetting(key){
+		return 'openhab1';
+	}
 }

@@ -12,7 +12,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { DataProviderService } from './services/dataProvider.service';
+import { Http } from '@angular/http';
+
+import { DataProvider } from './services/dataProvider.service';
+import { Settings } from './services/settings.service';
+import { BaseAdapter } from './services/adapter/base.adapter';
+import { getAdapter } from './services/adapter.provider';
 import { Routing } from './app.routing';
 
 import { AppComponent } from './components/app/app.component';
@@ -34,7 +39,13 @@ import { SettingsComponent } from './components/route-settings/settings.componen
 		SettingsComponent
 	],
 	providers: [
-		DataProviderService
+		DataProvider,
+		Settings,
+		{	
+			provide: BaseAdapter,
+			useFactory: getAdapter,
+			deps: [Http, Settings]
+		}
 	],
 	bootstrap: [
 		AppComponent
