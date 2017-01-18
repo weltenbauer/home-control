@@ -7,7 +7,9 @@
 
 //-----------------------------------------------------------------------------
 
-export class BackendDataModel {
-
-	
+export class BackendData {
+	public type : string;
+	public url : string;
+	public username : string;
+	public passsword: string;
 }

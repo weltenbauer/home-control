@@ -16,8 +16,6 @@ import { Http } from '@angular/http';
 
 import { DataProvider } from './services/dataProvider.service';
 import { Settings } from './services/settings.service';
-import { BaseAdapter } from './services/adapter/base.adapter';
-import { getAdapter } from './services/adapter.provider';
 import { Routing } from './app.routing';
 
 import { AppComponent } from './components/app/app.component';
@@ -40,12 +38,7 @@ import { SettingsComponent } from './components/route-settings/settings.componen
 	],
 	providers: [
 		DataProvider,
-		Settings,
-		{	
-			provide: BaseAdapter,
-			useFactory: getAdapter,
-			deps: [Http, Settings]
-		}
+		Settings
 	],
 	bootstrap: [
 		AppComponent

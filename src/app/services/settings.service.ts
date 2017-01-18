@@ -17,8 +17,19 @@ export class Settings {
 	constructor(){}
 	
 	//-------------------------------------------------------------------------
+	
+	public getCurrentBackend(){
+		return {
+			type: 'openhab1',
+			url: 'http://home-control:8080/rest',
+			username: '',
+			passsword: ''
+		};
+	}
+	
+	//-------------------------------------------------------------------------
 
-	public getSetting(key){
-		return 'openhab1';
+	public getValue(key){
+		return '';
 	}
 }

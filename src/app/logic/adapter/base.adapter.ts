@@ -8,6 +8,6 @@
 //-----------------------------------------------------------------------------
 
 export abstract class BaseAdapter {
-	abstract init();
+	abstract init(backendData : any);
 	abstract getItemData();
 }
