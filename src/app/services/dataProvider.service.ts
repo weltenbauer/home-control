@@ -26,7 +26,7 @@ export class DataProvider {
 	//-------------------------------------------------------------------------
 
 	constructor(private http : Http, private settings : Settings){
-		this.init();
+		//this.init();
 	}
 	
 	//-------------------------------------------------------------------------
@@ -56,7 +56,7 @@ export class DataProvider {
 	public getItems(area : string){
 		return new Promise((resolve, reject) => {
 			const itemData = this.currentAdapter.getItemData();
-			resolve(itemData[area] || null);
+			resolve(itemData || null);
 		});
 	}
 	

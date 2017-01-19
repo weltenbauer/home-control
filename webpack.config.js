@@ -54,7 +54,7 @@ function createWebpackConfig() {
 	config.devServer = {
 		contentBase: './src/public',
 		historyApiFallback: true,
-		quiet: true,
+		quiet: false,
 		stats: 'minimal'
 	};
 	

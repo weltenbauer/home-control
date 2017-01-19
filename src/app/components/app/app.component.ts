@@ -25,9 +25,10 @@ export class AppComponent {
 	private items = {};
 	
 	constructor(private dataProvider: DataProvider) {
-		dataProvider.getItems('main').then((data) => {
-			console.log(data);
-			this.items = data;
+		dataProvider.init().then(() => {
+			dataProvider.getItems('main').then((data) => {
+				this.items = data;
+			});
 		});
 	}
 }
