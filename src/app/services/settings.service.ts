@@ -9,6 +9,9 @@
 
 import { Injectable } from '@angular/core';
 
+
+import { BackendData } from '../logic/models/backendData.model';
+
 //-----------------------------------------------------------------------------
 
 @Injectable()
@@ -19,12 +22,14 @@ export class Settings {
 	//-------------------------------------------------------------------------
 	
 	public getCurrentBackend(){
-		return {
-			type: 'openhab1',
-			url: 'http://home-control:8080/rest',
-			username: '',
-			passsword: ''
-		};
+	
+		const backendData = new BackendData();
+		backendData.type = 'openhab1';
+		backendData.url = 'http://home-control:8080/rest';
+		backendData.username = '';
+		backendData.password = '';
+	
+		return backendData;
 	}
 	
 	//-------------------------------------------------------------------------

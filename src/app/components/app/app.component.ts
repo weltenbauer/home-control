@@ -26,7 +26,7 @@ export class AppComponent {
 	
 	constructor(private dataProvider: DataProvider) {
 		dataProvider.init().then(() => {
-			dataProvider.getItems('main').then((data) => {
+			dataProvider.getSections('main').then((data) => {
 				this.items = data;
 			});
 		});

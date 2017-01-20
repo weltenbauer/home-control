@@ -8,8 +8,29 @@
 //-----------------------------------------------------------------------------
 
 export class BackendData {
-	public type : string;
-	public url : string;
-	public username : string;
-	public passsword: string;
+
+	public type : string = '';
+	public url : string = '';
+	public username : string = '';
+	public password : string = '';
+	
+	//-------------------------------------------------------------------------
+	
+	public getUrl(){
+	
+		// Copy original url
+		let url = this.url;
+		
+		// Check protocol
+		if(!this.url.includes('://')){
+			url += 'http://' + url;
+		}
+		
+		// Add username and password
+		if(this.username !== '' && this.password !== ''){
+			url.replace('://', '://' + this.username + '@' + this.password);
+		}
+		
+		return url;
+	}
 }

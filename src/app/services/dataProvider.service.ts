@@ -53,15 +53,16 @@ export class DataProvider {
 	
 	//-------------------------------------------------------------------------
 	
-	public getItems(area : string){
+	public getSections(path : string){
 		return new Promise((resolve, reject) => {
-			const itemData = this.currentAdapter.getItemData();
+			const itemData = this.currentAdapter.getPages();
 			resolve(itemData || null);
 		});
 	}
 	
 	//-------------------------------------------------------------------------
 	
+	// Create new adapter by look up the adapterRegistry
 	private createAdapter(backendData : BackendData){
 		const adapterType = adapterRegistry[backendData.type] || null;	
 		return adapterType ? new adapterType.type(this.http, this.settings) : null;

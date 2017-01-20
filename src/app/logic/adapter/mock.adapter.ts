@@ -28,7 +28,7 @@ export class MockAdapter extends BaseAdapter{
 	
 	//-------------------------------------------------------------------------
 	
-	getItemData(){
+	getPages(){
 		return {
 			'main': {
 				label: 'Main',
