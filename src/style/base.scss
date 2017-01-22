@@ -1,0 +1,38 @@
+/*
+ * brief    Base SASS Styles
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     January 2017
+ */
+
+//-----------------------------------------------------------------------------
+
+@import 'definitions';
+
+//-----------------------------------------------------------------------------
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body, html {
+	height: 100vh;
+	font-size: $fontSizeBase;
+	line-height: 1.3em;
+	font-family: $defaultFont;
+	color: $baseColor;
+	background-color: $backgroundColor;
+	overflow: hidden;
+}
+
+//-----------------------------------------------------------------------------
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}

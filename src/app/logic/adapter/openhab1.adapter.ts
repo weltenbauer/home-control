@@ -57,7 +57,10 @@ export class Openhab1Adapter extends BaseAdapter{
 					this.items = items;
 				})
 				.catch((error) => {
-					reject(error);
+					reject({
+						label: 'Error while request items',
+						details: error
+					});
 				})
 			);
 			
@@ -81,7 +84,10 @@ export class Openhab1Adapter extends BaseAdapter{
 								this.sitemaps.push(response.json());
 							})
 							.catch((error) => {
-								reject(error);
+								reject({
+									label: 'Error while request sitemap',
+									details: error
+								});
 							})
 						);
 					});
@@ -90,7 +96,10 @@ export class Openhab1Adapter extends BaseAdapter{
 					return Promise.all(requestSitemapsPromises);
 				})
 				.catch((error) => {
-					reject(error);
+					reject({
+						label: 'Error while request sitemaps',
+						details: error
+					});
 				})
 			);
 						

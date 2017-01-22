@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 import { DataProvider } from '../../services/dataProvider.service';
 
-import '../../../style/app.scss';
+import '../../../style/base.scss';
 
 //-----------------------------------------------------------------------------
 
@@ -21,14 +21,7 @@ import '../../../style/app.scss';
 })
 export class AppComponent {
 	
-	private url = 'http://www.weltenbauer-se.com';
-	private items = {};
-	
 	constructor(private dataProvider: DataProvider) {
-		dataProvider.init().then(() => {
-			dataProvider.getSections('main').then((data) => {
-				this.items = data;
-			});
-		});
+		dataProvider.init();
 	}
 }

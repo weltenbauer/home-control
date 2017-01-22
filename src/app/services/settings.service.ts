@@ -24,6 +24,7 @@ export class Settings {
 	public getCurrentBackend(){
 	
 		const backendData = new BackendData();
+		backendData.name = 'Home-Control';
 		backendData.type = 'openhab1';
 		backendData.url = 'http://home-control:8080/rest';
 		backendData.username = '';

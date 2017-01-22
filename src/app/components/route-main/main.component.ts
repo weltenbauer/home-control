@@ -8,6 +8,7 @@
 //-----------------------------------------------------------------------------
 
 import { Component } from '@angular/core';
+import { DataProvider } from '../../services/dataProvider.service';
 
 //-----------------------------------------------------------------------------
 
@@ -18,7 +19,11 @@ import { Component } from '@angular/core';
 })
 export class MainComponent {
 
-	constructor() {
-		
+	private items = {};
+	
+	constructor(private dataProvider: DataProvider) {
+		dataProvider.getSections('main').then((data) => {
+			this.items = data;
+		});
 	}
 }

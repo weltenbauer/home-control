@@ -18,20 +18,34 @@ import { adapterRegistry } from '../data/adapterRegistry';
 
 //-----------------------------------------------------------------------------
 
+// State of the provider
+export enum DataProviderState {
+	Init,
+	Ok,
+	Error
+};
+
+//-----------------------------------------------------------------------------
+
 @Injectable()
 export class DataProvider {
 
 	private currentAdapter : BaseAdapter = null;
+	
+	public state : DataProviderState = DataProviderState.Init;
+	public errorDetails : string = '';
 
 	//-------------------------------------------------------------------------
 
-	constructor(private http : Http, private settings : Settings){
-		//this.init();
-	}
+	constructor(private http : Http, private settings : Settings){}
 	
 	//-------------------------------------------------------------------------
 
 	public init(){
+	
+		// Set state
+		this.state = DataProviderState.Init;
+		this.errorDetails = '';
 	
 		// Get current backendData
 		const backendData = this.settings.getCurrentBackend();
@@ -44,9 +58,12 @@ export class DataProvider {
 			
 			// Init Adapter
 			this.currentAdapter.init(backendData).then(() => {
+				this.state = DataProviderState.Ok;
 				resolve();
-			}).catch((ex) => {
-				reject('Error while init backend');
+			}).catch((error) => {
+				this.state = DataProviderState.Error;
+				this.errorDetails = error;
+				reject(error);
 			});
 		});
 	}

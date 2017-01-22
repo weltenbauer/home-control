@@ -1,21 +1,18 @@
-<header>
-	<nav>
-		<a [routerLink]="['']">Home</a>
-		<a [routerLink]="['settings']">Settings</a>
-	</nav>
-</header>
-
-<!-- ---------------------------------------------------------------------- -->
 
 <main>
-	<h2>Hello from the other {{items | json}}!</h2>
-	<img src="/img/angular.png">
-
 	<router-outlet></router-outlet>
 </main>
 
 <!-- ---------------------------------------------------------------------- -->
 
 <footer>
-	<a [href]="url">Webpack Angular 2 Starter</a>
+	<nav>
+		<a [routerLink]="['']">Refresh</a>
+		<a [routerLink]="['']">Home</a>
+		<a [routerLink]="['settings']">Settings</a>
+	</nav>
 </footer>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<hc-loading></hc-loading>
