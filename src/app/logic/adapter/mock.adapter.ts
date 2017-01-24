@@ -29,7 +29,7 @@ export class MockAdapter extends BaseAdapter{
 	//-------------------------------------------------------------------------
 	
 	getPages(){
-		return {
+		return Promise.resolve({
 			'main': {
 				label: 'Main',
 				items: {
@@ -43,6 +43,6 @@ export class MockAdapter extends BaseAdapter{
 					}
 				}
 			}
-		};
+		});
 	}
 }

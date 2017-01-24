@@ -1,0 +1,30 @@
+/*
+ * brief    Global font defintions
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     January 2017
+ */
+
+//-----------------------------------------------------------------------------
+
+@font-face{
+	font-family: 'Open Sans';
+	font-weight: normal;
+	font-style: normal;
+	src: url(../public/fonts/OpenSans-Regular.ttf);
+}
+
+@font-face{
+	font-family: 'Open Sans';
+	font-weight: light;
+	font-style: normal;
+	src: url(../public/fonts/OpenSans-Light.ttf);
+}
+
+@font-face{
+	font-family: 'Open Sans';
+	font-weight: bold;
+	font-style: normal;
+	src: url(../public/fonts/OpenSans-Bold.ttf);
+}
+

@@ -7,7 +7,11 @@
 
 //-----------------------------------------------------------------------------
 
+import { BackendData } from '../models/backendData.model';
+
+//-----------------------------------------------------------------------------
+
 export abstract class BaseAdapter {
-	abstract init(backendData : any);
-	abstract getPages();
+	abstract init(backendData : BackendData) : Promise<any>;
+	abstract getPages() : Promise<any>;
 }

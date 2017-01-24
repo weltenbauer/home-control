@@ -1,5 +1,5 @@
 ﻿
-// Helper: root() is defined at the bottom
+// Helper: fullPath() is defined at the bottom
 var path = require('path');
 var webpack = require('webpack');
 
@@ -9,6 +9,10 @@ var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+
+//-----------------------------------------------------------------------------
+
+var ouputPath = 'dist';
 
 //-----------------------------------------------------------------------------
 
@@ -28,18 +32,19 @@ function createWebpackConfig() {
 	var config = {};
 
 	// Sourcemap
-	config.devtool = isProduction ? 'source-map' : 'eval-source-map';
+	config.devtool = isProduction ? 'source-map' : 'cheap-module-source-map';
 	
 	// Starpoints
 	config.entry = {
 		'polyfills': './src/polyfills.ts',
 		'vendor': './src/vendor.ts',
-		'app': './src/main.ts'
+		'app': './src/main.ts',
+		'styles': './src/style/base.scss'
 	};
 
 	// Output setup
 	config.output = {
-		path: root('dist'),
+		path: fullPath(ouputPath),
 		publicPath: isProduction ? '/' : 'http://localhost:8080/',
 		filename: isProduction ? 'js/[name].[hash].js' : 'js/[name].js',
 		chunkFilename: isProduction ? '[id].[hash].chunk.js' : '[id].chunk.js'
@@ -52,11 +57,14 @@ function createWebpackConfig() {
 	
 	// Dev Server
 	config.devServer = {
-		contentBase: './src/public',
+		contentBase: fullPath('src', 'public'),
 		historyApiFallback: true,
 		quiet: false,
-		stats: 'minimal'
+		stats: 'normal'
 	};
+	
+	// Set Target
+	config.target = 'web';
 	
 	//-------------------------------------------------------------------------
 
@@ -67,8 +75,15 @@ function createWebpackConfig() {
 			// Support for .ts files.
 			{
 				test: /\.ts$/,
-				loaders: ['awesome-typescript-loader', 'angular2-template-loader'],
-				exclude: [/\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/, /container/]
+				exclude: [/\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/, /container/],
+				loaders: ['awesome-typescript-loader', 'angular2-template-loader']
+			},
+			
+			// TS Lint
+			{
+				test: /\.ts$/,
+				enforce: 'pre',
+				loader: 'tslint-loader'
 			},
 
 			// copy those assets to output
@@ -83,49 +98,48 @@ function createWebpackConfig() {
 				loader: 'json-loader'
 			},
 
-			// Support for CSS as raw text
-			// all css in src/style will be bundled in an external css file
+			//-----------------------------------------------------------------
+			
+			// Main styles in './src/style' folder
+			
 			{
 				test: /\.css$/,
-				exclude: root('src', 'app'),
-				loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader']})
+				include: fullPath('src', 'style'),
+				loader: ExtractTextPlugin.extract({
+					fallbackLoader: 'style-loader',
+					loader: ['css-loader', 'postcss-loader']
+				})
 			},
-			
-			// all css required in src/app files will be merged in js files
-			{
-				test: /\.css$/, 
-				include: root('src', 'app'), 
-				loader: 'raw-loader!postcss-loader'
-			},
-
-			// support for .scss files
-			// all css in src/style will be bundled in an external css file
 			{
 				test: /\.(scss|sass)$/,
-				exclude: root('src', 'app'),
-				loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: ['css-loader', 'postcss-loader', 'sass-loader']})
+				include: fullPath('src', 'style'),
+				loader: ExtractTextPlugin.extract({
+					fallbackLoader: 'style-loader',
+                    loader: ['css-loader', 'sass-loader']
+                })
 			},
 			
-			// all css required in src/app files will be merged in js files
+			//-----------------------------------------------------------------
+			
+			// Component Styles in './src/app' folder
+			
+			{
+				test: /\.css$/, 
+				include: fullPath('src', 'app'), 
+				loader: ['raw-loader', 'postcss-loader']
+			},
 			{
 				test: /\.(scss|sass)$/, 
-				exclude: root('src', 'style'), 
-				loader: 'raw-loader!postcss-loader!sass-loader'
+				include: [fullPath('src', 'app')],
+				loader: ['raw-loader', 'postcss-loader', 'sass-loader']
 			},
 
-			// support for .html as raw text
-			// todo: change the loader to something that adds a hash to images
+			//-----------------------------------------------------------------
+			
 			{
 				test: /\.html$/, 
-				loader: 'raw-loader',
-				exclude: root('src', 'public')
-			},
-			
-			// tslint support
-			{
-				test: /\.ts$/,
-				enforce: 'pre',
-				loader: 'tslint-loader'
+				include: [fullPath('src', 'app')],
+				loader: 'raw-loader'
 			}
 		]
 	};
@@ -145,7 +159,7 @@ function createWebpackConfig() {
 		// Workaround needed for angular 2 angular/angular#11580
 		new webpack.ContextReplacementPlugin(
 			/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-			root('./src') // location of your src
+			fullPath('./src') // location of your src
 		),
 
 		// Tslint configuration for webpack 2
@@ -178,9 +192,10 @@ function createWebpackConfig() {
 
 		// Extract css files
 		new ExtractTextPlugin({
-			filename: 'css/[name].[hash].css', 
-			disable: !isProduction}
-		)
+			filename: isProduction ? 'css/[name].[hash].css' : 'css/[name].css',
+			disable: false, 
+			allChunks: true
+		})
 	];
 	
 	//-------------------------------------------------------------------------
@@ -197,7 +212,8 @@ function createWebpackConfig() {
 
 			// Copy assets from the public folder
 			new CopyWebpackPlugin([{
-				from: root('src/public')
+				from: fullPath('src', 'public', 'img'),
+				to: fullPath('ouputPath', 'img')
 			}])
 		);
 	}
@@ -207,8 +223,8 @@ function createWebpackConfig() {
 
 //-----------------------------------------------------------------------------
 
-// Helper functions
-function root(args) {
+// Helper function
+function fullPath(args) {
 	args = Array.prototype.slice.call(arguments, 0);
 	return path.join.apply(path, [__dirname].concat(args));
 }

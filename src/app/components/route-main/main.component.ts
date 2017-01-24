@@ -19,7 +19,7 @@ import { DataProvider } from '../../services/dataProvider.service';
 })
 export class MainComponent {
 
-	private items = {};
+	public items = {};
 	
 	constructor(private dataProvider: DataProvider) {
 		dataProvider.getSections('main').then((data) => {

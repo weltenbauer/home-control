@@ -20,6 +20,8 @@ import { Item } from '../models/item.model';
 
 export class Openhab1Adapter extends BaseAdapter{
 
+	private initPromise : any = null;
+
 	private items : any[] = [];
 	private sitemaps : any[] = [];
 	private pages : any = {};
@@ -34,7 +36,8 @@ export class Openhab1Adapter extends BaseAdapter{
 
 	public init(backendData : BackendData){
 	
-		return new Promise((resolve, reject) => {
+		// Create new promise
+		this.initPromise = new Promise((resolve, reject) => {
 		
 			// Prepare GET headers
 			const headers = new Headers({ 'Accept': 'application/json' });
@@ -102,19 +105,37 @@ export class Openhab1Adapter extends BaseAdapter{
 					});
 				})
 			);
-						
+					
 			// Resolve after all requests finished
 			Promise.all(requestPromises).then(() => {
 				this.convertToPage('', this.sitemaps[1].homepage);
 				resolve();
 			});
 		});
+		
+		return this.initPromise;
 	}
 	
 	//-------------------------------------------------------------------------
 	
 	public getPages(){
-		return this.pages;
+	
+		return new Promise((resolve, reject) => {
+	
+			// Check if app was already initalized
+			if(!this.initPromise){
+				reject('Not yet initalized');
+			}
+			else{
+			
+				// Return data
+				this.initPromise.then(() => {
+					resolve(this.pages);
+				}).catch((error) => {
+					reject(error);
+				});
+			}
+		});
 	}
 	
 	//-------------------------------------------------------------------------

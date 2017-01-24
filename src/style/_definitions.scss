@@ -12,27 +12,3 @@ $backgroundColor: #303030;
 
 $fontSizeBase: 12px;
 $defaultFont: 'Open Sans', sans-serif;
-
-//-----------------------------------------------------------------------------
-
-@font-face{
-	font-family: 'Open Sans';
-	font-weight: normal;
-	font-style: normal;
-	src: url(../public/fonts/OpenSans-Regular.ttf);
-}
-
-@font-face{
-	font-family: 'Open Sans';
-	font-weight: light;
-	font-style: normal;
-	src: url(../public/fonts/OpenSans-Light.ttf);
-}
-
-@font-face{
-	font-family: 'Open Sans';
-	font-weight: bold;
-	font-style: normal;
-	src: url(../public/fonts/OpenSans-Bold.ttf);
-}
-

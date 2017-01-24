@@ -10,7 +10,7 @@
 import { Component } from '@angular/core';
 import { DataProvider } from '../../services/dataProvider.service';
 
-import '../../../style/base.scss';
+//import styles from '../../../style/base.scss';
 
 //-----------------------------------------------------------------------------
 

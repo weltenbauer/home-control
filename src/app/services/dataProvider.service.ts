@@ -72,8 +72,11 @@ export class DataProvider {
 	
 	public getSections(path : string){
 		return new Promise((resolve, reject) => {
-			const itemData = this.currentAdapter.getPages();
-			resolve(itemData || null);
+			this.currentAdapter.getPages().then((itemData) => {
+				resolve(itemData || null);
+			}).catch((error) => {
+				reject(error);
+			});
 		});
 	}
 	
