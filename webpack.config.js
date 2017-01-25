@@ -38,8 +38,7 @@ function createWebpackConfig() {
 	config.entry = {
 		'polyfills': './src/polyfills.ts',
 		'vendor': './src/vendor.ts',
-		'app': './src/main.ts',
-		'styles': './src/style/base.scss'
+		'app': './src/main.ts'
 	};
 
 	// Output setup
@@ -192,7 +191,7 @@ function createWebpackConfig() {
 
 		// Extract css files
 		new ExtractTextPlugin({
-			filename: isProduction ? 'css/[name].[hash].css' : 'css/[name].css',
+			filename: isProduction ? 'css/styles.[hash].css' : 'css/styles.css',
 			disable: false, 
 			allChunks: true
 		})
@@ -213,7 +212,7 @@ function createWebpackConfig() {
 			// Copy assets from the public folder
 			new CopyWebpackPlugin([{
 				from: fullPath('src', 'public', 'img'),
-				to: fullPath('ouputPath', 'img')
+				to: fullPath(ouputPath, 'img')
 			}])
 		);
 	}
