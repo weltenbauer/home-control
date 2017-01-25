@@ -10,8 +10,6 @@
 import { Component } from '@angular/core';
 import { DataProvider } from '../../services/dataProvider.service';
 
-//import styles from '../../../style/base.scss';
-
 //-----------------------------------------------------------------------------
 
 @Component({
@@ -20,7 +18,6 @@ import { DataProvider } from '../../services/dataProvider.service';
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	
 	constructor(private dataProvider: DataProvider) {
 		dataProvider.init();
 	}

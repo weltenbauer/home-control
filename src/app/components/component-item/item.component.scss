@@ -1,17 +1,14 @@
 /*
- * brief    Data Model for pages
+ * brief    Item Styles
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
- * date     January 2016
+ * date     January 2017
  */
 
 //-----------------------------------------------------------------------------
 
-import { Section } from './section.model';
+@import '../../../style/definitions';
 
 //-----------------------------------------------------------------------------
 
-export class Page {
-	public title : string = '';
-	public sections : Section[] = [];
-}
+.item{}

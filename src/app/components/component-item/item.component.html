@@ -1,0 +1,4 @@
+<div class="item" [@fadeInOut]>
+	{{item.label}}: {{item.value}} <span *ngIf="item.type === 'Link'">(<a [routerLink]="['/page', item.value]">{{item.label}}</a>)</span>
+</div>
+

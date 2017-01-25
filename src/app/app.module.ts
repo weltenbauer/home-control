@@ -17,8 +17,9 @@ import { Settings } from './services/settings.service';
 import { Routing } from './app.routing';
 
 import { AppComponent } from './components/app/app.component';
-import { MainComponent } from './components/route-main/main.component';
+import { PageComponent } from './components/route-page/page.component';
 import { SettingsComponent } from './components/route-settings/settings.component';
+import { ItemComponent } from './components/component-item/item.component';
 import { LoadingComponent } from './components/component-loading/loading.component';
 
 //-----------------------------------------------------------------------------
@@ -32,7 +33,8 @@ import { LoadingComponent } from './components/component-loading/loading.compone
 	],
 	declarations: [
 		AppComponent,
-		MainComponent,
+		PageComponent,
+		ItemComponent,
 		SettingsComponent,
 		LoadingComponent
 	],

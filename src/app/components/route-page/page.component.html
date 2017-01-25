@@ -1,0 +1,15 @@
+
+<header>
+	<h1>{{pageTitle}}</h1>
+</header>
+
+<!-- ---------------------------------------------------------------------- -->
+
+<article>
+	<section *ngFor="let section of sections">
+		<h2>{{section.label}}</h2>
+		<div>
+			<hc-item *ngFor="let item of section.items" [item]="item"></hc-item>
+		</div>
+	</section>
+</article>

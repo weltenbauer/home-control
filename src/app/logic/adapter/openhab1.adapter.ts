@@ -140,20 +140,20 @@ export class Openhab1Adapter extends BaseAdapter{
 	
 	//-------------------------------------------------------------------------
 	
-	private convertToPage(path, sourcePage){
+	private convertToPage(id, sourcePage){
 		
 		// Create page
 		const page = new Page();
-		page.label = sourcePage.title;
-		this.pages[path] = page;
+		page.title = sourcePage.title;
+		this.pages[id] = page;
 		
 		// Itterate all elements in page
-		this.nextStep(path, sourcePage.widget, page, null);
+		this.nextStep(sourcePage.widget, page, null);
 	}
 	
 	//-------------------------------------------------------------------------
 	
-	private convertToSection(path, sourceWidget, parentPage){
+	private convertToSection(sourceWidget, parentPage){
 	
 		// Create section
 		const section = new Section();
@@ -161,7 +161,7 @@ export class Openhab1Adapter extends BaseAdapter{
 		parentPage.sections.push(section);
 		
 		// Itterate all items in section
-		this.nextStep(path, sourceWidget.widget, parentPage, section);
+		this.nextStep(sourceWidget.widget, parentPage, section);
 	}
 	
 	//-------------------------------------------------------------------------
@@ -180,7 +180,21 @@ export class Openhab1Adapter extends BaseAdapter{
 	
 	//-------------------------------------------------------------------------
 	
-	private nextStep(path, sourceWidgets, parentPage, parentSection){
+	private convertToLinkItem(sourceWidget, parentSection, target){
+	
+		// Create item
+		const item = new Item();
+		item.type = 'Link';
+		item.label = sourceWidget.label;
+		item.icon = sourceWidget.icon;
+		item.value = target;
+		
+		parentSection.items.push(item);
+	}
+	
+	//-------------------------------------------------------------------------
+	
+	private nextStep(sourceWidgets, parentPage, parentSection){
 	
 		// Check if widgets available
 		if(!sourceWidgets){
@@ -197,12 +211,13 @@ export class Openhab1Adapter extends BaseAdapter{
 			
 			// Create page
 			if(widget.linkedPage){
-				this.convertToPage(path + '/' + widget.linkedPage.id, widget.linkedPage);
+				this.convertToLinkItem(widget, parentSection, widget.linkedPage.id);
+				this.convertToPage(widget.linkedPage.id, widget.linkedPage);
 			}
 			
 			// Create section
 			else if(widget.type === 'Frame'){
-				this.convertToSection(path, widget, parentPage);
+				this.convertToSection(widget, parentPage);
 			}
 			
 			// Create item in generic section
@@ -217,6 +232,5 @@ export class Openhab1Adapter extends BaseAdapter{
 				this.convertToItem(widget, parentSection);
 			}
 		});
-	
 	}
 }
