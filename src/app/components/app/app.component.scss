@@ -1,3 +1,41 @@
+/*
+ * brief    Style defintions
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     January 2017
+ */
+
+//-----------------------------------------------------------------------------
+
 :host{
-	color: red;
+	
+	.app{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: stretch;
+		
+		background-image: url(./img/backgrounds/fog01.jpg);
+		background-size: cover;
+		background-position: top center;
+		
+		&__main{
+			width: 100%;
+			height: 500px;
+			max-height: 500px;
+			margin-bottom: 50px;
+			padding: 0 100px;
+		}
+		
+		&__footer{
+			width: 100%;
+			padding: 0 100px;
+		}
+	}
 }

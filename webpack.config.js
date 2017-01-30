@@ -44,7 +44,7 @@ function createWebpackConfig() {
 	// Output setup
 	config.output = {
 		path: fullPath(ouputPath),
-		publicPath: isProduction ? '/' : 'http://localhost:8080/',
+		publicPath: '/',
 		filename: isProduction ? 'js/[name].[hash].js' : 'js/[name].js',
 		chunkFilename: isProduction ? '[id].[hash].chunk.js' : '[id].chunk.js'
 	};
@@ -59,7 +59,9 @@ function createWebpackConfig() {
 		contentBase: fullPath('src', 'public'),
 		historyApiFallback: true,
 		quiet: false,
-		stats: 'normal'
+		stats: 'normal',
+		host: '0.0.0.0',
+		port: 8080
 	};
 	
 	// Set Target
@@ -87,7 +89,7 @@ function createWebpackConfig() {
 
 			// copy those assets to output
 			{
-				test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+				test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
 				loader: 'file-loader?name=fonts/[name].[hash].[ext]?'
 			},
 

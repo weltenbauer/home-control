@@ -1,5 +1,5 @@
 /*
- * brief    Data Model for items
+ * brief    Icon component
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
  * date     January 2016
@@ -7,14 +7,18 @@
 
 //-----------------------------------------------------------------------------
 
-export enum ItemType { Undefined, State, Switch, Button, Link, Color };
+import { Component, Input } from '@angular/core';
 
 //-----------------------------------------------------------------------------
 
-export class Item {
-	public type : ItemType = ItemType.Undefined;
-	public label : string = '';
-	public icon : string = '';
-	public value : any;
-	public valueLabel : string = '';
+@Component({
+	selector: 'hc-icon',
+	templateUrl: './icon.component.html',
+	styleUrls: ['./icon.component.scss']
+})
+export class IconComponent {
+
+	@Input() icon : string;
+	
+	constructor() {}
 }

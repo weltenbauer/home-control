@@ -1,0 +1,62 @@
+/*
+ * brief    Item Styles
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     January 2017
+ */
+
+//-----------------------------------------------------------------------------
+
+@import '../../../style/definitions';
+
+//-----------------------------------------------------------------------------
+
+:host{
+
+	.item{
+		position: relative;
+		width: $itemSize;
+		height: $itemSize;
+		margin: 0 15px 15px 0;
+		box-shadow: 11px 10px 36.8px 3.2px rgba(0, 0, 0, 0.15);
+
+		&__backgroundBlur{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-image: url(./img/backgrounds/fog01-blurred.jpg);
+		}
+
+		&__backgroundColor{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ffffff;
+			opacity: 0.3;
+		}
+
+		&__content{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			text-align: center;
+			padding: 10px 5px;
+
+			&__value{
+				font-weight: bold;
+			}
+		}
+	}
+}

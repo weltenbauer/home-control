@@ -12,6 +12,7 @@ import { Http } from '@angular/http';
 
 import { Settings } from './settings.service';
 import { BackendData } from '../logic/models/backendData.model';
+import { Page } from '../logic/models/page.model';
 import { BaseAdapter } from '../logic/adapter/base.adapter';
 
 import { adapterRegistry } from '../data/adapterRegistry';
@@ -70,10 +71,10 @@ export class DataProvider {
 	
 	//-------------------------------------------------------------------------
 	
-	public getSections(path : string){
+	public getPage(path : string) : Promise<Page>{
 		return new Promise((resolve, reject) => {
 			this.currentAdapter.getPages().then((itemData) => {
-				resolve(itemData || null);
+				resolve(itemData[path] || null);
 			}).catch((error) => {
 				reject(error);
 			});

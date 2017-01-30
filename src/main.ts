@@ -32,3 +32,10 @@ export function main() {
 
 // Wait for browser
 document.readyState === 'complete' ? main() : document.addEventListener('DOMContentLoaded', main);
+
+//-----------------------------------------------------------------------------
+
+// Prevent overscrolling on mobile devices
+document.ontouchmove = function(event){
+	event.preventDefault();
+}

@@ -19,6 +19,8 @@
 }
 
 body, html {
+	position: relative;
+	width: 100vw;
 	height: 100vh;
 	font-size: $fontSizeBase;
 	line-height: 1.3em;
@@ -26,6 +28,16 @@ body, html {
 	color: $baseColor;
 	background-color: $backgroundColor;
 	overflow: hidden;
+	text-transform: uppercase;
+	font-weight: normal;
+}
+
+hc-app {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -36,4 +48,18 @@ a {
 
 ul {
 	list-style: none;
+}
+
+//-----------------------------------------------------------------------------
+
+h1, h2, h3, h4, h5, h6{
+	font-weight: normal;
+}
+
+h1{
+	font-size: 30px;
+}
+
+h2{
+	font-size: 20px;
 }

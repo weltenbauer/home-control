@@ -12,6 +12,6 @@ import { Section } from './section.model';
 //-----------------------------------------------------------------------------
 
 export class Page {
-	public label : string = '';
+	public title : string = '';
 	public sections : Section[] = [];
 }

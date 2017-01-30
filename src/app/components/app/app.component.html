@@ -1,18 +1,15 @@
 
-<main>
-	<router-outlet></router-outlet>
-</main>
-
-<!-- ---------------------------------------------------------------------- -->
-
-<footer>
-	<nav>
-		<a [routerLink]="['']">Refresh</a>
-		<a [routerLink]="['']">Home</a>
-		<a [routerLink]="['settings']">Settings</a>
-	</nav>
-</footer>
-
-<!-- ---------------------------------------------------------------------- -->
+<div class="app">
+	<main class="app__main">
+		<router-outlet></router-outlet>
+	</main>
+	<footer class="app__footer">
+		<nav>
+			<a [routerLink]="['']">Refresh</a>
+			<a [routerLink]="['/page']">Home</a>
+			<a [routerLink]="['/settings']">Settings</a>
+		</nav>
+	</footer>
+</div>
 
 <hc-loading></hc-loading>

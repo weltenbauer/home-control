@@ -14,7 +14,7 @@ import { BackendData } from '../models/backendData.model';
 
 import { Page } from '../models/page.model';
 import { Section } from '../models/section.model';
-import { Item } from '../models/item.model';
+import { Item, ItemType } from '../models/item.model';
 
 //-----------------------------------------------------------------------------
 
@@ -25,6 +25,16 @@ export class Openhab1Adapter extends BaseAdapter{
 	private items : any[] = [];
 	private sitemaps : any[] = [];
 	private pages : any = {};
+	
+	private itemTypeMapping = {
+		'Text': ItemType.State
+	};
+	
+	private iconMapping = {
+		'boy4': 'boy',
+		'child2': 'girl',
+		'temperature': 'thermometer'
+	};
 
 	//-------------------------------------------------------------------------
 	
@@ -108,6 +118,7 @@ export class Openhab1Adapter extends BaseAdapter{
 					
 			// Resolve after all requests finished
 			Promise.all(requestPromises).then(() => {
+				console.log(this.sitemaps[1]);
 				this.convertToPage('', this.sitemaps[1].homepage);
 				resolve();
 			});
@@ -140,20 +151,20 @@ export class Openhab1Adapter extends BaseAdapter{
 	
 	//-------------------------------------------------------------------------
 	
-	private convertToPage(path, sourcePage){
+	private convertToPage(id, sourcePage){
 		
 		// Create page
 		const page = new Page();
-		page.label = sourcePage.title;
-		this.pages[path] = page;
+		page.title = sourcePage.title;
+		this.pages[id] = page;
 		
 		// Itterate all elements in page
-		this.nextStep(path, sourcePage.widget, page, null);
+		this.nextStep(sourcePage.widget, page, null);
 	}
 	
 	//-------------------------------------------------------------------------
 	
-	private convertToSection(path, sourceWidget, parentPage){
+	private convertToSection(sourceWidget, parentPage){
 	
 		// Create section
 		const section = new Section();
@@ -161,7 +172,7 @@ export class Openhab1Adapter extends BaseAdapter{
 		parentPage.sections.push(section);
 		
 		// Itterate all items in section
-		this.nextStep(path, sourceWidget.widget, parentPage, section);
+		this.nextStep(sourceWidget.widget, parentPage, section);
 	}
 	
 	//-------------------------------------------------------------------------
@@ -170,17 +181,44 @@ export class Openhab1Adapter extends BaseAdapter{
 	
 		// Create item
 		const item = new Item();
-		item.type = sourceWidget.type;
+		item.type = this.itemTypeMapping[sourceWidget.type] || ItemType.Undefined;
 		item.label = sourceWidget.label;
-		item.icon = sourceWidget.icon;
+		item.icon = this.iconMapping[sourceWidget.icon] || sourceWidget.icon;
 		item.value = sourceWidget.item.state;
+		item.valueLabel = sourceWidget.item.state;
+		
+		// Set valueLabel
+		if(item.type === ItemType.State){
+			const result = item.label.match(/\[(.*?)\]/g);
+			if(result.length > 0){
+				item.label = item.label.replace(result[result.length - 1], '');
+				item.valueLabel = result[result.length - 1].replace(/[\[\]]/g, '');
+			}
+		}
+		
+		console.log(sourceWidget);
+		
+		// Save item
+		parentSection.items.push(item);
+	}
+	
+	//-------------------------------------------------------------------------
+	
+	private convertToLinkItem(sourceWidget, parentSection, target){
+	
+		// Create item
+		const item = new Item();
+		item.type = ItemType.Link;
+		item.label = sourceWidget.label;
+		item.icon = this.iconMapping[sourceWidget.icon] || sourceWidget.icon;
+		item.value = target;
 		
 		parentSection.items.push(item);
 	}
 	
 	//-------------------------------------------------------------------------
 	
-	private nextStep(path, sourceWidgets, parentPage, parentSection){
+	private nextStep(sourceWidgets, parentPage, parentSection){
 	
 		// Check if widgets available
 		if(!sourceWidgets){
@@ -197,12 +235,13 @@ export class Openhab1Adapter extends BaseAdapter{
 			
 			// Create page
 			if(widget.linkedPage){
-				this.convertToPage(path + '/' + widget.linkedPage.id, widget.linkedPage);
+				this.convertToLinkItem(widget, parentSection, widget.linkedPage.id);
+				this.convertToPage(widget.linkedPage.id, widget.linkedPage);
 			}
 			
 			// Create section
 			else if(widget.type === 'Frame'){
-				this.convertToSection(path, widget, parentPage);
+				this.convertToSection(widget, parentPage);
 			}
 			
 			// Create item in generic section
@@ -217,6 +256,5 @@ export class Openhab1Adapter extends BaseAdapter{
 				this.convertToItem(widget, parentSection);
 			}
 		});
-	
 	}
 }
