@@ -7,7 +7,7 @@
 
 //-----------------------------------------------------------------------------
 
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataProvider } from '../../services/dataProvider.service';
 import { Section } from '../../logic/models/section.model';
@@ -23,7 +23,7 @@ import 'iscroll/build/iscroll';
 	templateUrl: './page.component.html',
 	styleUrls: ['./page.component.scss']
 })
-export class PageComponent {
+export class PageComponent implements OnInit, OnDestroy {
 
 	public pageTitle : string = '';
 	public sections : Section[] = null;
@@ -42,7 +42,7 @@ export class PageComponent {
 		const sectionScroller = new IScroll('#pageSectionsScrollContainer', {
 			scrollX: true,
 			scrollY: false,
-			scrollbars: true,
+			scrollbars: 'custom',
 			mouseWheel: true
 		});
 
@@ -56,6 +56,11 @@ export class PageComponent {
 			this.dataProvider.getPage(id).then((page) => {
 				this.pageTitle = page.title;
 				this.sections = page.sections;
+
+				// Update scroller
+				setTimeout(() => {
+					sectionScroller.refresh();
+				}, 500);
 			});
 		});
 	}

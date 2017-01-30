@@ -28,9 +28,9 @@
 			height: 100%;
 
 			&__sections{
-				width: 100%;
-				min-width: 2000px;
-				display: flex;
+				height: 460px;
+
+				display: inline-flex;
 				justify-content: flex-start;
 				align-items: flex-start;
 

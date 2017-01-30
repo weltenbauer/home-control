@@ -18,21 +18,27 @@ import { BackendData } from '../logic/models/backendData.model';
 export class Settings {
 
 	constructor(){}
-	
+
 	//-------------------------------------------------------------------------
-	
+
 	public getCurrentBackend(){
-	
+
 		const backendData = new BackendData();
 		backendData.name = 'Home-Control';
 		backendData.type = 'openhab1';
 		backendData.url = 'http://home-control:8080/rest';
 		backendData.username = '';
 		backendData.password = '';
-	
+
+		/*backendData.name = 'Home-Control';
+		backendData.type = 'openhab1';
+		backendData.url = 'https://home-control.duckdns.org/rest';
+		backendData.username = 'christian';
+		backendData.password = 'mlciETnk';*/
+
 		return backendData;
 	}
-	
+
 	//-------------------------------------------------------------------------
 
 	public getValue(key){

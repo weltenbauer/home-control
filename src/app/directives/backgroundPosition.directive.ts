@@ -7,17 +7,17 @@
 
 //-----------------------------------------------------------------------------
 
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, OnInit } from '@angular/core';
 
 //-----------------------------------------------------------------------------
 
-@Directive({ selector: '[backgroundPosition]' })
-export class BackgroundPositionDirective {
+@Directive({ selector: '[hcBackgroundPosition]' })
+export class BackgroundPositionDirective implements OnInit {
 
 	constructor(private el : ElementRef) {}
-	
+
 	//-------------------------------------------------------------------------
-	
+
 	ngOnInit(){
 		this.setBgPosition();
 	}
