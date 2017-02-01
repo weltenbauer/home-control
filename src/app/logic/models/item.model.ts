@@ -14,7 +14,8 @@ export enum ItemType { Undefined, State, Switch, Button, Link, Color };
 export class Item {
 	public type : ItemType = ItemType.Undefined;
 	public label : string = '';
-	public icon : string = '';
+	public icon : string = 'none';
 	public value : any;
 	public valueLabel : string = '';
+	public metaData : any;
 }

@@ -19,6 +19,7 @@ import { Component, Input } from '@angular/core';
 export class IconComponent {
 
 	@Input() icon : string;
-	
+	@Input() active : boolean = false;
+
 	constructor() {}
 }

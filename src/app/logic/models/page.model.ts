@@ -14,4 +14,5 @@ import { Section } from './section.model';
 export class Page {
 	public title : string = '';
 	public sections : Section[] = [];
+	public metaData : any;
 }

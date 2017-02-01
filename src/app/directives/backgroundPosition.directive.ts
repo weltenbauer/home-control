@@ -27,6 +27,6 @@ export class BackgroundPositionDirective implements OnInit {
 	@HostListener('window:resize', ['$event'])
 	private setBgPosition(){
 		this.el.nativeElement.style.backgroundSize = window.innerWidth + 'px ' + window.innerHeight + 'px';
-		this.el.nativeElement.style.backgroundPosition = (-this.el.nativeElement.parentElement.offsetLeft) + 'px ' + (-this.el.nativeElement.parentElement.offsetTop) + 'px';
+		this.el.nativeElement.style.backgroundPosition = (-this.el.nativeElement.getBoundingClientRect().left) + 'px ' + (-this.el.nativeElement.getBoundingClientRect().top) + 'px';
 	}
 }

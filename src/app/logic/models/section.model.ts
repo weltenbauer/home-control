@@ -14,4 +14,5 @@ import { Item } from './item.model';
 export class Section {
 	public label : string = '';
 	public items : Item[] = [];
+	public metaData : any;
 }
