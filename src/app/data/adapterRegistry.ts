@@ -7,12 +7,12 @@
 
 //-----------------------------------------------------------------------------
 
-import { MockAdapter } from '../logic/adapter/mock.adapter';
-import { Openhab1Adapter } from '../logic/adapter/openhab1.adapter';
+import { MockAdapter } from '../logic/adapter/mock/mock.adapter';
+import { Openhab1Adapter } from '../logic/adapter/openhab1/openhab1.adapter';
 
 //-----------------------------------------------------------------------------
 
-export let adapterRegistry = {
+export const adapterRegistry = {
 	mock: {
 		name: 'Mock',
 		type: MockAdapter

@@ -29,6 +29,9 @@ export class Settings {
 		backendData.url = 'http://home-control:8080/rest';
 		backendData.username = '';
 		backendData.password = '';
+		backendData.metaData = {
+			sitemap: 'homecontrol'
+		};
 
 		/*backendData.name = 'Home-Control';
 		backendData.type = 'openhab1';

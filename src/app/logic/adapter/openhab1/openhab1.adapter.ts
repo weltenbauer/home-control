@@ -7,34 +7,25 @@
 
 //-----------------------------------------------------------------------------
 
-import { Http, Headers } from '@angular/http';
-import { BaseAdapter } from './base.adapter';
-import { Settings } from '../../services/settings.service';
-import { BackendData } from '../models/backendData.model';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { BaseAdapter } from '../base.adapter';
+import { Settings } from '../../../services/settings.service';
+import { BackendData } from '../../models/backendData.model';
 
-import { Page } from '../models/page.model';
-import { Section } from '../models/section.model';
-import { Item, ItemType } from '../models/item.model';
+import { Page } from '../../models/page.model';
+import { Section } from '../../models/section.model';
+import { Item, ItemType } from '../../models/item.model';
+
+import { itemTypeMapping, iconMapping } from './mappings';
 
 //-----------------------------------------------------------------------------
 
 export class Openhab1Adapter extends BaseAdapter{
 
 	private initPromise : any = null;
-
 	private items : any[] = [];
 	private sitemaps : any[] = [];
 	private pages : any = {};
-
-	private itemTypeMapping = {
-		'Text': ItemType.State
-	};
-
-	private iconMapping = {
-		'boy4': 'boy',
-		'child2': 'girl',
-		'temperature': 'thermometer'
-	};
 
 	//-------------------------------------------------------------------------
 
@@ -118,6 +109,9 @@ export class Openhab1Adapter extends BaseAdapter{
 
 			// Resolve after all requests finished
 			Promise.all(requestPromises).then(() => {
+				this.sitemaps = this.sitemaps.filter((element) => {
+					return element.name === backendData.metaData.sitemap;
+				});
 				this.convertToPage('', this.sitemaps[0].homepage);
 				console.log(this.pages);
 				resolve();
@@ -186,10 +180,9 @@ export class Openhab1Adapter extends BaseAdapter{
 	private convertToItem(sourceWidget, parentSection){
 
 		// Create item
-		const item = new Item();
-		item.type = this.itemTypeMapping[sourceWidget.type] || ItemType.Undefined;
+		const item = itemTypeMapping[sourceWidget.type] ?  new itemTypeMapping[sourceWidget.type]() : new Item();
 		item.label = sourceWidget.label;
-		item.icon = this.iconMapping[sourceWidget.icon] || sourceWidget.icon;
+		item.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
 
 		// Set state
 		const itemValue : any = sourceWidget.item.state;
@@ -220,6 +213,21 @@ export class Openhab1Adapter extends BaseAdapter{
 			}
 		}
 
+		// Override onClick Method
+		item.apply = () =>{
+
+			const newValue = item.value ? 'ON' : 'OFF';
+
+			const headers = new Headers();
+			headers.append('Content-Type', 'text/plain');
+			const options = new RequestOptions({ headers: headers });
+
+			this.http.post(item.metaData.originalData.item.link, newValue, options).subscribe(
+				data => {},
+				err => { console.log(err); }
+			);
+		};
+
 		// Save item
 		parentSection.items.push(item);
 	}
@@ -232,7 +240,7 @@ export class Openhab1Adapter extends BaseAdapter{
 		const item = new Item();
 		item.type = ItemType.Link;
 		item.label = sourceWidget.label;
-		item.icon = this.iconMapping[sourceWidget.icon] || sourceWidget.icon;
+		item.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
 		item.value = target;
 
 		parentSection.items.push(item);
@@ -268,9 +276,14 @@ export class Openhab1Adapter extends BaseAdapter{
 
 			// Create item in generic section
 			else if(!parentSection){
-				const section = new Section();
-				parentPage.sections.push(section);
-				this.convertToItem(widget, section);
+				if(parentPage.sections.length > 0 && parentPage.sections[parentPage.sections.length-1].isGeneric){
+					this.convertToItem(widget, parentPage.sections[parentPage.sections.length-1]);
+				}
+				else {
+					const section = new Section(true);
+					parentPage.sections.push(section);
+					this.convertToItem(widget, section);
+				}
 			}
 
 			// Create item

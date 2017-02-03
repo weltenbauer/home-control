@@ -8,9 +8,9 @@
 //-----------------------------------------------------------------------------
 
 import { Http } from '@angular/http';
-import { BaseAdapter } from './base.adapter';
-import { Settings } from '../../services/settings.service';
-import { BackendData } from '../models/backendData.model';
+import { BaseAdapter } from '../base.adapter';
+import { Settings } from '../../../services/settings.service';
+import { BackendData } from '../../models/backendData.model';
 
 //-----------------------------------------------------------------------------
 
@@ -25,9 +25,9 @@ export class MockAdapter extends BaseAdapter{
 	init(backendData : BackendData){
 		return Promise.resolve();
 	}
-	
+
 	//-------------------------------------------------------------------------
-	
+
 	getPages(){
 		return Promise.resolve({
 			'main': {
@@ -38,7 +38,7 @@ export class MockAdapter extends BaseAdapter{
 						label: 'Lamp 1',
 						state: 'on',
 						setState: function(state){
-							
+
 						}
 					}
 				}

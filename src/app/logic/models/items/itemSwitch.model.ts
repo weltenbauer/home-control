@@ -1,5 +1,5 @@
 /*
- * brief    Data Model for items
+ * brief    Data Model for item-switch
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
  * date     January 2016
@@ -7,18 +7,28 @@
 
 //-----------------------------------------------------------------------------
 
-export enum ItemType { Undefined, State, Switch, Button, Link, Color };
+import { Item, ItemType } from '../item.model';
 
 //-----------------------------------------------------------------------------
 
-export class Item {
+export class ItemSwitch extends Item{
 
-	public type : ItemType = ItemType.Undefined;
-	public label : string = '';
-	public icon : string = 'none';
-	public value : any;
-	public valueLabel : string = '';
-	public metaData : any;
+	public type : ItemType = ItemType.Switch;
+	public value : boolean = false;
+
+	//-------------------------------------------------------------------------
+
+	constructor(private defaultValue = false){
+		super();
+		this.value = defaultValue;
+	}
+
+	//-------------------------------------------------------------------------
+
+	public onLocalChange(){
+		this.value = !this.value;
+		this.apply();
+	}
 
 	//-------------------------------------------------------------------------
 
@@ -29,17 +39,12 @@ export class Item {
 	//-------------------------------------------------------------------------
 
 	public getValueLabel(){
-		return this.valueLabel;
+		return this.value ? 'On' : 'Off';
 	}
 
 	//-------------------------------------------------------------------------
 
 	public getIconActiveState(){
-		return false;
+		return this.value;
 	}
-
-	//-------------------------------------------------------------------------
-
-	public apply(){}
-	public onLocalChange(){}
 }

@@ -1,5 +1,5 @@
 /*
- * brief    Data Model for sections
+ * brief    Data Model for item-state
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
  * date     January 2016
@@ -7,17 +7,10 @@
 
 //-----------------------------------------------------------------------------
 
-import { Item } from './item.model';
+import { Item, ItemType } from '../item.model';
 
 //-----------------------------------------------------------------------------
 
-export class Section {
-
-	public label : string = '';
-	public items : Item[] = [];
-	public metaData : any;
-
-	//-------------------------------------------------------------------------
-
-	constructor(public isGeneric = false){}
+export class ItemState extends Item{
+	public type : ItemType = ItemType.State;
 }
