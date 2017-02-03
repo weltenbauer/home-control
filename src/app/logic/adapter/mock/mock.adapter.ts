@@ -45,4 +45,8 @@ export class MockAdapter extends BaseAdapter{
 			}
 		});
 	}
+
+	//-------------------------------------------------------------------------
+
+	updateValue(item){}
 }

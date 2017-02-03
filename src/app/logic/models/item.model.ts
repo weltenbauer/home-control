@@ -7,6 +7,10 @@
 
 //-----------------------------------------------------------------------------
 
+import { BaseAdapter } from '../adapter/base.adapter';
+
+//-----------------------------------------------------------------------------
+
 export enum ItemType { Undefined, State, Switch, Button, Link, Color };
 
 //-----------------------------------------------------------------------------
@@ -19,6 +23,10 @@ export class Item {
 	public value : any;
 	public valueLabel : string = '';
 	public metaData : any;
+
+	//-------------------------------------------------------------------------
+
+	constructor(protected adapter : BaseAdapter){}
 
 	//-------------------------------------------------------------------------
 

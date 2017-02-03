@@ -8,6 +8,7 @@
 //-----------------------------------------------------------------------------
 
 import { Item, ItemType } from '../item.model';
+import { BaseAdapter } from '../../adapter/base.adapter';
 
 //-----------------------------------------------------------------------------
 
@@ -18,8 +19,8 @@ export class ItemSwitch extends Item{
 
 	//-------------------------------------------------------------------------
 
-	constructor(private defaultValue = false){
-		super();
+	constructor(protected adapter : BaseAdapter, private defaultValue = false){
+		super(adapter);
 		this.value = defaultValue;
 	}
 

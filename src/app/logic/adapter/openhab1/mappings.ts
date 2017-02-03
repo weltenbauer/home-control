@@ -7,14 +7,14 @@
 
 //-----------------------------------------------------------------------------
 
-import { ItemSwitch } from '../../models/items/itemSwitch.model';
 import { ItemState } from '../../models/items/itemState.model';
+import { ItemSwitchOpenhab1 } from './items/itemSwitchOpenhab1.model';
 
 //-----------------------------------------------------------------------------
 
 export const itemTypeMapping = {
 	'Text': ItemState,
-	'Switch': ItemSwitch
+	'Switch': ItemSwitchOpenhab1
 };
 
 //-----------------------------------------------------------------------------

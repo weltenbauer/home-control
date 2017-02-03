@@ -180,7 +180,7 @@ export class Openhab1Adapter extends BaseAdapter{
 	private convertToItem(sourceWidget, parentSection){
 
 		// Create item
-		const item = itemTypeMapping[sourceWidget.type] ?  new itemTypeMapping[sourceWidget.type]() : new Item();
+		const item = itemTypeMapping[sourceWidget.type] ?  new itemTypeMapping[sourceWidget.type](this) : new Item(this);
 		item.label = sourceWidget.label;
 		item.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
 
@@ -205,28 +205,11 @@ export class Openhab1Adapter extends BaseAdapter{
 		};
 
 		// Set valueLabel
-		if(item.type === ItemType.State){
-			const result = item.label.match(/\[(.*?)\]/g);
-			if(result.length > 0){
-				item.label = item.label.replace(result[result.length - 1], '');
-				item.valueLabel = result[result.length - 1].replace(/[\[\]]/g, '');
-			}
+		const result = item.label.match(/\[(.*?)\]/g);
+		if(result && result.length > 0){
+			item.label = item.label.replace(result[result.length - 1], '');
+			item.valueLabel = result[result.length - 1].replace(/[\[\]]/g, '');
 		}
-
-		// Override onClick Method
-		item.apply = () =>{
-
-			const newValue = item.value ? 'ON' : 'OFF';
-
-			const headers = new Headers();
-			headers.append('Content-Type', 'text/plain');
-			const options = new RequestOptions({ headers: headers });
-
-			this.http.post(item.metaData.originalData.item.link, newValue, options).subscribe(
-				data => {},
-				err => { console.log(err); }
-			);
-		};
 
 		// Save item
 		parentSection.items.push(item);
@@ -237,7 +220,7 @@ export class Openhab1Adapter extends BaseAdapter{
 	private convertToLinkItem(sourceWidget, parentSection, target){
 
 		// Create item
-		const item = new Item();
+		const item = new Item(this);
 		item.type = ItemType.Link;
 		item.label = sourceWidget.label;
 		item.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
@@ -291,5 +274,20 @@ export class Openhab1Adapter extends BaseAdapter{
 				this.convertToItem(widget, parentSection);
 			}
 		});
+	}
+
+
+	//-------------------------------------------------------------------------
+
+	public updateValue(item : Item, value : any){
+
+		const headers = new Headers();
+		headers.append('Content-Type', 'text/plain');
+		const options = new RequestOptions({ headers: headers });
+
+		this.http.post(item.metaData.originalData.item.link, value, options).subscribe(
+			data => {},
+			err => { console.log(err); }
+		);
 	}
 }
