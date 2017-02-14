@@ -1,13 +1,13 @@
-<div class="item" (click)="item.onLocalChange()">
+<div class="item">
 
 	<div hcBackgroundPosition class="item__backgroundBlur"></div>
 	<div class="item__backgroundColor"></div>
 
 	<div class="item__content">
-		<hc-icon class="item__content__icon" [icon]="item.icon" [active]="item.getIconActiveState()"></hc-icon>
+		<hc-icon class="item__content__icon" [icon]="item.icon"></hc-icon>
 		<div class="item__content__label">{{item.getLabel()}}</div>
 		<div class="item__content__value" *ngIf="item.getValueLabel()">{{item.getValueLabel()}}</div>
-		<span *ngIf="item.type === _ItemType.Link">(<a [routerLink]="['/page', item.value]">{{item.label}}</a>)</span>
+		<span *ngIf="item.type === _ItemType.Link">(<a [routerLink]="['/page', item.target]">{{item.label}}</a>)</span>
 	</div>
 
 </div>

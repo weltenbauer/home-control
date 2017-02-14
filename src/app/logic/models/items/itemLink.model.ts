@@ -1,8 +1,8 @@
 /*
- * brief    Data Model for item-switch
+ * brief    Data Model for item-link
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
- * date     January 2016
+ * date     February 2017
  */
 
 //-----------------------------------------------------------------------------
@@ -11,25 +11,17 @@ import { Item, ItemType } from '../item.model';
 
 //-----------------------------------------------------------------------------
 
-export class ItemSwitch extends Item{
+export class ItemLink extends Item{
 
-	public type : ItemType = ItemType.Switch;
+	public type : ItemType = ItemType.Link;
 
 	//-------------------------------------------------------------------------
 
-	constructor(protected value : boolean = false){
+	constructor(protected target : string = ''){
 		super();
 	}
 
 	//-------------------------------------------------------------------------
 
-	public toggelSwitch(){
-		this.value = !this.value;
-	}
-
-	//-------------------------------------------------------------------------
-
-	public getValueLabel(){
-		return this.value ? 'On' : 'Off';
-	}
+	public openLink(){}
 }

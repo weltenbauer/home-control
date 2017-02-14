@@ -16,7 +16,10 @@ import { Page } from '../../models/page.model';
 import { Section } from '../../models/section.model';
 import { Item, ItemType } from '../../models/item.model';
 
-import { itemTypeMapping, iconMapping } from './mappings';
+import { iconMapping } from './mappings';
+import { ItemStateOpenhab1 } from "./items/itemStateOpenhab1.model";
+import { ItemSwitchOpenhab1 } from "./items/itemSwitchOpenhab1.model";
+import { ItemLinkOpenhab1 } from "./items/itemLinkOpenhab1.model";
 
 //-----------------------------------------------------------------------------
 
@@ -179,7 +182,21 @@ export class Openhab1Adapter extends BaseAdapter{
 
 	private convertToItem(sourceWidget, parentSection){
 
-		// Create item
+		let item = null;
+
+		if(sourceWidget.type === 'Text'){
+			item = new ItemStateOpenhab1(this, sourceWidget);
+		}
+		else if(sourceWidget.type === 'Switch'){
+			item = new ItemSwitchOpenhab1(this, sourceWidget);
+		}
+		else{
+			item = new Item();
+			item.label = sourceWidget.label;
+			item.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
+		}
+
+		/*// Create item
 		const item = itemTypeMapping[sourceWidget.type] ?  new itemTypeMapping[sourceWidget.type](this) : new Item(this);
 		item.label = sourceWidget.label;
 		item.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
@@ -209,7 +226,7 @@ export class Openhab1Adapter extends BaseAdapter{
 		if(result && result.length > 0){
 			item.label = item.label.replace(result[result.length - 1], '');
 			item.valueLabel = result[result.length - 1].replace(/[\[\]]/g, '');
-		}
+		}*/
 
 		// Save item
 		parentSection.items.push(item);
@@ -218,14 +235,7 @@ export class Openhab1Adapter extends BaseAdapter{
 	//-------------------------------------------------------------------------
 
 	private convertToLinkItem(sourceWidget, parentSection, target){
-
-		// Create item
-		const item = new Item(this);
-		item.type = ItemType.Link;
-		item.label = sourceWidget.label;
-		item.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
-		item.value = target;
-
+		const item = new ItemLinkOpenhab1(this, sourceWidget, target);
 		parentSection.items.push(item);
 	}
 
@@ -285,9 +295,9 @@ export class Openhab1Adapter extends BaseAdapter{
 		headers.append('Content-Type', 'text/plain');
 		const options = new RequestOptions({ headers: headers });
 
-		this.http.post(item.metaData.originalData.item.link, value, options).subscribe(
+		/*this.http.post(item.metaData.originalData.item.link, value, options).subscribe(
 			data => {},
 			err => { console.log(err); }
-		);
+		);*/
 	}
 }

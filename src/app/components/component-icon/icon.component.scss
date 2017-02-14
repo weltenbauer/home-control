@@ -34,9 +34,9 @@
 
 	.icon{
 
-		$icons: undefined girl boy thermometer switch sun power door trashcan battery;
+		$icons: undefined girl boy thermometer switch sun power door trashcan battery screwdriver;
 		$url: '../img/icons.svg';
-		$spriteSize: 10;
+		$spriteSize: 11;
 
 		// Default size
 		@include icon(50px, $url, $icons, $spriteSize);

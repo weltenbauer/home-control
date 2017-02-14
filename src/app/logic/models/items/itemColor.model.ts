@@ -1,35 +1,35 @@
 /*
- * brief    Data Model for items
+ * brief    Data Model for item-color
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
- * date     January 2017
+ * date     February 2017
  */
 
 //-----------------------------------------------------------------------------
 
-import { BaseAdapter } from '../adapter/base.adapter';
+import { Item, ItemType } from '../item.model';
 
 //-----------------------------------------------------------------------------
 
-export enum ItemType { Undefined, State, Switch, Button, Link, Color };
+export class ItemColor extends Item{
 
-//-----------------------------------------------------------------------------
-
-export class Item {
-
-	public type : ItemType = ItemType.Undefined;
-	public label : string = '';
-	public icon : string = 'none';
+	public type : ItemType = ItemType.Color;
 
 	//-------------------------------------------------------------------------
 
-	public getLabel(){
-		return this.label;
+	constructor(private colorValue : string = ''){
+		super();
+	}
+
+	//-------------------------------------------------------------------------
+
+	public setColor(colorValue : string){
+		this.colorValue = colorValue;
 	}
 
 	//-------------------------------------------------------------------------
 
 	public getValueLabel(){
-		return '';
+		return this.colorValue;
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * brief    Implementation of an OpenHAB 1 Switch
+ * brief    Implementation of an OpenHAB 1 Link
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
  * date     January 2016
@@ -7,30 +7,18 @@
 
 //-----------------------------------------------------------------------------
 
-import { ItemSwitch } from '../../../models/items/itemSwitch.model';
+import { ItemLink } from '../../../models/items/itemLink.model';
 import { Openhab1Adapter } from '../../openhab1/openhab1.adapter';
 import { iconMapping } from '../../openhab1/mappings';
 
 //-----------------------------------------------------------------------------
 
-export class ItemSwitchOpenhab1 extends ItemSwitch{
+export class ItemLinkOpenhab1 extends ItemLink{
 
-	constructor(protected adapter : Openhab1Adapter, public sourceWidget : any){
-		super();
+	constructor(protected adapter : Openhab1Adapter, public sourceWidget : any, protected target : string){
+		super(target);
 
 		this.label = sourceWidget.label;
 		this.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
-	}
-
-	//-------------------------------------------------------------------------
-
-	public toggelSwitch(){
-
-		// Toggel Switch
-		super.toggelSwitch();
-
-		// Update data on server
-		const newValue = this.value ? 'ON' : 'OFF';
-		this.adapter.updateValue(this, newValue);
 	}
 }

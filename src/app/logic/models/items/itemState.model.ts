@@ -12,5 +12,24 @@ import { Item, ItemType } from '../item.model';
 //-----------------------------------------------------------------------------
 
 export class ItemState extends Item{
+
 	public type : ItemType = ItemType.State;
+
+	//-------------------------------------------------------------------------
+
+	constructor(protected state : string = ''){
+		super();
+	}
+
+	//-------------------------------------------------------------------------
+
+	public setState(state : string){
+		this.state = state;
+	}
+
+	//-------------------------------------------------------------------------
+
+	public getValueLabel(){
+		return this.state;
+	}
 }

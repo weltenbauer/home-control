@@ -1,36 +1,32 @@
 /*
- * brief    Implementation of an OpenHAB 1 Switch
+ * brief    Implementation of an OpenHAB 1 State
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
- * date     January 2016
+ * date     February 2017
  */
 
 //-----------------------------------------------------------------------------
 
-import { ItemSwitch } from '../../../models/items/itemSwitch.model';
+import { ItemState } from '../../../models/items/itemState.model';
 import { Openhab1Adapter } from '../../openhab1/openhab1.adapter';
 import { iconMapping } from '../../openhab1/mappings';
 
 //-----------------------------------------------------------------------------
 
-export class ItemSwitchOpenhab1 extends ItemSwitch{
+export class ItemStateOpenhab1 extends ItemState{
 
 	constructor(protected adapter : Openhab1Adapter, public sourceWidget : any){
 		super();
 
-		this.label = sourceWidget.label;
 		this.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
-	}
 
-	//-------------------------------------------------------------------------
-
-	public toggelSwitch(){
-
-		// Toggel Switch
-		super.toggelSwitch();
-
-		// Update data on server
-		const newValue = this.value ? 'ON' : 'OFF';
-		this.adapter.updateValue(this, newValue);
+		const result = sourceWidget.label.match(/\[(.*?)\]/g);
+		if(result && result.length > 0){
+			this.label = sourceWidget.label.replace(result[result.length - 1], '');
+			this.state = result[result.length - 1].replace(/[\[\]]/g, '');
+		}
+		else{
+			this.label = sourceWidget.label;
+		}
 	}
 }
