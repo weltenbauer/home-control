@@ -23,12 +23,6 @@ export class ItemState extends Item{
 
 	//-------------------------------------------------------------------------
 
-	public setState(state : string){
-		this.state = state;
-	}
-
-	//-------------------------------------------------------------------------
-
 	public getValueLabel(){
 		return this.state;
 	}

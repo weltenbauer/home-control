@@ -20,6 +20,10 @@ import { AppComponent } from './components/app/app.component';
 import { PageComponent } from './components/route-page/page.component';
 import { SettingsComponent } from './components/route-settings/settings.component';
 import { ItemComponent } from './components/component-item/item.component';
+import { ItemStateComponent } from './components/component-item/state/itemState.component';
+import { ItemSwitchComponent } from './components/component-item/switch/itemSwitch.component';
+import { ItemLinkComponent } from './components/component-item/link/itemLink.component';
+import { ItemColorComponent } from './components/component-item/color/itemColor.component';
 import { LoadingComponent } from './components/component-loading/loading.component';
 import { IconComponent } from './components/component-icon/icon.component';
 
@@ -38,6 +42,10 @@ import { BackgroundPositionDirective } from './directives/backgroundPosition.dir
 		AppComponent,
 		PageComponent,
 		ItemComponent,
+		ItemStateComponent,
+		ItemSwitchComponent,
+		ItemLinkComponent,
+		ItemColorComponent,
 		SettingsComponent,
 		LoadingComponent,
 		IconComponent,

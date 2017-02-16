@@ -15,11 +15,12 @@ import { iconMapping } from '../../openhab1/mappings';
 
 export class ItemSwitchOpenhab1 extends ItemSwitch{
 
-	constructor(protected adapter : Openhab1Adapter, public sourceWidget : any){
+	constructor(protected adapter : Openhab1Adapter, private sourceWidget : any){
 		super();
 
 		this.label = sourceWidget.label;
 		this.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
+		this.value = sourceWidget.item.state === 'ON';
 	}
 
 	//-------------------------------------------------------------------------
@@ -31,6 +32,6 @@ export class ItemSwitchOpenhab1 extends ItemSwitch{
 
 		// Update data on server
 		const newValue = this.value ? 'ON' : 'OFF';
-		this.adapter.updateValue(this, newValue);
+		this.adapter.updateValue(this.sourceWidget.item.link, newValue);
 	}
 }

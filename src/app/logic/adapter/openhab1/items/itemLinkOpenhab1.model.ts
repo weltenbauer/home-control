@@ -15,7 +15,7 @@ import { iconMapping } from '../../openhab1/mappings';
 
 export class ItemLinkOpenhab1 extends ItemLink{
 
-	constructor(protected adapter : Openhab1Adapter, public sourceWidget : any, protected target : string){
+	constructor(public sourceWidget : any, public target : string){
 		super(target);
 
 		this.label = sourceWidget.label;

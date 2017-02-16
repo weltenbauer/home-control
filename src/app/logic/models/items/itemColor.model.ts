@@ -17,19 +17,19 @@ export class ItemColor extends Item{
 
 	//-------------------------------------------------------------------------
 
-	constructor(private colorValue : string = ''){
+	constructor(protected color : string = '000000'){
 		super();
 	}
 
 	//-------------------------------------------------------------------------
 
-	public setColor(colorValue : string){
-		this.colorValue = colorValue;
+	public setColor(color : string){
+		this.color = color;
 	}
 
 	//-------------------------------------------------------------------------
 
 	public getValueLabel(){
-		return this.colorValue;
+		return this.color;
 	}
 }

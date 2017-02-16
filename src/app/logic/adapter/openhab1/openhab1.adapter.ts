@@ -20,6 +20,7 @@ import { iconMapping } from './mappings';
 import { ItemStateOpenhab1 } from "./items/itemStateOpenhab1.model";
 import { ItemSwitchOpenhab1 } from "./items/itemSwitchOpenhab1.model";
 import { ItemLinkOpenhab1 } from "./items/itemLinkOpenhab1.model";
+import { ItemColorOpenhab1 } from "./items/itemColorOpenhab1.model";
 
 //-----------------------------------------------------------------------------
 
@@ -190,43 +191,14 @@ export class Openhab1Adapter extends BaseAdapter{
 		else if(sourceWidget.type === 'Switch'){
 			item = new ItemSwitchOpenhab1(this, sourceWidget);
 		}
+		else if(sourceWidget.type === 'Colorpicker'){
+			item = new ItemColorOpenhab1(this, sourceWidget);
+		}
 		else{
 			item = new Item();
 			item.label = sourceWidget.label;
 			item.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
 		}
-
-		/*// Create item
-		const item = itemTypeMapping[sourceWidget.type] ?  new itemTypeMapping[sourceWidget.type](this) : new Item(this);
-		item.label = sourceWidget.label;
-		item.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;
-
-		// Set state
-		const itemValue : any = sourceWidget.item.state;
-		item.value = itemValue || null;
-
-		// Set valueLabel
-		if(itemValue === 'Uninitialized'){
-			item.valueLabel = null;
-		}
-		else if(itemValue === 'Undefined' && sourceWidget.mapping && sourceWidget.mapping.label){
-			item.valueLabel = sourceWidget.mapping.label;
-		}
-		else{
-			item.valueLabel = sourceWidget.item.state;
-		}
-
-		// Save original
-		item.metaData = {
-			originalData: sourceWidget
-		};
-
-		// Set valueLabel
-		const result = item.label.match(/\[(.*?)\]/g);
-		if(result && result.length > 0){
-			item.label = item.label.replace(result[result.length - 1], '');
-			item.valueLabel = result[result.length - 1].replace(/[\[\]]/g, '');
-		}*/
 
 		// Save item
 		parentSection.items.push(item);
@@ -235,7 +207,7 @@ export class Openhab1Adapter extends BaseAdapter{
 	//-------------------------------------------------------------------------
 
 	private convertToLinkItem(sourceWidget, parentSection, target){
-		const item = new ItemLinkOpenhab1(this, sourceWidget, target);
+		const item = new ItemLinkOpenhab1(sourceWidget, target);
 		parentSection.items.push(item);
 	}
 
@@ -289,15 +261,15 @@ export class Openhab1Adapter extends BaseAdapter{
 
 	//-------------------------------------------------------------------------
 
-	public updateValue(item : Item, value : any){
+	public updateValue(url : string, value : any){
 
 		const headers = new Headers();
 		headers.append('Content-Type', 'text/plain');
 		const options = new RequestOptions({ headers: headers });
 
-		/*this.http.post(item.metaData.originalData.item.link, value, options).subscribe(
+		this.http.post(url, value, options).subscribe(
 			data => {},
 			err => { console.log(err); }
-		);*/
+		);
 	}
 }

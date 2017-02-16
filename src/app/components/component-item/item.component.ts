@@ -20,18 +20,15 @@ import { Item, ItemType } from '../../logic/models/item.model';
 		trigger('fadeInOut', [
 			transition(':enter', [
 				style({opacity: 1}),
-				animate('.5s', style({opacity: 1})) 
+				animate('.5s', style({opacity: 1}))
 			]),
 			transition(':leave', [
-				animate('1.2s 1s', style({opacity: 0})) 
+				animate('1.2s 1s', style({opacity: 0}))
 			])
 		])
 	]
 })
 export class ItemComponent {
-
-	@Input() item : Item;ItemType
+	@Input() item : Item;
 	private _ItemType = ItemType;
-	
-	constructor() {}
 }

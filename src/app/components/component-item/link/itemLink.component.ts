@@ -1,5 +1,5 @@
 /*
- * brief    Data Model for item-link
+ * brief    ItemLink component
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
  * date     February 2017
@@ -7,24 +7,28 @@
 
 //-----------------------------------------------------------------------------
 
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Item, ItemType } from '../item.model';
+import { ItemLink } from '../../../logic/models/items/itemLink.model';
 
 //-----------------------------------------------------------------------------
 
-export class ItemLink extends Item{
+@Component({
+	selector: 'hc-item-link',
+	templateUrl: 'itemLink.component.html',
+	styleUrls: ['../item.component.scss']
+})
+export class ItemLinkComponent {
 
-	public type : ItemType = ItemType.Link;
+	@Input() item : ItemLink;
 
 	//-------------------------------------------------------------------------
 
-	constructor(protected target : string){
-		super();
-	}
+	constructor(private router : Router){}
 
 	//-------------------------------------------------------------------------
 
-	getTarget(){
-		return this.target;
+	openTarget(){
+		this.router.navigateByUrl('/page/' + this.item.getTarget());
 	}
 }
