@@ -10,7 +10,7 @@
 @mixin icon($scale, $url, $icons, $spriteSize) {
 	width: $scale;
 	height: $scale;
-	display: inline-block;
+	display: block;
 
 	background: transparent url($url) no-repeat;
 	background-size: $scale * $spriteSize $scale * 2;
@@ -34,16 +34,18 @@
 
 	.icon{
 
-		$icons: undefined girl boy thermometer switch sun power door trashcan battery screwdriver;
+		$icons: undefined girl boy thermometer switch sun power door trashcan battery screwdriver gear refresh home;
 		$url: '../img/icons.svg';
-		$spriteSize: 11;
+		$spriteSize: 14;
 
 		// Default size
-		@include icon(50px, $url, $icons, $spriteSize);
+		&--normal {
+			@include icon(50px, $url, $icons, $spriteSize);
+		}
 
 		// Small icons
-		&--small{
-			@include icon(16px, $url, $icons, $spriteSize);
+		&--small {
+			@include icon(30px, $url, $icons, $spriteSize);
 		}
 	}
 }

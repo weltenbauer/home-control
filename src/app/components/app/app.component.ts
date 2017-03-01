@@ -18,7 +18,26 @@ import { DataProvider } from '../../services/dataProvider.service';
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
 	constructor(private dataProvider: DataProvider) {
 		dataProvider.init();
+	}
+
+	//-------------------------------------------------------------------------
+
+	refresh(){
+		console.log('Refresh');
+	}
+
+	//-------------------------------------------------------------------------
+
+	openHome(){
+		console.log('Home');
+	}
+
+	//-------------------------------------------------------------------------
+
+	openSettings(){
+		console.log('Settings');
 	}
 }

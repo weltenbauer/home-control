@@ -26,6 +26,7 @@ import { ItemLinkComponent } from './components/component-item/link/itemLink.com
 import { ItemColorComponent } from './components/component-item/color/itemColor.component';
 import { LoadingComponent } from './components/component-loading/loading.component';
 import { IconComponent } from './components/component-icon/icon.component';
+import { ButtonComponent } from './components/component-button/button.component';
 
 import { BackgroundPositionDirective } from './directives/backgroundPosition.directive';
 
@@ -49,6 +50,7 @@ import { BackgroundPositionDirective } from './directives/backgroundPosition.dir
 		SettingsComponent,
 		LoadingComponent,
 		IconComponent,
+		ButtonComponent,
 		BackgroundPositionDirective
 	],
 	providers: [

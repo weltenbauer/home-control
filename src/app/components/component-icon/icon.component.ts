@@ -20,6 +20,7 @@ export class IconComponent {
 
 	@Input() icon : string;
 	@Input() active : boolean = false;
+	@Input() size : string = 'normal';
 
 	constructor() {}
 }

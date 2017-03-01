@@ -1,0 +1,11 @@
+<div class="button button--{{size}}" (click)="onClick.emit()">
+
+	<div hcBackgroundPosition class="button__backgroundBlur"></div>
+	<div class="button__backgroundColor"></div>
+
+	<div class="button__content">
+		<hc-icon class="button__content__icon" [icon]="icon" [size]="size"></hc-icon>
+		<div class="button__content__label">{{label}}</div>
+	</div>
+
+</div>

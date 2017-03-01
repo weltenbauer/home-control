@@ -1,24 +1,28 @@
 /*
- * brief    Item Styles
+ * brief    Button Styles
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
- * date     January 2017
+ * date     February 2017
  */
-
-//-----------------------------------------------------------------------------
-
-@import '../../../style/definitions';
 
 //-----------------------------------------------------------------------------
 
 :host{
 
-	.item{
+	.button{
 		position: relative;
-		width: $itemSize;
-		height: $itemSize;
-		margin: 0 15px 15px 0;
+		min-width: 50px;
+		height: 50px;
 		box-shadow: 11px 10px 36.8px 3.2px rgba(0, 0, 0, 0.15);
+		cursor: pointer;
+
+		&--small{
+			width: 50px;
+		}
+
+		&--normal{
+			width: 250px;
+		}
 
 		&__backgroundBlur{
 			position: absolute;
@@ -39,37 +43,20 @@
 			opacity: 0.3;
 		}
 
-		&__content{
+		&__content {
 			position: absolute;
 			top: 0;
-			left: 0;
+			left: 1px;
 			right: 0;
 			bottom: 0;
 
 			display: flex;
-			flex-direction: column;
+			flex-direction: row;
 			justify-content: center;
 			align-items: center;
 
 			text-align: center;
-			padding: 10px 5px;
-
-			&--interactive{
-				cursor: pointer;
-			}
-
-			&__label{
-				width: 100%;
-				overflow: hidden;
-				text-overflow: ellipsis;
-			}
-
-			&__value{
-				width: 100%;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				font-weight: bold;
-			}
+			padding: 5px 5px;
 		}
 	}
 }
