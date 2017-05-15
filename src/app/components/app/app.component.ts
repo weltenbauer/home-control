@@ -8,6 +8,7 @@
 //-----------------------------------------------------------------------------
 
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataProvider } from '../../services/dataProvider.service';
 
 //-----------------------------------------------------------------------------
@@ -19,25 +20,27 @@ import { DataProvider } from '../../services/dataProvider.service';
 })
 export class AppComponent {
 
-	constructor(private dataProvider: DataProvider) {
+	constructor(private dataProvider: DataProvider, private router : Router) {
 		dataProvider.init();
 	}
 
 	//-------------------------------------------------------------------------
 
 	refresh(){
-		console.log('Refresh');
+		this.dataProvider.init();
+
+		// Todo: Refresh view
 	}
 
 	//-------------------------------------------------------------------------
 
 	openHome(){
-		console.log('Home');
+		this.router.navigateByUrl('/page');
 	}
 
 	//-------------------------------------------------------------------------
 
 	openSettings(){
-		console.log('Settings');
+		this.router.navigateByUrl('/settings');
 	}
 }
