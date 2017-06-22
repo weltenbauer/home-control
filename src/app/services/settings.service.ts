@@ -33,12 +33,6 @@ export class Settings {
 			sitemap: 'homecontrol'
 		};
 
-		/*backendData.name = 'Home-Control';
-		backendData.type = 'openhab1';
-		backendData.url = 'https://home-control.duckdns.org/rest';
-		backendData.username = 'christian';
-		backendData.password = 'mlciETnk';*/
-
 		return backendData;
 	}
 
