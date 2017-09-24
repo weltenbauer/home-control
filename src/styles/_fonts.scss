@@ -1,5 +1,5 @@
 /*
- * brief    Polyfill definitions
+ * brief    Global font definitions
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
  * date     July 2017
@@ -7,15 +7,11 @@
 
 //-----------------------------------------------------------------------------
 
-import 'core-js/es6';
-import 'core-js/es7/reflect';
-require('zone.js/dist/zone');
-require('flexibility/flexibility');
+@import 'mixins/font';
 
 //-----------------------------------------------------------------------------
 
-// Development and test
-if (process.env.ENV !== 'production') {
-	Error['stackTraceLimit'] = Infinity;
-	require('zone.js/dist/long-stack-trace-zone');
-}
+@include fontFace(OpenSans, 'assets/open-sans-v14-latin-regular');
+@include fontFace(OpenSans, 'assets/open-sans-v14-latin-700', bold);
+@include fontFace(OpenSans, 'assets/open-sans-v14-latin-300', 300);
+

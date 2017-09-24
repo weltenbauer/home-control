@@ -1,41 +1,21 @@
-﻿/*
- * brief    Main start point
+/*
+ * brief    Application entry point
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
- * date     January 2016
+ * date     July 2017
  */
 
 //-----------------------------------------------------------------------------
 
-import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
+import { enableProdMode } from '@angular/core';
 
-// Global styles
-import './style/base.scss';
+import { AppModule } from './app/app.module';
 
 //-----------------------------------------------------------------------------
 
-// Enable production mode
 if (process.env.ENV === 'production') {
 	enableProdMode();
 }
 
-//-----------------------------------------------------------------------------
-
-// Main start function
-export function main() {
-	return platformBrowserDynamic().bootstrapModule(AppModule);
-}
-
-//-----------------------------------------------------------------------------
-
-// Wait for browser
-document.readyState === 'complete' ? main() : document.addEventListener('DOMContentLoaded', main);
-
-//-----------------------------------------------------------------------------
-
-// Prevent overscrolling on mobile devices
-document.ontouchmove = function(event){
-	event.preventDefault();
-}
+platformBrowserDynamic().bootstrapModule(AppModule);

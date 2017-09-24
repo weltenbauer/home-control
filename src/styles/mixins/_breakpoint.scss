@@ -1,0 +1,33 @@
+/*
+ * brief    Mixin for readable breakpoints
+ * author   Marc Grützmacher (marc@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     September 2017
+ */
+
+//-----------------------------------------------------------------------------
+
+@import '../definitions';
+
+//-----------------------------------------------------------------------------
+
+@mixin breakpoint($name) {
+
+	@if ($name == smartphone){
+		@media screen and (max-width: $breakpointSmartphone) {
+			@content
+		}
+	};
+
+	@if ($name == tablet){
+		@media screen and (max-width: $breakpointTablet) and (min-width: $breakpointSmartphone) {
+			@content
+		}
+	};
+
+	@if ($name == smallHeight){
+		@media screen and (max-height: $breakpointSmallHeight) {
+			@content
+		}
+	};
+}

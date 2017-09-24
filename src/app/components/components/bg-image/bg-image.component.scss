@@ -1,0 +1,35 @@
+/*
+ * brief    Component Styles
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     July 2017
+ */
+
+//-----------------------------------------------------------------------------
+
+@import '../../../../styles/definitions';
+@import '../../../../styles/mixins/breakpoint';
+
+//-----------------------------------------------------------------------------
+
+:host {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	.bgImage{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		background-attachment: fixed;
+		background-image: url(./backgrounds/sunny01.jpg);
+		background-size: cover;
+		background-position: top center;
+		background-attachment: fixed;
+	}
+}

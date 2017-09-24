@@ -1,55 +1,17 @@
 /*
- * brief    Style defintions
+ * brief    Component Styles
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
- * date     January 2017
+ * date     July 2017
  */
 
 //-----------------------------------------------------------------------------
 
-:host{
+@import '../../../styles/definitions';
+@import '../../../styles/mixins/breakpoint';
 
-	.app{
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
+//-----------------------------------------------------------------------------
 
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: stretch;
-
-		background-image: url(./img/backgrounds/fog01.jpg);
-		background-size: cover;
-		background-position: top center;
-
-		&__main{
-			width: 100%;
-			padding: 0 100px;
-		}
-
-		&__footer{
-			width: 100%;
-			margin-top: 45px;
-			padding: 0 100px;
-
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: stretch;
-
-			&__nav{
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: stretch;
-
-				& *{
-					margin-left: 15px;
-				}
-			}
-		}
-	}
+:host {
+	position: relative;
 }

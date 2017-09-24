@@ -1,0 +1,60 @@
+/*
+ * brief    Base SASS Styles
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     July 2017
+ */
+
+//-----------------------------------------------------------------------------
+
+@import-normalize;
+
+//-----------------------------------------------------------------------------
+
+@import "./mixins/breakpoint";
+
+@import 'fonts';
+@import 'definitions';
+
+//-----------------------------------------------------------------------------
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body, html {
+	height: 100%;
+	line-height: 1.3em;
+	overflow: auto;
+
+	font-size: $fontSizeBase;
+	font-family: $fontFamily;
+
+	color: $baseColor;
+	background: $backgroundColor;
+}
+
+a{
+	text-decoration: none;
+	color: $baseColor;
+	outline: 0;
+}
+
+button{
+	border: inherit;
+	background-color: inherit;
+
+	&:focus{
+		outline: 0;
+	}
+}
+
+//-----------------------------------------------------------------------------
+
+.hideOnSmartphone {
+	@include breakpoint(smartphone) {
+		display: none !important;
+	}
+}

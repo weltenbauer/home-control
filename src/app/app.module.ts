@@ -1,61 +1,62 @@
 /*
- * brief    Define module
+ * brief    Define app module
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
- * date     January 2016
+ * date     July 2017
  */
 
 //-----------------------------------------------------------------------------
 
-import { NgModule, ApplicationRef } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule }  from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
 
-import { DataProvider } from './services/dataProvider.service';
-import { Settings } from './services/settings.service';
 import { Routing } from './app.routing';
 
 import { AppComponent } from './components/app/app.component';
-import { PageComponent } from './components/route-page/page.component';
-import { SettingsComponent } from './components/route-settings/settings.component';
-import { ItemComponent } from './components/component-item/item.component';
-import { ItemStateComponent } from './components/component-item/state/itemState.component';
-import { ItemSwitchComponent } from './components/component-item/switch/itemSwitch.component';
-import { ItemLinkComponent } from './components/component-item/link/itemLink.component';
-import { ItemColorComponent } from './components/component-item/color/itemColor.component';
-import { LoadingComponent } from './components/component-loading/loading.component';
-import { IconComponent } from './components/component-icon/icon.component';
-import { ButtonComponent } from './components/component-button/button.component';
 
-import { BackgroundPositionDirective } from './directives/backgroundPosition.directive';
+import { BgImageComponent } from './components/components/bg-image/bg-image.component';
+
+//-----------------------------------------------------------------------------
+
+// Import global fonts and styles
+
+import '../assets/fonts/open-sans-v14-latin-300.eot';
+import '../assets/fonts/open-sans-v14-latin-300.svg';
+import '../assets/fonts/open-sans-v14-latin-300.ttf';
+import '../assets/fonts/open-sans-v14-latin-300.woff';
+import '../assets/fonts/open-sans-v14-latin-300.woff2';
+import '../assets/fonts/open-sans-v14-latin-700.eot';
+import '../assets/fonts/open-sans-v14-latin-700.svg';
+import '../assets/fonts/open-sans-v14-latin-700.ttf';
+import '../assets/fonts/open-sans-v14-latin-700.woff';
+import '../assets/fonts/open-sans-v14-latin-700.woff2';
+import '../assets/fonts/open-sans-v14-latin-regular.eot';
+import '../assets/fonts/open-sans-v14-latin-regular.svg';
+import '../assets/fonts/open-sans-v14-latin-regular.ttf';
+import '../assets/fonts/open-sans-v14-latin-regular.woff';
+import '../assets/fonts/open-sans-v14-latin-regular.woff2';
+
+
+import '../assets/backgrounds/fog01.jpg';
+import '../assets/backgrounds/sunny01.jpg';
+
+import '../styles/base.scss';
 
 //-----------------------------------------------------------------------------
 
 @NgModule({
 	imports: [
 		BrowserModule,
-		HttpModule,
-		FormsModule,
-		Routing
+		Routing,
+		HttpModule
 	],
 	declarations: [
 		AppComponent,
-		PageComponent,
-		ItemComponent,
-		ItemStateComponent,
-		ItemSwitchComponent,
-		ItemLinkComponent,
-		ItemColorComponent,
-		SettingsComponent,
-		LoadingComponent,
-		IconComponent,
-		ButtonComponent,
-		BackgroundPositionDirective
+		BgImageComponent
 	],
 	providers: [
-		DataProvider,
-		Settings
+
 	],
 	bootstrap: [
 		AppComponent
@@ -64,6 +65,4 @@ import { BackgroundPositionDirective } from './directives/backgroundPosition.dir
 
 //-----------------------------------------------------------------------------
 
-export class AppModule {
-	constructor(public appRef: ApplicationRef) {}
-}
+export class AppModule { }
