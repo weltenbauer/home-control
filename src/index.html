@@ -5,8 +5,68 @@
 		<title>Home-Control</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			.loading {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.loading__spinner {
+				position: relative;
+				width: 40px;
+				height: 40px;
+			}
+
+			.loading__spinner__bounce--1, .loading__spinner__bounce--2 {
+			   width: 100%;
+			   height: 100%;
+			   border-radius: 50%;
+			   background-color: #707070;
+			   opacity: 0.6;
+			   position: absolute;
+			   top: 0;
+			   left: 0;
+
+			   -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+			   animation: sk-bounce 2.0s infinite ease-in-out;
+			}
+
+			.loading__spinner__bounce--2 {
+				 -webkit-animation-delay: -1.0s;
+				 animation-delay: -1.0s;
+			}
+
+			@-webkit-keyframes sk-bounce {
+				0%, 100% { -webkit-transform: scale(0.0) }
+				50% { -webkit-transform: scale(1.0) }
+			}
+
+			@keyframes sk-bounce {
+				0%, 100% {
+					transform: scale(0.0);
+					-webkit-transform: scale(0.0);
+				} 50% {
+					  transform: scale(1.0);
+					  -webkit-transform: scale(1.0);
+				  }
+			}
+		</style>
 	</head>
 	<body>
-		<hc-app>Loading...</hc-app>
+		<hc-app>
+			<div class="loading">
+				<div class="loading__spinner">
+					<div class="loading__spinner__bounce--1"></div>
+					<div class="loading__spinner__bounce--2"></div>
+				</div>
+			</div>
+		</hc-app>
 	</body>
 </html>

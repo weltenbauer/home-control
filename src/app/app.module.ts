@@ -10,12 +10,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { Routing } from './app.routing';
+import { DataProvider } from './services/dataProvider.service';
+import { Settings } from './services/settings.service';
 
+// Components
 import { AppComponent } from './components/app/app.component';
-
 import { BgImageComponent } from './components/components/bg-image/bg-image.component';
+import { LoadingComponent } from './components/components/loading/loading.component';
+
+// Routes
+import { PageComponent } from './components/routes/page/page.component';
+import { SettingsComponent } from './components/routes/settings/settings.component';
+
+// Services
+import { BgWeatherImage } from "./services/bgWeatherImage.service";
 
 //-----------------------------------------------------------------------------
 
@@ -39,6 +50,7 @@ import '../assets/fonts/open-sans-v14-latin-regular.woff2';
 
 
 import '../assets/backgrounds/fog01.jpg';
+import '../assets/backgrounds/fog02.jpg';
 import '../assets/backgrounds/sunny01.jpg';
 
 import '../styles/base.scss';
@@ -49,14 +61,20 @@ import '../styles/base.scss';
 	imports: [
 		BrowserModule,
 		Routing,
-		HttpModule
+		HttpModule,
+		LazyLoadImageModule
 	],
 	declarations: [
 		AppComponent,
-		BgImageComponent
+		BgImageComponent,
+		LoadingComponent,
+		PageComponent,
+		SettingsComponent
 	],
 	providers: [
-
+		BgWeatherImage,
+		DataProvider,
+		Settings
 	],
 	bootstrap: [
 		AppComponent

@@ -1,1 +1,6 @@
-<div class="bgImage" [ngStyle]="{'background-image': imageUrl }"></div>
+<div class="bgImage"
+	 [ngStyle]="{'transition-duration': fadingTime + 'ms' }"
+	 [ngClass]="{'bgImage--visible': bgVisible}"
+	 [lazyLoad]="imageUrl"
+	 (onLoad)="onBgImageLoaded($event)">
+</div>

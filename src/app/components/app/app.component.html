@@ -1,3 +1,17 @@
 
-Home Control
-<hc-bg-image ></hc-bg-image>
+<hc-bg-image [image]="weatherImage.getCurrentImageUrlSubject()"></hc-bg-image>
+
+<div class="app">
+
+	<main class="app__main">
+		<router-outlet></router-outlet>
+	</main>
+
+	<footer class="app__footer">
+		<div>12:23 Uhr</div>
+		<nav class="app__footer__nav"></nav>
+	</footer>
+
+</div>
+
+<hc-loading></hc-loading>

@@ -9,16 +9,16 @@
 
 import { RouterModule, Routes } from '@angular/router';
 
-//import { IntroComponent } from './components/routes/intro/intro.component';
-//import { IngredientsComponent } from './components/routes/ingredients/ingredients.component';
+import { PageComponent } from './components/routes/page/page.component';
+import { SettingsComponent } from './components/routes/settings/settings.component';
 
 //-----------------------------------------------------------------------------
 
 const routes:Routes = [
-	/*{ path: 'page', component: PageComponent },
+	{ path: 'page', component: PageComponent },
 	{ path: 'page/:id', component: PageComponent },
 	{ path: 'settings', component: SettingsComponent },
-	{ path: '', redirectTo: '/page', pathMatch: 'full' }*/
+	{ path: '', redirectTo: '/page', pathMatch: 'full' }
 ];
 
 //-----------------------------------------------------------------------------

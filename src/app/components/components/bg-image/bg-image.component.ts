@@ -19,14 +19,20 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BgImageComponent {
 
-	@Input('image') image : BehaviorSubject<string> = new BehaviorSubject('./backgrounds/sunny01.jpg');
+	@Input('image') image : BehaviorSubject<string>;
+
 	private imageUrl : string = '';
+	private bgVisible = false;
+	private fadingTime = 1500;
 
 	//-------------------------------------------------------------------------
 
 	ngOnInit() {
 		this.image.subscribe((data : string) => {
-			this.imageUrl = 'url(' + data + ')';
+			this.bgVisible = false;
+			setTimeout(()=>{
+				this.imageUrl = data;
+			}, this.fadingTime);
 		});
 	}
 
@@ -34,5 +40,11 @@ export class BgImageComponent {
 
 	ngOnDestroy() {
 		this.image.unsubscribe();
+	}
+
+	//-------------------------------------------------------------------------
+
+	onBgImageLoaded(){
+		this.bgVisible = true;
 	}
 }

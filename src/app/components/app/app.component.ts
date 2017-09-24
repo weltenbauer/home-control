@@ -8,6 +8,8 @@
 //-----------------------------------------------------------------------------
 
 import { Component } from '@angular/core';
+import { BgWeatherImage } from '../../services/bgWeatherImage.service';
+import { DataProvider } from '../../services/dataProvider.service';
 
 //-----------------------------------------------------------------------------
 
@@ -17,7 +19,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	constructor(){
+	constructor(private dataProvider : DataProvider, private weatherImage : BgWeatherImage){
+
+		// Init Data Provider
+		this.dataProvider.init();
+
+		// Init service worker
+		this.initServiceWorker();
+	}
+
+	//-------------------------------------------------------------------------
+
+	private initServiceWorker(){
 
 		// Register service worker
 		if(process.env.ENV === 'production'){
