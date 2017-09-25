@@ -18,20 +18,20 @@ export class Settings {
 	public getCurrentBackend(){
 
 		const backendData = new BackendData();
-		backendData.name = 'Home-Control';
+		/*backendData.name = 'Home-Control';
 		backendData.type = 'openhab1';
 		backendData.url = 'http://home-control:8080/rest';
 		backendData.username = '';
 		backendData.password = '';
 		backendData.metaData = {
 			sitemap: 'homecontrol'
-		};
+		};*/
 
-		/*backendData.name = 'Home-Control';
+		backendData.name = 'Home-Control';
 		backendData.type = 'openhab1';
 		backendData.url = 'https://home-control.duckdns.org/rest';
 		backendData.username = 'christian';
-		backendData.password = 'mlciETnk';*/
+		backendData.password = 'mlciETnk';
 
 		return backendData;
 	}

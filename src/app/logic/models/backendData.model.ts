@@ -30,7 +30,8 @@ export class BackendData {
 
 		// Add username and password
 		if(this.username !== '' && this.password !== ''){
-			url.replace('://', '://' + this.username + '@' + this.password);
+			url = url.replace('://', '://' + this.username + ':' + this.password + '@');
+			console.log(url);
 		}
 
 		return url;
