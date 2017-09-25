@@ -19,6 +19,7 @@ import { Settings } from './services/settings.service';
 // Components
 import { AppComponent } from './components/app/app.component';
 import { BgImageComponent } from './components/components/bg-image/bg-image.component';
+import { ItemComponent } from './components/components/item/item.component';
 import { LoadingComponent } from './components/components/loading/loading.component';
 
 // Routes
@@ -67,6 +68,7 @@ import '../styles/base.scss';
 	declarations: [
 		AppComponent,
 		BgImageComponent,
+		ItemComponent,
 		LoadingComponent,
 		PageComponent,
 		SettingsComponent

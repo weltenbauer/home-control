@@ -7,7 +7,7 @@
 
 //-----------------------------------------------------------------------------
 
-import { Component, trigger, style, transition, animate } from '@angular/core';
+import { Component } from '@angular/core';
 import { DataProvider, DataProviderState } from '../../../services/dataProvider.service';
 
 //-----------------------------------------------------------------------------
@@ -15,18 +15,7 @@ import { DataProvider, DataProviderState } from '../../../services/dataProvider.
 @Component({
 	selector: 'hc-loading',
 	templateUrl: 'loading.component.html',
-	styleUrls: ['loading.component.scss'],
-	/*animations: [
-		trigger('fadeInOut', [
-			transition(':enter', [
-				style({opacity: 1}),
-				animate('.5s', style({opacity: 1}))
-			]),
-			transition(':leave', [
-				animate('1.2s 1s', style({opacity: 0}))
-			])
-		])
-	]*/
+	styleUrls: ['loading.component.scss']
 })
 export class LoadingComponent {
 

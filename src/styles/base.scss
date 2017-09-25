@@ -25,9 +25,10 @@
 }
 
 body, html {
+	width: 100vw;
 	height: 100vh;
 	line-height: 1.3em;
-	overflow: auto;
+	overflow: hidden;
 
 	font-size: $fontSizeBase;
 	font-family: $fontFamily;
@@ -40,6 +41,10 @@ a{
 	text-decoration: none;
 	color: $baseColor;
 	outline: 0;
+}
+
+h1, h2, h3, h4{
+	font-weight: 400;
 }
 
 //-----------------------------------------------------------------------------

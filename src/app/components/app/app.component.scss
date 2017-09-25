@@ -13,12 +13,8 @@
 //-----------------------------------------------------------------------------
 
 :host {
-	position: relative;
-	height: 100%;
-	display: block;
 
 	.app{
-		height: 100%;
 		position: relative;
 
 		display: flex;
@@ -28,11 +24,11 @@
 		align-items: stretch;
 
 		&__main{
-			height: 80%;
+			height: 80vh;
 		}
 
 		&__footer{
-			height: 20%;
+			height: 20vh;
 		}
 	}
 }
