@@ -9,6 +9,7 @@
 
 import { Component, Input } from '@angular/core';
 import { Item, ItemType } from '../../../logic/models/item.model';
+import { BgWeatherImage } from '../../../services/bgWeatherImage.service';
 
 //-----------------------------------------------------------------------------
 
@@ -20,4 +21,8 @@ import { Item, ItemType } from '../../../logic/models/item.model';
 export class ItemComponent {
 	@Input() item : Item;
 	private _ItemType = ItemType;
+
+	//-----------------------------------------------------------------------------
+
+	constructor(private weatherImage : BgWeatherImage){}
 }

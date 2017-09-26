@@ -12,6 +12,10 @@ import { BaseAdapter } from '../base.adapter';
 import { Settings } from '../../../services/settings.service';
 import { BackendData } from '../../models/backendData.model';
 
+import { Page } from '../../models/page.model';
+import { Section } from '../../models/section.model';
+import { Item } from '../../models/item.model';
+
 //-----------------------------------------------------------------------------
 
 export class MockAdapter extends BaseAdapter{
@@ -29,21 +33,36 @@ export class MockAdapter extends BaseAdapter{
 	//-------------------------------------------------------------------------
 
 	getPages(){
-		return Promise.resolve({
-			'main': {
-				label: 'Main',
-				items: {
-					'main.lamp.1': {
-						type: 'switch',
-						label: 'Lamp 1',
-						state: 'on',
-						setState: function(state){
 
-						}
-					}
-				}
-			}
-		});
+		let section1 = new Section();
+		section1.label = 'Bereich 1';
+		section1.items = [new Item(), new Item()];
+
+		let section2 = new Section();
+		section2.label = 'Bereich 2';
+		section2.items = [new Item(), new Item(), new Item(), new Item(), new Item(), new Item()];
+
+		let section3 = new Section();
+		section3.label = 'Bereich 3';
+		section3.items = [new Item(), new Item()];
+
+		let section4 = new Section();
+		section4.label = 'Bereich 4';
+		section4.items = [new Item(), new Item()];
+
+		let section5 = new Section();
+		section5.label = 'Bereich 5';
+		section5.items = [new Item(), new Item(), new Item()];
+
+		let section6 = new Section();
+		section6.label = 'Bereich 6';
+		section6.items = [new Item(), new Item()];
+
+		let page = new Page();
+		page.title = 'Home Control';
+		page.sections = [section1, section2, section3, section4, section5, section6, section1, section2, section3, section4, section5, section6];
+
+		return Promise.resolve({'': page});
 	}
 
 	//-------------------------------------------------------------------------

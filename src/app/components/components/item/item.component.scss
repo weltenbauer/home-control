@@ -21,31 +21,14 @@
 		box-shadow: 11px 10px 36.8px 3.2px rgba(0, 0, 0, 0.15);
 		overflow: hidden;
 
-		&__backgroundBlur{
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background-image: url(./backgrounds/fog01.jpg);
-			background-attachment: fixed;
-			background-size: 100vw;
-
-			-webkit-filter: blur(5px);
-			-moz-filter: blur(5px);
-			-o-filter: blur(5px);
-			-ms-filter: blur(5px);
-			filter: blur(5px);
-		}
-
 		&__backgroundColor{
 			position: absolute;
 			top: 0;
 			left: 0;
 			right: 0;
 			bottom: 0;
-			background-color: #a0a0a0;
-			opacity: 0.5;
+			background-color: #f0f0f0;
+			opacity: 0.8;
 		}
 
 		&__content{

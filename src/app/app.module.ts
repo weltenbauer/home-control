@@ -53,6 +53,7 @@ import '../assets/fonts/open-sans-v14-latin-regular.woff2';
 import '../assets/backgrounds/fog01.jpg';
 import '../assets/backgrounds/fog02.jpg';
 import '../assets/backgrounds/sunny01.jpg';
+import '../assets/backgrounds/sunny02.jpg';
 
 import '../styles/base.scss';
 
