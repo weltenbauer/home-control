@@ -56,7 +56,20 @@ export class PageComponent implements OnInit, OnDestroy, AfterViewChecked {
 
 	//-------------------------------------------------------------------------
 
+	// Set width of section container manually because of an flexbox issue
+	// Ref: https://bugs.chromium.org/p/chromium/issues/detail?id=507397
 	ngAfterViewChecked() {
-		//console.log(this.element.nativeElement.querySelector());
+
+		this.element.nativeElement.querySelectorAll('.page__sections__section__items').forEach((section)=>{
+
+			let borderLeft = section.getBoundingClientRect().left;
+			let borderRight = 0;
+
+			section.querySelectorAll('.item').forEach((item)=>{
+				borderRight = Math.max(borderRight, item.getBoundingClientRect().right);
+			});
+
+			section.setAttribute('style', 'width: ' + (borderRight - borderLeft) + 'px;');
+		})
 	}
 }

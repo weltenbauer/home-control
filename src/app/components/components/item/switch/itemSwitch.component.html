@@ -1,5 +1,5 @@
 <div class="item__content item__content--interactive" (click)="item.toggelSwitch()">
-	<hc-icon class="item__content__icon" [icon]="item.icon" [active]="item.value"></hc-icon>
+	<hc-icon class="item__content__icon" [icon]="item.icon" [state]="item.value ? 'active' : 'normal'"></hc-icon>
 	<div class="item__content__label">{{item.getLabel()}}</div>
 	<div class="item__content__value">{{item.getValueLabel()}}</div>
 </div>

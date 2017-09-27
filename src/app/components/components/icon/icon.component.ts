@@ -28,11 +28,15 @@ export class IconComponent {
 
 	@Input('icon')
 	set icon(name: string) {
-		this.loadSvg(name);
+		this.loadIcon(name);
 	}
 
+	// Icon state and size
 	@Input('size') size? = 'normal';
-	@Input('active') active? = false;
+	@Input('state') state? = 'normal';
+
+	// Precached undefined icon
+	private static undefinedIcon: any = null;
 
 	//-------------------------------------------------------------------------
 
@@ -40,33 +44,58 @@ export class IconComponent {
 
 	//-------------------------------------------------------------------------
 
-	loadSvg(name: string) {
+	loadIcon(iconName: string) {
 
-		// Load active icon
-		let iconName = this.active ? name + '-active' : name;
+		// Clean component element
+		const element = this.elementRef.nativeElement.children[0];
+		element.innerHTML = '';
 
-		// Load svg
-		this.http.get(`assets/${iconName}.svg`).subscribe((res) => {
+		// Load Icon
+		this.loadSvg(iconName).then((icon)=>{
+			this.renderer.appendChild(element, icon);
+		}).catch(()=>{
 
-				// Clean component element
-				const element = this.elementRef.nativeElement.children[0];
-				element.innerHTML = '';
+			// Check if there is a precached undefined icon
+			if(IconComponent.undefinedIcon === null){
 
-				// Load svg icon
-				const response = res.text();
-				const parser = new DOMParser();
-				const svg = parser.parseFromString(response, 'image/svg+xml');
+				// Load undefined icon
+				this.loadSvg('undefined').then((icon)=>{
+					IconComponent.undefinedIcon = icon;
+					this.renderer.appendChild(element, icon);
+				}).catch((err)=>{
+					console.error(err);
+				});
+			}
+			else{
 
-				// Added drop shadow
-				svg.documentElement.children[0].setAttribute('style', 'filter:url(#dropshadow)')
-				const filter = parser.parseFromString('<defs><filter id="dropshadow"> <feGaussianBlur in="SourceAlpha" stdDeviation="3"></feGaussianBlur><feOffset dx="2" dy="2" result="offsetblur"></feOffset><feMerge><feMergeNode></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs>', 'image/svg+xml');
-				this.renderer.appendChild(svg.documentElement, filter.documentElement);
+				// Add precached undefined icon
+				this.renderer.appendChild(element, IconComponent.undefinedIcon);
+			}
+		});
+	}
 
-				// Append icon to dom
-				this.renderer.appendChild(element, svg.documentElement);
-			},
-			(err) => {
-				console.error(err);
-			});
+	//-------------------------------------------------------------------------
+
+	loadSvg(iconName: string){
+
+		return new Promise((resolve, reject) => {
+			this.http.get(`assets/${iconName}.svg`).subscribe((res) => {
+
+					// Load svg icon
+					const response = res.text();
+					const parser = new DOMParser();
+					const svg = parser.parseFromString(response, 'image/svg+xml');
+
+					// Added drop shadow
+					/*svg.documentElement.children[0].setAttribute('style', 'filter:url(#dropshadow)')
+                    const filter = parser.parseFromString('<defs><filter id="dropshadow"> <feGaussianBlur in="SourceAlpha" stdDeviation="3"></feGaussianBlur><feOffset dx="2" dy="2" result="offsetblur"></feOffset><feMerge><feMergeNode></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs>', 'image/svg+xml');
+                    this.renderer.appendChild(svg.documentElement, filter.documentElement);*/
+
+					resolve(svg.documentElement);
+				},
+				(err) => {
+					reject(err);
+				});
+		});
 	}
 }
