@@ -10,6 +10,7 @@
 import { Component, OnInit, OnDestroy, ElementRef, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataProvider } from '../../../services/dataProvider.service';
+import { Page } from '../../../logic/models/page.model';
 import { Section } from '../../../logic/models/section.model';
 
 //-----------------------------------------------------------------------------
@@ -21,8 +22,9 @@ import { Section } from '../../../logic/models/section.model';
 })
 export class PageComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-	public pageTitle : string = '';
-	public sections : Section[] = null;
+	private pageTitle : string = '';
+	private sections : Section[] = [];
+	private parentPages: Page[] = [];
 
 	private routeParamSub : any;
 
@@ -44,6 +46,7 @@ export class PageComponent implements OnInit, OnDestroy, AfterViewChecked {
 			this.dataProvider.getPage(id).then((page) => {
 				this.pageTitle = page.title;
 				this.sections = page.sections;
+				this.parentPages = page.parentPages;
 			});
 		});
 	}

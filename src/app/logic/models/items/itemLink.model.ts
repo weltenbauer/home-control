@@ -14,7 +14,7 @@ import { Item, ItemType } from '../item.model';
 
 export class ItemLink extends Item{
 
-	public type : ItemType = ItemType.Link;
+	public type: ItemType = ItemType.Link;
 
 	//-------------------------------------------------------------------------
 

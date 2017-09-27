@@ -2,7 +2,11 @@
 <div class="page" (window:resize)="ngAfterViewChecked()">
 
 	<header class="page__header">
-		<h1>{{pageTitle}}</h1>
+		<h1>
+			<a href="{{'/page/' + parentPage.id}}" *ngFor="let parentPage of parentPages">{{parentPage.title}}</a>
+			<span *ngIf="parentPages.length > 0" style="font-weight: bold;">&gt;</span>
+			{{pageTitle}}
+		</h1>
 	</header>
 
 	<div class="page__sections">

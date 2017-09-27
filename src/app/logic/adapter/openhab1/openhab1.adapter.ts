@@ -149,14 +149,19 @@ export class Openhab1Adapter extends BaseAdapter{
 
 	//-------------------------------------------------------------------------
 
-	private convertToPage(id, sourcePage){
+	private convertToPage(id, sourcePage, parentPage = null){
 
 		// Create page
 		const page = new Page();
+		page.id = id;
 		page.title = sourcePage.title;
 		page.metaData = {
 			originalData: sourcePage
 		};
+		if(parentPage) {
+			page.parentPages.push(parentPage);
+		}
+
 		this.pages[id] = page;
 
 		// Itterate all elements in page
@@ -231,7 +236,7 @@ export class Openhab1Adapter extends BaseAdapter{
 			// Create page
 			if(widget.linkedPage){
 				this.convertToLinkItem(widget, parentSection, widget.linkedPage.id);
-				this.convertToPage(widget.linkedPage.id, widget.linkedPage);
+				this.convertToPage(widget.linkedPage.id, widget.linkedPage, parentPage);
 			}
 
 			// Create section
