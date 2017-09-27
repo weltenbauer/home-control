@@ -32,7 +32,7 @@ export class BgWeatherImage {
 			this.setBackground('sunny');
 		}, 6000);
 		setTimeout(()=>{
-			this.setBackground('fog');
+			//this.setBackground('fog');
 		}, 12000);
 	}
 

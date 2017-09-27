@@ -1,23 +1,22 @@
 /*
- * brief    Item component
+ * brief    ItemSwitch component
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
- * date     January 2016
+ * date     February 2017
  */
 
 //-----------------------------------------------------------------------------
 
 import { Component, Input } from '@angular/core';
-import { Item, ItemType } from '../../../logic/models/item.model';
+import { ItemSwitch } from '../../../../logic/models/items/itemSwitch.model';
 
 //-----------------------------------------------------------------------------
 
 @Component({
-	selector: 'hc-item',
-	templateUrl: 'item.component.html',
-	styleUrls: ['item.component.scss']
+	selector: 'hc-item-switch',
+	templateUrl: 'itemSwitch.component.html',
+	styleUrls: ['../item.component.scss']
 })
-export class ItemComponent {
-	@Input() item : Item;
-	private _ItemType = ItemType;
+export class ItemSwitchComponent {
+	@Input() item: ItemSwitch;
 }

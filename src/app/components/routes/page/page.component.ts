@@ -7,7 +7,7 @@
 
 //-----------------------------------------------------------------------------
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataProvider } from '../../../services/dataProvider.service';
 import { Section } from '../../../logic/models/section.model';
@@ -19,7 +19,7 @@ import { Section } from '../../../logic/models/section.model';
 	templateUrl: 'page.component.html',
 	styleUrls: ['page.component.scss']
 })
-export class PageComponent implements OnInit, OnDestroy {
+export class PageComponent implements OnInit, OnDestroy, AfterViewChecked {
 
 	public pageTitle : string = '';
 	public sections : Section[] = null;
@@ -28,7 +28,7 @@ export class PageComponent implements OnInit, OnDestroy {
 
 	//-------------------------------------------------------------------------
 
-	constructor(private route : ActivatedRoute , private dataProvider : DataProvider) {}
+	constructor(private route: ActivatedRoute, private dataProvider: DataProvider, private element: ElementRef) {}
 
 	//-------------------------------------------------------------------------
 
@@ -52,5 +52,11 @@ export class PageComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy() {
 		this.routeParamSub.unsubscribe();
+	}
+
+	//-------------------------------------------------------------------------
+
+	ngAfterViewChecked() {
+		//console.log(this.element.nativeElement.querySelector());
 	}
 }

@@ -15,6 +15,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackPwaManifest = require('webpack-pwa-manifest');
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 //-----------------------------------------------------------------------------
 
@@ -132,6 +133,12 @@ module.exports = {
 					urlPattern: /^https:\/\/(www\.)?my-awesome-site.com$/
 				}
 			]
-		})
+		}),
+
+		// Copy icons and fonts
+		new CopyWebpackPlugin([
+			{ from: helpers.root('src', 'assets', 'icons'), to: 'assets' },
+			{ from: helpers.root('src', 'assets', 'fonts'), to: 'assets' }
+		])
 	]
 };

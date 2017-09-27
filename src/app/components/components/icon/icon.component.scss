@@ -1,0 +1,53 @@
+/*
+ * brief    Icon Styles
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     January 2017
+ */
+
+//-----------------------------------------------------------------------------
+
+@import '../../../../styles/definitions';
+
+//-----------------------------------------------------------------------------
+
+// Don't use host here because of svg style issue (https://stackoverflow.com/questions/36214546/styles-in-component-for-d3-js-do-not-show-in-angular-2/36214723#36214723)
+.icon{
+	width: 30px;
+	height: 30px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	& svg{
+		width: 100%;
+		height: 100%;
+
+		& path{
+			fill: $baseColor;
+		}
+	}
+
+	&--size-normal {
+		width: 50px;
+		height: 50px;
+	}
+
+	&--size-small {
+		width: 20px;
+		height: 20px;
+	}
+
+	&--state-normal{
+		& svg path{
+			fill: $baseColor;
+		}
+	}
+
+	&--state-active{
+		& svg path{
+			fill: $activeColor;
+		}
+	}
+}

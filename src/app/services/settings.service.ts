@@ -18,14 +18,14 @@ export class Settings {
 	public getCurrentBackend(){
 
 		const backendData = new BackendData();
-		/*backendData.name = 'Home-Control';
+		backendData.name = 'Home-Control';
 		backendData.type = 'openhab1';
 		backendData.url = 'http://home-control:8080/rest';
 		backendData.username = '';
 		backendData.password = '';
 		backendData.metaData = {
 			sitemap: 'homecontrol'
-		};*/
+		};
 
 		/*backendData.name = 'Home-Control';
 		backendData.type = 'openhab1';
@@ -36,8 +36,8 @@ export class Settings {
 			sitemap: 'homecontrol'
 		};*/
 
-		backendData.name = 'Home-Control';
-		backendData.type = 'mock';
+		/*backendData.name = 'Home-Control';
+		backendData.type = 'mock';*/
 
 		return backendData;
 	}

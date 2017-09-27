@@ -23,8 +23,8 @@
 
 		&__header{
 			height: 25%;
-			padding-left: 10%;
-			padding-right: 10%;
+			padding-left: 100px;
+			padding-right: 100px;
 			padding-bottom: 6vh;
 
 			display: flex;
@@ -35,8 +35,8 @@
 
 		&__sections{
 			height: 75%;
-			padding-left: 10%;
-			padding-right: 10%;
+			padding-left: 100px;
+			padding-right: 100px;
 
 			overflow-x: scroll;
 			overflow-y: hidden;
@@ -49,7 +49,7 @@
 			align-items: stretch;
 
 			&__section{
-				margin-right: 6vw;
+				margin-right: 50px;
 
 				display: flex;
 				flex-direction: column;
@@ -57,12 +57,17 @@
 				justify-content: flex-start;
 				align-items: stretch;
 
+				&:last-child{
+					padding-right: 100px;
+				}
+
 				&__headline{
 					margin-bottom: 2.5vh;
 					min-height: 1em;
 				}
 
 				&__items{
+					max-height: 100%;
 					display: flex;
 					flex-direction: column;
 					flex-wrap: wrap;

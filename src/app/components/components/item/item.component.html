@@ -4,7 +4,7 @@
 
 	<div [ngSwitch]="item.type">
 
-		<!--<hc-item-switch *ngSwitchCase="_ItemType.Switch" [item]="item"></hc-item-switch>
+		<hc-item-switch *ngSwitchCase="_ItemType.Switch" [item]="item"></hc-item-switch>
 		<hc-item-link   *ngSwitchCase="_ItemType.Link"   [item]="item"></hc-item-link>
 		<hc-item-state  *ngSwitchCase="_ItemType.State"  [item]="item"></hc-item-state>
 		<hc-item-color  *ngSwitchCase="_ItemType.Color"  [item]="item"></hc-item-color>
@@ -13,7 +13,8 @@
 			<hc-icon class="item__content__icon" [icon]="item.icon"></hc-icon>
 			<div class="item__content__label">{{item.getLabel()}}</div>
 			<div class="item__content__value">{{item.getValueLabel()}}</div>
-		</div>-->
+		</div>
+
 	</div>
 
 </div>

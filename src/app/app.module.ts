@@ -19,7 +19,12 @@ import { Settings } from './services/settings.service';
 // Components
 import { AppComponent } from './components/app/app.component';
 import { BgImageComponent } from './components/components/bg-image/bg-image.component';
+import { IconComponent } from './components/components/icon/icon.component';
 import { ItemComponent } from './components/components/item/item.component';
+import { ItemColorComponent } from './components/components/item/color/itemColor.component';
+import { ItemLinkComponent } from './components/components/item/link/itemLink.component';
+import { ItemStateComponent } from './components/components/item/state/itemState.component';
+import { ItemSwitchComponent } from './components/components/item/switch/itemSwitch.component';
 import { LoadingComponent } from './components/components/loading/loading.component';
 
 // Routes
@@ -31,30 +36,7 @@ import { BgWeatherImage } from "./services/bgWeatherImage.service";
 
 //-----------------------------------------------------------------------------
 
-// Import global fonts and styles
-
-import '../assets/fonts/open-sans-v14-latin-300.eot';
-import '../assets/fonts/open-sans-v14-latin-300.svg';
-import '../assets/fonts/open-sans-v14-latin-300.ttf';
-import '../assets/fonts/open-sans-v14-latin-300.woff';
-import '../assets/fonts/open-sans-v14-latin-300.woff2';
-import '../assets/fonts/open-sans-v14-latin-700.eot';
-import '../assets/fonts/open-sans-v14-latin-700.svg';
-import '../assets/fonts/open-sans-v14-latin-700.ttf';
-import '../assets/fonts/open-sans-v14-latin-700.woff';
-import '../assets/fonts/open-sans-v14-latin-700.woff2';
-import '../assets/fonts/open-sans-v14-latin-regular.eot';
-import '../assets/fonts/open-sans-v14-latin-regular.svg';
-import '../assets/fonts/open-sans-v14-latin-regular.ttf';
-import '../assets/fonts/open-sans-v14-latin-regular.woff';
-import '../assets/fonts/open-sans-v14-latin-regular.woff2';
-
-
-import '../assets/backgrounds/fog01.jpg';
-import '../assets/backgrounds/fog02.jpg';
-import '../assets/backgrounds/sunny01.jpg';
-import '../assets/backgrounds/sunny02.jpg';
-
+// Import global styles
 import '../styles/base.scss';
 
 //-----------------------------------------------------------------------------
@@ -69,7 +51,12 @@ import '../styles/base.scss';
 	declarations: [
 		AppComponent,
 		BgImageComponent,
+		IconComponent,
 		ItemComponent,
+		ItemColorComponent,
+		ItemLinkComponent,
+		ItemStateComponent,
+		ItemSwitchComponent,
 		LoadingComponent,
 		PageComponent,
 		SettingsComponent

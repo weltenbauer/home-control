@@ -19,7 +19,14 @@ export class Item {
 
 	public type : ItemType = ItemType.Undefined;
 	public label : string = '';
-	public icon : string = 'none';
+	public icon : string = 'undefined';
+
+	//-------------------------------------------------------------------------
+
+	constructor(label: string = '', icon: string = 'undefined'){
+		this.label = label;
+		this.icon = icon;
+	}
 
 	//-------------------------------------------------------------------------
 

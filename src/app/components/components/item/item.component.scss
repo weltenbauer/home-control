@@ -52,8 +52,10 @@
 
 			&__label{
 				width: 100%;
+				margin-top: 5px;
 				overflow: hidden;
 				text-overflow: ellipsis;
+				text-transform: uppercase;
 			}
 
 			&__value{
@@ -61,6 +63,7 @@
 				overflow: hidden;
 				text-overflow: ellipsis;
 				font-weight: bold;
+				text-transform: uppercase;
 			}
 		}
 	}

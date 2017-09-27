@@ -36,19 +36,19 @@ export class MockAdapter extends BaseAdapter{
 
 		let section1 = new Section();
 		section1.label = 'Bereich 1';
-		section1.items = [new Item(), new Item()];
+		section1.items = [new Item('Strahler', 'switch'), new Item()];
 
 		let section2 = new Section();
 		section2.label = 'Bereich 2';
-		section2.items = [new Item(), new Item(), new Item(), new Item(), new Item(), new Item()];
+		section2.items = [new Item(), new Item('Helligkeit', 'sun'), new Item(), new Item(), new Item(), new Item()];
 
 		let section3 = new Section();
 		section3.label = 'Bereich 3';
-		section3.items = [new Item(), new Item()];
+		section3.items = [new Item('Licht Farbe', 'sun'), new Item()];
 
 		let section4 = new Section();
 		section4.label = 'Bereich 4';
-		section4.items = [new Item(), new Item()];
+		section4.items = [new Item(), new Item('Temperatur', 'thermometer')];
 
 		let section5 = new Section();
 		section5.label = 'Bereich 5';

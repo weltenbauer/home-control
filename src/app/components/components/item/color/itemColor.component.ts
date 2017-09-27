@@ -1,23 +1,22 @@
 /*
- * brief    Item component
+ * brief    ItemColor component
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
- * date     January 2016
+ * date     February 2017
  */
 
 //-----------------------------------------------------------------------------
 
 import { Component, Input } from '@angular/core';
-import { Item, ItemType } from '../../../logic/models/item.model';
+import { ItemColor } from '../../../../logic/models/items/itemColor.model';
 
 //-----------------------------------------------------------------------------
 
 @Component({
-	selector: 'hc-item',
-	templateUrl: 'item.component.html',
-	styleUrls: ['item.component.scss']
+	selector: 'hc-item-color',
+	templateUrl: 'itemColor.component.html',
+	styleUrls: ['../item.component.scss']
 })
-export class ItemComponent {
-	@Input() item : Item;
-	private _ItemType = ItemType;
+export class ItemColorComponent {
+	@Input() item : ItemColor;
 }
