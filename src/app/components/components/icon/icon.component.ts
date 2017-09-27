@@ -10,6 +10,7 @@
 //-----------------------------------------------------------------------------
 
 import { Component, Input, ChangeDetectionStrategy, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Location } from '@angular/common';
 import { Http } from '@angular/http';
 
 //-----------------------------------------------------------------------------
@@ -35,12 +36,9 @@ export class IconComponent {
 	@Input('size') size? = 'normal';
 	@Input('state') state? = 'normal';
 
-	// Precached undefined icon
-	private static undefinedIcon: any = null;
-
 	//-------------------------------------------------------------------------
 
-	constructor(private http: Http, private renderer: Renderer2, private elementRef: ElementRef) { }
+	constructor(private http: Http, private renderer: Renderer2, private elementRef: ElementRef, private location: Location) { }
 
 	//-------------------------------------------------------------------------
 
@@ -55,22 +53,12 @@ export class IconComponent {
 			this.renderer.appendChild(element, icon);
 		}).catch(()=>{
 
-			// Check if there is a precached undefined icon
-			if(IconComponent.undefinedIcon === null){
-
-				// Load undefined icon
-				this.loadSvg('undefined').then((icon)=>{
-					IconComponent.undefinedIcon = icon;
-					this.renderer.appendChild(element, icon);
-				}).catch((err)=>{
-					console.error(err);
-				});
-			}
-			else{
-
-				// Add precached undefined icon
-				this.renderer.appendChild(element, IconComponent.undefinedIcon);
-			}
+			// Load undefined icon
+			this.loadSvg('undefined').then((icon)=>{
+				this.renderer.appendChild(element, icon);
+			}).catch((err)=>{
+				console.error(err);
+			});
 		});
 	}
 
@@ -87,10 +75,14 @@ export class IconComponent {
 					const svg = parser.parseFromString(response, 'image/svg+xml');
 
 					// Added drop shadow
-					/*svg.documentElement.children[0].setAttribute('style', 'filter:url(#dropshadow)')
+					/*let pathElements = svg.documentElement.querySelectorAll('path');
+					for(let i=0; i<pathElements.length; i++){
+						pathElements[i].setAttribute('style', 'filter:url(#dropshadow)');
+					};
                     const filter = parser.parseFromString('<defs><filter id="dropshadow"> <feGaussianBlur in="SourceAlpha" stdDeviation="3"></feGaussianBlur><feOffset dx="2" dy="2" result="offsetblur"></feOffset><feMerge><feMergeNode></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs>', 'image/svg+xml');
                     this.renderer.appendChild(svg.documentElement, filter.documentElement);*/
 
+                    // Resolve loaded icon
 					resolve(svg.documentElement);
 				},
 				(err) => {
