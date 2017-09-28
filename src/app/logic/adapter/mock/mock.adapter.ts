@@ -40,11 +40,11 @@ export class MockAdapter extends BaseAdapter{
 
 		let section2 = new Section();
 		section2.label = 'Bereich 2';
-		section2.items = [new Item(), new Item('Helligkeit', 'sun'), new Item(), new Item(), new Item(), new Item()];
+		section2.items = [new Item('Anwesenheit', 'boy'), new Item('Helligkeit', 'sun'), new Item('', 'power'), new Item('', 'door'), new Item('', 'trashcan'), new Item('', 'battery')];
 
 		let section3 = new Section();
 		section3.label = 'Bereich 3';
-		section3.items = [new Item('Licht Farbe', 'sun'), new Item()];
+		section3.items = [new Item('Licht Farbe', 'sun'), new Item('', 'screwdriver')];
 
 		let section4 = new Section();
 		section4.label = 'Bereich 4';
@@ -52,7 +52,7 @@ export class MockAdapter extends BaseAdapter{
 
 		let section5 = new Section();
 		section5.label = 'Bereich 5';
-		section5.items = [new Item(), new Item(), new Item()];
+		section5.items = [new Item('Anwesenheit', 'girl'), new Item(), new Item()];
 
 		let section6 = new Section();
 		section6.label = 'Bereich 6';

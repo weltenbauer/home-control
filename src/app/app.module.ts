@@ -19,6 +19,7 @@ import { Settings } from './services/settings.service';
 // Components
 import { AppComponent } from './components/app/app.component';
 import { BgImageComponent } from './components/components/bg-image/bg-image.component';
+import { ButtonComponent } from './components/components/button/button.component';
 import { IconComponent } from './components/components/icon/icon.component';
 import { ItemComponent } from './components/components/item/item.component';
 import { ItemColorComponent } from './components/components/item/color/itemColor.component';
@@ -54,6 +55,7 @@ import '../styles/base.scss';
 	declarations: [
 		AppComponent,
 		BgImageComponent,
+		ButtonComponent,
 		IconComponent,
 		ItemComponent,
 		ItemColorComponent,

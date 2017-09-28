@@ -18,17 +18,13 @@
 		width: 115px;
 		height: 115px;
 		margin: 0 15px 15px 0;
-		box-shadow: 11px 10px 36.8px 3.2px rgba(0, 0, 0, 0.15);
-		overflow: hidden;
 
-		&__backgroundColor{
+		&__background{
 			position: absolute;
 			top: 0;
 			left: 0;
 			right: 0;
 			bottom: 0;
-			background-color: $backgroundBoxColor;
-			opacity: $backgroundBoxOpacity;
 		}
 
 		&__content{

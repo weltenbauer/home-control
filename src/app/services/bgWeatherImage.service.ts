@@ -19,7 +19,9 @@ export class BgWeatherImage {
 
 	private bgImages = {
 		fog: ['fog01.jpg', 'fog02.jpg'],
-		sunny: ['sunny01.jpg']
+		sunny: ['sunny01.jpg'],
+		morning: ['morning01.jpg', 'morning02.jpg'],
+		cloudy: ['cloudy01.jpg']
 	};
 
 	private imagePath = './backgrounds/';
@@ -29,11 +31,14 @@ export class BgWeatherImage {
 
 	constructor(){
 		setTimeout(()=>{
-			this.setBackground('sunny');
+			this.setBackground('morning');
 		}, 6000);
 		setTimeout(()=>{
-			//this.setBackground('fog');
+			this.setBackground('cloudy');
 		}, 12000);
+		setTimeout(()=>{
+			this.setBackground('morning');
+		}, 18000);
 	}
 
 	//-------------------------------------------------------------------------

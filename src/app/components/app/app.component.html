@@ -8,12 +8,25 @@
 	</main>
 
 	<footer class="app__footer">
+
 		<div class="app__footer__clock">
-			<div class="app__footer__clock__bg boxBackground"></div>
+			<div class="app__footer__clock__background boxBackground"></div>
 			<hc-icon [icon]="'clock'" [size]="'small'" class="app__footer__clock__content"></hc-icon>
 			<div class="app__footer__clock__content">12:23</div>
 		</div>
-		<nav class="app__footer__nav"></nav>
+
+		<nav class="app__footer__nav">
+			<hc-button class="app__footer__nav__btn">
+				<hc-icon [icon]="'home'" [size]="'small'"></hc-icon>
+			</hc-button>
+			<hc-button class="app__footer__nav__btn">
+				<hc-icon [icon]="'gear'" [size]="'small'"></hc-icon>
+			</hc-button>
+			<hc-button class="app__footer__nav__btn">
+				<hc-icon [icon]="'info'" [size]="'small'"></hc-icon>
+			</hc-button>
+		</nav>
+
 	</footer>
 
 </div>

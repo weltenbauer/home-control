@@ -1,0 +1,39 @@
+/*
+ * brief    Button Styles
+ * author   Christian Rathemacher (christian@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     October 2017
+ */
+
+//-----------------------------------------------------------------------------
+
+@import '../../../../styles/definitions';
+
+//-----------------------------------------------------------------------------
+
+:host{
+	cursor: pointer;
+
+	.button{
+		position: relative;
+		width: 100%;
+		height: 100%;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&__content {
+			z-index: 2;
+		}
+
+		&__background {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1;
+		}
+	}
+}

@@ -20,6 +20,9 @@ import { Section } from '../../../logic/models/section.model';
 	templateUrl: 'page.component.html',
 	styleUrls: ['page.component.scss']
 })
+
+//-----------------------------------------------------------------------------
+
 export class PageComponent implements OnInit, OnDestroy, AfterViewChecked, AfterViewInit {
 
 	private pageTitle : string = '';
