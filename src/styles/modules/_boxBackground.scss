@@ -1,0 +1,17 @@
+/*
+ * brief    Box Backgrounds with opacity
+ * author   Marc Grützmacher (marc@weltenbauer-se.com)
+ * company  weltenbauer. Software Entwicklung GmbH
+ * date     September 2017
+ */
+
+//-----------------------------------------------------------------------------
+
+@import '../definitions';
+
+//-----------------------------------------------------------------------------
+
+.boxBackground{
+	background-color: $backgroundBoxColor;
+	opacity: $backgroundBoxOpacity;
+}

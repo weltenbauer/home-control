@@ -19,7 +19,7 @@ export class BgWeatherImage {
 
 	private bgImages = {
 		fog: ['fog01.jpg', 'fog02.jpg'],
-		sunny: ['sunny01.jpg', 'sunny02.jpg']
+		sunny: ['sunny01.jpg']
 	};
 
 	private imagePath = './backgrounds/';

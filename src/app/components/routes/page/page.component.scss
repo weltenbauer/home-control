@@ -7,13 +7,18 @@
 
 //-----------------------------------------------------------------------------
 
+@import '../../../../styles/definitions';
+
+//-----------------------------------------------------------------------------
+
 :host{
+	position: relative;
 	display: block;
-	height: 80vh;
+	height: 100%;
 	overflow: hidden;
 
 	.page{
-		height: calc(80vh + 20px);
+		height: calc(100% + 20px);
 
 		display: flex;
 		flex-wrap: nowrap;
@@ -37,6 +42,7 @@
 			height: 75%;
 			padding-left: 100px;
 			padding-right: 100px;
+			padding-bottom: 35px;
 
 			overflow-x: scroll;
 			overflow-y: hidden;
@@ -76,5 +82,24 @@
 				}
 			}
 		}
+	}
+
+	.scrollBarBg{
+		position: absolute;
+		left: 100px;
+		right: 100px;
+		bottom: 0px;
+		height: 5px;
+		background-color: $backgroundBoxColor;
+		opacity: 0.5;
+	}
+
+	.scrollBarScroller{
+		position: absolute;
+		left: 101px;
+		bottom: 1px;
+		height: 3px;
+		width: 40%;
+		background-color: $backgroundColor;
 	}
 }

@@ -7,7 +7,7 @@
 
 //-----------------------------------------------------------------------------
 
-import { Component, OnInit, OnDestroy, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, AfterViewChecked, Renderer2, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataProvider } from '../../../services/dataProvider.service';
 import { Page } from '../../../logic/models/page.model';
@@ -20,7 +20,7 @@ import { Section } from '../../../logic/models/section.model';
 	templateUrl: 'page.component.html',
 	styleUrls: ['page.component.scss']
 })
-export class PageComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class PageComponent implements OnInit, OnDestroy, AfterViewChecked, AfterViewInit {
 
 	private pageTitle : string = '';
 	private sections : Section[] = [];
@@ -30,7 +30,7 @@ export class PageComponent implements OnInit, OnDestroy, AfterViewChecked {
 
 	//-------------------------------------------------------------------------
 
-	constructor(private route: ActivatedRoute, private dataProvider: DataProvider, private element: ElementRef) {}
+	constructor(private route: ActivatedRoute, private dataProvider: DataProvider, private element: ElementRef, private renderer: Renderer2) {}
 
 	//-------------------------------------------------------------------------
 
@@ -74,5 +74,17 @@ export class PageComponent implements OnInit, OnDestroy, AfterViewChecked {
 
 			section.setAttribute('style', 'width: ' + (borderRight - borderLeft) + 'px;');
 		})
+	}
+
+	//-------------------------------------------------------------------------
+
+	ngAfterViewInit(){
+
+		setTimeout(()=>{
+			/*this.renderer.listen(this.element.nativeElement.querySelector('.page__sections'), 'scroll', (e) => {
+				//console.log(e.target.children[0].getBoundingClientRect());
+			});*/
+		}, 3000);
+
 	}
 }

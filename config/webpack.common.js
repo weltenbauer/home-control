@@ -138,6 +138,7 @@ module.exports = {
 		// Copy icons and fonts
 		new CopyWebpackPlugin([
 			{ from: helpers.root('src', 'assets', 'icons'), to: 'assets' },
+			{ from: helpers.root('src', 'assets', 'backgrounds'), to: 'backgrounds' },
 			{ from: helpers.root('src', 'assets', 'fonts'), to: 'assets' }
 		])
 	]

@@ -27,6 +27,9 @@ import { ItemStateComponent } from './components/components/item/state/itemState
 import { ItemSwitchComponent } from './components/components/item/switch/itemSwitch.component';
 import { LoadingComponent } from './components/components/loading/loading.component';
 
+// Directives
+import { PreventScrollDirective } from './directives/prevent-scroll';
+
 // Routes
 import { PageComponent } from './components/routes/page/page.component';
 import { SettingsComponent } from './components/routes/settings/settings.component';
@@ -59,7 +62,8 @@ import '../styles/base.scss';
 		ItemSwitchComponent,
 		LoadingComponent,
 		PageComponent,
-		SettingsComponent
+		SettingsComponent,
+		PreventScrollDirective
 	],
 	providers: [
 		BgWeatherImage,
