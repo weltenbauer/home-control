@@ -19,8 +19,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BgImageComponent {
 
-	@Input('image') image : BehaviorSubject<string>;
-	@Input('blur') blur? = false;
+	@Input('image') image: BehaviorSubject<string>;
 
 	private imageUrl : string = '';
 	private bgVisible = false;

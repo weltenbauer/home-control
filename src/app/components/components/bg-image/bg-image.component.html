@@ -1,6 +1,6 @@
 <div class="bgImage"
 	 [ngStyle]="{'transition-duration': fadingTime + 'ms' }"
-	 [ngClass]="{'bgImage--visible': bgVisible, 'bgImage--blur': blur}"
+	 [ngClass]="{'bgImage--visible': bgVisible}"
 	 [lazyLoad]="imageUrl"
 	 (onLoad)="onBgImageLoaded($event)">
 </div>

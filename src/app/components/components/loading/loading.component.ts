@@ -7,7 +7,8 @@
 
 //-----------------------------------------------------------------------------
 
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DataProvider, DataProviderState } from '../../../services/dataProvider.service';
 
 //-----------------------------------------------------------------------------
@@ -15,15 +16,42 @@ import { DataProvider, DataProviderState } from '../../../services/dataProvider.
 @Component({
 	selector: 'hc-loading',
 	templateUrl: 'loading.component.html',
-	styleUrls: ['loading.component.scss']
+	styleUrls: ['loading.component.scss'],
+	animations: [
+		trigger('loadingComponentVisible', [
+			state('hide', style({
+				opacity: 0
+			})),
+			state('show',   style({
+				opacity: 1
+			})),
+			transition('hide => show', animate('250ms ease-in')),
+			transition('show => hide', animate('2000ms 1500ms ease-out'))
+		])
+	]
 })
-export class LoadingComponent {
+
+//-----------------------------------------------------------------------------
+
+export class LoadingComponent implements OnInit, OnDestroy{
+
+	private visibleState = 'show';
+
+	//-------------------------------------------------------------------------
 
 	constructor(private dataProvider: DataProvider) {}
 
 	//-------------------------------------------------------------------------
 
-	isVisible() {
-		return this.dataProvider.state !== DataProviderState.Ok;
+	ngOnInit(){
+		this.dataProvider.stateSubject.subscribe((state)=>{
+			this.visibleState = state === DataProviderState.Ok ? 'hide' : 'show';
+		});
+	}
+
+	//-------------------------------------------------------------------------
+
+	ngOnDestroy(){
+		this.dataProvider.stateSubject.unsubscribe();
 	}
 }

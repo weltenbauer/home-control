@@ -9,6 +9,7 @@
 
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { Settings } from './settings.service';
 import { BackendData } from '../logic/models/backendData.model';
@@ -31,10 +32,10 @@ export enum DataProviderState {
 @Injectable()
 export class DataProvider {
 
-	private currentAdapter : BaseAdapter = null;
+	private currentAdapter: BaseAdapter = null;
 
-	public state : DataProviderState = DataProviderState.Init;
-	public errorDetails : string = '';
+	public errorDetails: string = '';
+	public stateSubject = new BehaviorSubject(DataProviderState.Init);
 
 	//-------------------------------------------------------------------------
 
@@ -45,7 +46,7 @@ export class DataProvider {
 	public init(){
 
 		// Set state
-		this.state = DataProviderState.Init;
+		this.stateSubject.next(DataProviderState.Init);
 		this.errorDetails = '';
 
 		// Get current backendData
@@ -59,10 +60,10 @@ export class DataProvider {
 
 			// Init Adapter
 			this.currentAdapter.init(backendData).then(() => {
-				this.state = DataProviderState.Ok;
+				this.stateSubject.next(DataProviderState.Ok);
 				resolve();
 			}).catch((error) => {
-				this.state = DataProviderState.Error;
+				this.stateSubject.next(DataProviderState.Error);
 				this.errorDetails = error;
 				reject(error);
 			});

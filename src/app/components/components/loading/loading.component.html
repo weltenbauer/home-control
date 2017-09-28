@@ -1,4 +1,4 @@
-<div class="loading" *ngIf="isVisible()">
+<div class="loading" [@loadingComponentVisible]="visibleState">
 	<div class="loading__spinner">
 		<div class="loading__spinner__bounce--1"></div>
 		<div class="loading__spinner__bounce--2"></div>

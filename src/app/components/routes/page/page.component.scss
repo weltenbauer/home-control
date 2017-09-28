@@ -73,6 +73,7 @@
 				}
 
 				&__items{
+					width: $itemSize;
 					max-height: 100%;
 					display: flex;
 					flex-direction: column;

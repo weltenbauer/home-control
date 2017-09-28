@@ -15,8 +15,8 @@
 
 	.item{
 		position: relative;
-		width: 115px;
-		height: 115px;
+		width: $itemSize;
+		height: $itemSize;
 		margin: 0 15px 15px 0;
 
 		&__background{
