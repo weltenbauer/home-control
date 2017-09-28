@@ -1,5 +1,5 @@
 
-<div class="page" (window:resize)="ngAfterViewChecked()">
+<div class="page" (window:resize)="updateSectionWidth(); updateScrollBar();">
 
 	<header class="page__header">
 		<h1>
@@ -9,7 +9,7 @@
 		</h1>
 	</header>
 
-	<div class="page__sections">
+	<div class="page__sections" #scrollContainer>
 		<section *ngFor="let section of sections" class="page__sections__section">
 			<h2 class="page__sections__section__headline">{{section.label}}</h2>
 			<div class="page__sections__section__items">
@@ -20,5 +20,10 @@
 
 </div>
 
-<div class="scrollBarBg"></div>
-<div class="scrollBarScroller"></div>
+<div class="scrollBar">
+	<div class="scrollBar__background boxBackground"></div>
+	<div class="scrollBar__scrollerContainer" #scrollBarContainer>
+		<div class="scrollBar__scrollerContainer__scroller" #scrollBarScroller></div>
+	</div>
+</div>
+
