@@ -44,6 +44,11 @@
 		height: 15px;
 	}
 
+	&--size-nano {
+		width: 10px;
+		height: 10px;
+	}
+
 	&--state-normal{
 		& svg path{
 			fill: $baseColor;

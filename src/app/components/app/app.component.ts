@@ -8,14 +8,8 @@
 //-----------------------------------------------------------------------------
 
 import { Component } from '@angular/core';
-import {
-	trigger,
-	state,
-	style,
-	animate,
-	transition,
-	query,
-} from '@angular/animations';
+import { Router } from '@angular/router';
+import { trigger, state, style, animate, transition, query } from '@angular/animations';
 
 import { BgWeatherImage } from '../../services/bgWeatherImage.service';
 import { DataProvider } from '../../services/dataProvider.service';
@@ -69,7 +63,7 @@ export class AppComponent {
 
 	//-------------------------------------------------------------------------
 
-	constructor(private dataProvider : DataProvider, private weatherImage : BgWeatherImage){
+	constructor(private dataProvider: DataProvider, private weatherImage: BgWeatherImage, private router: Router){
 
 		// Init Data Provider
 		this.dataProvider.init();
@@ -81,6 +75,24 @@ export class AppComponent {
 		setInterval(()=>{
 			this.localTime = Date.now();
 		}, 1000);
+	}
+
+	//-------------------------------------------------------------------------
+
+	onClickHomeButton() {
+		this.router.navigateByUrl('/page');
+	}
+
+	//-------------------------------------------------------------------------
+
+	onClickSettingsButton() {
+		this.router.navigateByUrl('/settings');
+	}
+
+	//-------------------------------------------------------------------------
+
+	onClickInfoButton() {
+		this.router.navigateByUrl('/info');
 	}
 
 	//-------------------------------------------------------------------------

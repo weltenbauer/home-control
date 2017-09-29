@@ -35,6 +35,7 @@ import { PreventScrollDirective } from './directives/prevent-scroll';
 // Routes
 import { PageComponent } from './components/routes/page/page.component';
 import { SettingsComponent } from './components/routes/settings/settings.component';
+import { InfoComponent } from './components/routes/info/info.component';
 
 // Services
 import { BgWeatherImage } from "./services/bgWeatherImage.service";
@@ -59,6 +60,7 @@ import '../styles/base.scss';
 		BgImageComponent,
 		ButtonComponent,
 		IconComponent,
+		InfoComponent,
 		ItemComponent,
 		ItemColorComponent,
 		ItemLinkComponent,
