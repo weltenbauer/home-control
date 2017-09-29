@@ -56,7 +56,14 @@ export class PageComponent implements OnInit, OnDestroy {
 			this.dataProvider.getPage(id).then((page) => {
 				this.pageTitle = page.title;
 				this.sections = page.sections;
-				this.parentPages = page.parentPages;
+
+				// Iterate over parentPages to build the path to this page
+				this.parentPages = [];
+				let currentPage: Page = page.parentPage;
+				while(currentPage !== null) {
+					this.parentPages.unshift(currentPage);
+					currentPage = currentPage.parentPage;
+				}
 
 				// Recalculate and set section width
 				// @Todo: Remove timeout

@@ -155,12 +155,10 @@ export class Openhab1Adapter extends BaseAdapter{
 		const page = new Page();
 		page.id = id;
 		page.title = sourcePage.title;
+		page.parentPage = parentPage;
 		page.metaData = {
 			originalData: sourcePage
 		};
-		if(parentPage) {
-			page.parentPages.push(parentPage);
-		}
 
 		this.pages[id] = page;
 

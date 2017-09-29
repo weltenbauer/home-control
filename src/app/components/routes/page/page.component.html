@@ -3,10 +3,10 @@
 
 	<header class="page__header">
 		<div class="page__header__headline">
-			<a [routerLink]="['/page/' + parentPage.id]" *ngFor="let parentPage of parentPages">
+			<a [routerLink]="['/page/' + parentPage.id]" *ngFor="let parentPage of parentPages" class="page__header__headline__link">
 				<h1>{{parentPage.title}}</h1>
+				<hc-icon *ngIf="parentPages.length > 0" [icon]="'arrow-right'" [size]="'tiny'" class="page__header__headline__link__icon"></hc-icon>
 			</a>
-			<hc-icon *ngIf="parentPages.length > 0" [icon]="'arrow-right'" [size]="'tiny'" class="page__header__headline__icon"></hc-icon>
 			<h1>{{pageTitle}}</h1>
 		</div>
 	</header>

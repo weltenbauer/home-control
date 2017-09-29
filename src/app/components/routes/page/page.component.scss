@@ -44,10 +44,18 @@
 				justify-content: flex-start;
 				align-items: center;
 
-				&__icon{
-					width: 15px;
-					height: 15px;
-					margin: 0 10px;
+				&__link {
+					display: flex;
+					flex-wrap: nowrap;
+					flex-direction: row;
+					justify-content: flex-start;
+					align-items: center;
+
+					&__icon {
+						width: 15px;
+						height: 15px;
+						margin: 0 10px;
+					}
 				}
 			}
 		}

@@ -35,17 +35,18 @@ export class MockAdapter extends BaseAdapter{
 
 	getPages(){
 
-		let linkItem = new ItemLink('dachgeschoss');
+		let linkItem1 = new ItemLink('obergeschoss');
+		let linkItem2 = new ItemLink('wohnzimmer');
 
 		//-------------------------------------
 
 		let section1 = new Section();
 		section1.label = 'Bereich 1';
-		section1.items = [new Item('Strahler', 'switch'), new Item(), linkItem];
+		section1.items = [new Item('Strahler', 'switch'), new Item(), linkItem1];
 
 		let section2 = new Section();
 		section2.label = 'Bereich 2';
-		section2.items = [new Item('Anwesenheit', 'boy'), new Item('Helligkeit', 'sun'), new Item('', 'power'), new Item('', 'door'), new Item('', 'trashcan'), new Item('', 'battery')];
+		section2.items = [linkItem2, new Item('Anwesenheit', 'boy'), new Item('Helligkeit', 'sun'), new Item('', 'power'), new Item('', 'door'), new Item('', 'trashcan'), new Item('', 'battery')];
 
 		let section3 = new Section();
 		section3.label = 'Bereich 3';
@@ -66,15 +67,23 @@ export class MockAdapter extends BaseAdapter{
 		//-------------------------------------
 
 		let page1 = new Page();
+		page1.id = '';
 		page1.title = 'Home Control';
 		page1.sections = [section1, section2, section3, section4, section5, section6, section1, section2, section3, section4, section5, section6];
 
 		let page2 = new Page();
-		page2.title = 'Dachgeschoss';
+		page2.id = 'obergeschoss';
+		page2.title = 'Obergeschoss';
 		page2.sections = [section1, section2, section3];
-		page2.parentPages.push(page1);
+		page2.parentPage = page1;
 
-		return Promise.resolve({'': page1, 'dachgeschoss': page2});
+		let page3 = new Page();
+		page3.id = 'wohnzimmer';
+		page3.title = 'Wohnzimmer';
+		page3.sections = [section1, section2, section3];
+		page3.parentPage = page2;
+
+		return Promise.resolve({'': page1, 'obergeschoss': page2, 'wohnzimmer': page3});
 	}
 
 	//-------------------------------------------------------------------------
