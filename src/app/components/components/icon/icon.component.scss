@@ -39,6 +39,11 @@
 		height: 25px;
 	}
 
+	&--size-tiny {
+		width: 15px;
+		height: 15px;
+	}
+
 	&--state-normal{
 		& svg path{
 			fill: $baseColor;

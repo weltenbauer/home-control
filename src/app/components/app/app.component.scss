@@ -45,8 +45,8 @@
 			&__clock{
 
 				position: relative;
-				width: 100px;
 				height: 50px;
+				padding: 10px;
 
 				position: relative;
 				display: flex;
@@ -60,6 +60,7 @@
 
 				&__content{
 					z-index: 2;
+					padding: 5px;
 				}
 
 				&__background{

@@ -15,6 +15,7 @@ import { BackendData } from '../../models/backendData.model';
 import { Page } from '../../models/page.model';
 import { Section } from '../../models/section.model';
 import { Item } from '../../models/item.model';
+import { ItemLink } from '../../models/items/itemLink.model';
 
 //-----------------------------------------------------------------------------
 
@@ -34,9 +35,13 @@ export class MockAdapter extends BaseAdapter{
 
 	getPages(){
 
+		let linkItem = new ItemLink('dachgeschoss');
+
+		//-------------------------------------
+
 		let section1 = new Section();
 		section1.label = 'Bereich 1';
-		section1.items = [new Item('Strahler', 'switch'), new Item()];
+		section1.items = [new Item('Strahler', 'switch'), new Item(), linkItem];
 
 		let section2 = new Section();
 		section2.label = 'Bereich 2';
@@ -58,11 +63,18 @@ export class MockAdapter extends BaseAdapter{
 		section6.label = 'Bereich 6';
 		section6.items = [new Item(), new Item()];
 
-		let page = new Page();
-		page.title = 'Home Control';
-		page.sections = [section1, section2, section3, section4, section5, section6, section1, section2, section3, section4, section5, section6];
+		//-------------------------------------
 
-		return Promise.resolve({'': page});
+		let page1 = new Page();
+		page1.title = 'Home Control';
+		page1.sections = [section1, section2, section3, section4, section5, section6, section1, section2, section3, section4, section5, section6];
+
+		let page2 = new Page();
+		page2.title = 'Dachgeschoss';
+		page2.sections = [section1, section2, section3];
+		page2.parentPages.push(page1);
+
+		return Promise.resolve({'': page1, 'dachgeschoss': page2});
 	}
 
 	//-------------------------------------------------------------------------

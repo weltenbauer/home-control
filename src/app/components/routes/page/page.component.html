@@ -2,11 +2,13 @@
 <div class="page" (window:resize)="updateSectionWidth(); updateScrollBar();">
 
 	<header class="page__header">
-		<h1>
-			<a href="{{'/page/' + parentPage.id}}" *ngFor="let parentPage of parentPages">{{parentPage.title}}</a>
-			<span *ngIf="parentPages.length > 0" style="font-weight: bold;">&gt;</span>
-			{{pageTitle}}
-		</h1>
+		<div class="page__header__headline">
+			<a [routerLink]="['/page/' + parentPage.id]" *ngFor="let parentPage of parentPages">
+				<h1>{{parentPage.title}}</h1>
+			</a>
+			<hc-icon *ngIf="parentPages.length > 0" [icon]="'arrow-right'" [size]="'tiny'" class="page__header__headline__icon"></hc-icon>
+			<h1>{{pageTitle}}</h1>
+		</div>
 	</header>
 
 	<div class="page__sections" #scrollContainer>

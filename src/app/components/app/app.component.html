@@ -12,7 +12,7 @@
 		<div class="app__footer__clock">
 			<div class="app__footer__clock__background boxBackground"></div>
 			<hc-icon [icon]="'clock'" [size]="'small'" class="app__footer__clock__content"></hc-icon>
-			<div class="app__footer__clock__content">12:23</div>
+			<div class="app__footer__clock__content">{{ localTime | date:'HH:mm' }}</div>
 		</div>
 
 		<nav class="app__footer__nav">

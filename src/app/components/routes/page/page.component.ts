@@ -59,6 +59,7 @@ export class PageComponent implements OnInit, OnDestroy {
 				this.parentPages = page.parentPages;
 
 				// Recalculate and set section width
+				// @Todo: Remove timeout
 				setTimeout(()=>{
 					this.updateSectionWidth();
 					this.updateScrollBar();

@@ -19,6 +19,11 @@ import { DataProvider } from '../../services/dataProvider.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+	private localTime = Date.now();
+
+	//-------------------------------------------------------------------------
+
 	constructor(private dataProvider : DataProvider, private weatherImage : BgWeatherImage){
 
 		// Init Data Provider
@@ -26,6 +31,11 @@ export class AppComponent {
 
 		// Init service worker
 		this.initServiceWorker();
+
+		// Update local time each second
+		setInterval(()=>{
+			this.localTime = Date.now();
+		}, 1000);
 	}
 
 	//-------------------------------------------------------------------------
