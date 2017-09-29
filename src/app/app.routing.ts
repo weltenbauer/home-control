@@ -16,10 +16,10 @@ import { InfoComponent } from './components/routes/info/info.component';
 //-----------------------------------------------------------------------------
 
 const routes: Routes = [
-	{ path: 'page', component: PageComponent },
-	{ path: 'page/:id', component: PageComponent },
-	{ path: 'settings', component: SettingsComponent },
-	{ path: 'info', component: InfoComponent },
+	{ path: 'page', component: PageComponent, data: { state: 'page' } },
+	{ path: 'page/:id', component: PageComponent, data: { state: 'page' }  },
+	{ path: 'settings', component: SettingsComponent, data: { state: 'settings' }  },
+	{ path: 'info', component: InfoComponent, data: { state: 'info' }  },
 	{ path: '', redirectTo: '/page', pathMatch: 'full' }
 ];
 

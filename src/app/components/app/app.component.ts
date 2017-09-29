@@ -8,8 +8,8 @@
 //-----------------------------------------------------------------------------
 
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { trigger, state, style, animate, transition, query } from '@angular/animations';
+import { Router, ActivatedRoute } from '@angular/router';
+import { routeFadeAnimation } from './app.animation';
 
 import { BgWeatherImage } from '../../services/bgWeatherImage.service';
 import { DataProvider } from '../../services/dataProvider.service';
@@ -20,39 +20,7 @@ import { DataProvider } from '../../services/dataProvider.service';
 	selector: 'hc-app',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
-	animations: [
-		trigger('routerFadeAnimation', [
-			transition('* <=> *', [
-				// Initial state of new route
-				query(':enter',
-					style({
-						position: 'fixed',
-						width:'100%',
-						transform: 'translateX(-100%)'
-					}),
-					{optional:true}),
-				// move page off screen right on leave
-				query(':leave',
-					animate('500ms ease',
-						style({
-							position: 'fixed',
-							width:'100%',
-							transform: 'translateX(100%)'
-						})
-					),
-					{optional:true}),
-				// move page in screen from left to right
-				query(':enter',
-					animate('500ms ease',
-						style({
-							opacity: 1,
-							transform: 'translateX(0%)'
-						})
-					),
-					{optional:true}),
-			])
-		])
-	]
+	animations: [routeFadeAnimation]
 })
 
 //-----------------------------------------------------------------------------
@@ -63,7 +31,7 @@ export class AppComponent {
 
 	//-------------------------------------------------------------------------
 
-	constructor(private dataProvider: DataProvider, private weatherImage: BgWeatherImage, private router: Router){
+	constructor(private dataProvider: DataProvider, private weatherImage: BgWeatherImage, private router: Router, public activatedRoute: ActivatedRoute ){
 
 		// Init Data Provider
 		this.dataProvider.init();
@@ -75,6 +43,13 @@ export class AppComponent {
 		setInterval(()=>{
 			this.localTime = Date.now();
 		}, 1000);
+	}
+
+	//-------------------------------------------------------------------------
+
+	getRoute(outlet) {
+		//return this.activatedRoute.snapshot;
+		return outlet.activatedRouteData.state;
 	}
 
 	//-------------------------------------------------------------------------
