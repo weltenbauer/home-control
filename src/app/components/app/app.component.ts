@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------
 
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { routeFadeAnimation } from './app.animation';
 
 import { BgWeatherImage } from '../../services/bgWeatherImage.service';
@@ -31,7 +31,7 @@ export class AppComponent {
 
 	//-------------------------------------------------------------------------
 
-	constructor(private dataProvider: DataProvider, private weatherImage: BgWeatherImage, private router: Router, public activatedRoute: ActivatedRoute ){
+	constructor(private dataProvider: DataProvider, private weatherImage: BgWeatherImage, private router: Router ){
 
 		// Init Data Provider
 		this.dataProvider.init();
@@ -48,7 +48,6 @@ export class AppComponent {
 	//-------------------------------------------------------------------------
 
 	getRoute(outlet) {
-		//return this.activatedRoute.snapshot;
 		return outlet.activatedRouteData.state;
 	}
 
