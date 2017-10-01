@@ -30,15 +30,15 @@ export class BgWeatherImage {
 	//-------------------------------------------------------------------------
 
 	constructor(){
-		/*setTimeout(()=>{
+		setTimeout(()=>{
 			this.setBackground('morning');
 		}, 6000);
 		setTimeout(()=>{
 			this.setBackground('cloudy');
-		}, 12000);
+		}, 60000);
 		setTimeout(()=>{
 			this.setBackground('morning');
-		}, 18000);*/
+		}, 120000);
 	}
 
 	//-------------------------------------------------------------------------

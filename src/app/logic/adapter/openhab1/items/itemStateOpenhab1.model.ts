@@ -15,7 +15,7 @@ import { iconMapping } from '../mappings';
 
 export class ItemStateOpenhab1 extends ItemState{
 
-	constructor(protected adapter : Openhab1Adapter, public sourceWidget : any){
+	constructor(protected adapter: Openhab1Adapter, public sourceWidget: any){
 		super();
 
 		this.icon = iconMapping[sourceWidget.icon] || sourceWidget.icon;

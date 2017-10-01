@@ -14,7 +14,7 @@ import { Openhab1Adapter } from '../openhab1.adapter';
 
 export class ItemColorOpenhab1 extends ItemColor{
 
-	constructor(protected adapter : Openhab1Adapter, private sourceWidget : any){
+	constructor(protected adapter: Openhab1Adapter, private sourceWidget: any){
 		super(sourceWidget.item.state);
 		this.label = sourceWidget.label;
 	}

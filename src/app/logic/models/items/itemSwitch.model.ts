@@ -13,11 +13,11 @@ import { Item, ItemType } from '../item.model';
 
 export class ItemSwitch extends Item{
 
-	public type : ItemType = ItemType.Switch;
+	public type: ItemType = ItemType.Switch;
 
 	//-------------------------------------------------------------------------
 
-	constructor(protected value : boolean = false){
+	constructor(protected value: boolean = false){
 		super();
 	}
 

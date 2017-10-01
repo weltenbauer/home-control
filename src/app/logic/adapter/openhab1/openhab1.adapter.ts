@@ -21,6 +21,7 @@ import { ItemStateOpenhab1 } from "./items/itemStateOpenhab1.model";
 import { ItemSwitchOpenhab1 } from "./items/itemSwitchOpenhab1.model";
 import { ItemLinkOpenhab1 } from "./items/itemLinkOpenhab1.model";
 import { ItemColorOpenhab1 } from "./items/itemColorOpenhab1.model";
+import { ItemWeatherOpenhab1 } from "./items/itemWeatherOpenhab1.model";
 
 //-----------------------------------------------------------------------------
 
@@ -187,15 +188,27 @@ export class Openhab1Adapter extends BaseAdapter{
 	private convertToItem(sourceWidget, parentSection){
 
 		let item = null;
+		let itemType = sourceWidget.type;
 
-		if(sourceWidget.type === 'Text'){
+		// Check for complex item types
+		try {
+			const complexItem = JSON.parse(sourceWidget.label);
+			itemType = complexItem.type;
+		}
+		catch(e){};
+
+		// Create Items
+		if(itemType === 'Text'){
 			item = new ItemStateOpenhab1(this, sourceWidget);
 		}
-		else if(sourceWidget.type === 'Switch'){
+		else if(itemType === 'Switch'){
 			item = new ItemSwitchOpenhab1(this, sourceWidget);
 		}
-		else if(sourceWidget.type === 'Colorpicker'){
+		else if(itemType === 'Colorpicker'){
 			item = new ItemColorOpenhab1(this, sourceWidget);
+		}
+		else if(itemType === 'weather'){
+			item = new ItemWeatherOpenhab1(this, sourceWidget);
 		}
 		else{
 			item = new Item();

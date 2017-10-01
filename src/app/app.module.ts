@@ -27,6 +27,7 @@ import { ItemColorComponent } from './components/components/item/color/itemColor
 import { ItemLinkComponent } from './components/components/item/link/itemLink.component';
 import { ItemStateComponent } from './components/components/item/state/itemState.component';
 import { ItemSwitchComponent } from './components/components/item/switch/itemSwitch.component';
+import { ItemWeatherComponent } from './components/components/item/weather/itemWeather.component';
 import { LoadingComponent } from './components/components/loading/loading.component';
 
 // Directives
@@ -66,6 +67,7 @@ import '../styles/base.scss';
 		ItemLinkComponent,
 		ItemStateComponent,
 		ItemSwitchComponent,
+		ItemWeatherComponent,
 		LoadingComponent,
 		PageComponent,
 		SettingsComponent,

@@ -13,11 +13,11 @@ import { Item, ItemType } from '../item.model';
 
 export class ItemColor extends Item{
 
-	public type : ItemType = ItemType.Color;
+	public type: ItemType = ItemType.Color;
 
 	//-------------------------------------------------------------------------
 
-	constructor(protected color : string = '000000'){
+	constructor(protected color: string = '000000'){
 		super();
 	}
 

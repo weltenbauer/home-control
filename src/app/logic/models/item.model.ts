@@ -7,19 +7,15 @@
 
 //-----------------------------------------------------------------------------
 
-import { BaseAdapter } from '../adapter/base.adapter';
-
-//-----------------------------------------------------------------------------
-
-export enum ItemType { Undefined, State, Switch, Button, Link, Color };
+export enum ItemType { Undefined, State, Switch, Button, Link, Color, Weather };
 
 //-----------------------------------------------------------------------------
 
 export class Item {
 
-	public type : ItemType = ItemType.Undefined;
-	public label : string = '';
-	public icon : string = 'undefined';
+	public type: ItemType = ItemType.Undefined;
+	public label: string = '';
+	public icon: string = 'undefined';
 
 	//-------------------------------------------------------------------------
 

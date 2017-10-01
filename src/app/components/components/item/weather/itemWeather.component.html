@@ -1,0 +1,15 @@
+<div class="item__content itemWeather">
+
+	<div class="itemWeather__box itemWeather__box--big">
+		<hc-icon class="item__content__icon" [icon]="'weather-' + item.value.condition" [size]="'big'"></hc-icon>
+	</div>
+	<div class="itemWeather__box itemWeather__box--small">
+		<hc-icon class="item__content__icon" [icon]="'thermometer'" [size]="'smaller'"></hc-icon>
+		<div class="itemWeather__box__value item__content__value">{{ item.value.temperature }}</div>
+	</div>
+	<div class="itemWeather__box itemWeather__box--small"></div>
+	<div class="itemWeather__box itemWeather__box--small"></div>
+	<div class="itemWeather__box itemWeather__box--small"></div>
+
+</div>
+

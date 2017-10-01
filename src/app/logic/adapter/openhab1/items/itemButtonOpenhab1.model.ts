@@ -14,7 +14,7 @@ import { Openhab1Adapter } from '../openhab1.adapter';
 
 export class ItemButtonOpenhab1 extends ItemButton{
 
-	constructor(protected adapter : Openhab1Adapter, private sourceWidget : any){
+	constructor(protected adapter: Openhab1Adapter, private sourceWidget: any){
 		super();
 	}
 

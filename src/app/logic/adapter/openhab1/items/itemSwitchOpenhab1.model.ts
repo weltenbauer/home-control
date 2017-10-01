@@ -15,7 +15,7 @@ import { iconMapping } from '../mappings';
 
 export class ItemSwitchOpenhab1 extends ItemSwitch{
 
-	constructor(protected adapter : Openhab1Adapter, private sourceWidget : any){
+	constructor(protected adapter: Openhab1Adapter, private sourceWidget: any){
 		super();
 
 		this.label = sourceWidget.label;

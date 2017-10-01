@@ -1,30 +1,23 @@
 /*
- * brief    Data Model for item-link
+ * brief    Data Model for item-weather
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
- * date     February 2017
+ * date     October 2017
  */
 
 //-----------------------------------------------------------------------------
 
-import { Router } from '@angular/router';
 import { Item, ItemType } from '../item.model';
 
 //-----------------------------------------------------------------------------
 
-export class ItemLink extends Item{
+export class ItemWeather extends Item{
 
-	public type: ItemType = ItemType.Link;
+	public type: ItemType = ItemType.Weather;
 
 	//-------------------------------------------------------------------------
 
-	constructor(protected target: string){
+	constructor(protected value: Object){
 		super();
-	}
-
-	//-------------------------------------------------------------------------
-
-	getTarget(){
-		return this.target;
 	}
 }

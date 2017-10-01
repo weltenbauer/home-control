@@ -13,7 +13,7 @@ import { Item, ItemType } from '../item.model';
 
 export class ItemButton extends Item{
 
-	public type : ItemType = ItemType.Button;
+	public type: ItemType = ItemType.Button;
 
 	//-------------------------------------------------------------------------
 

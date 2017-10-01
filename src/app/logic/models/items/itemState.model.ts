@@ -13,7 +13,7 @@ import { Item, ItemType } from '../item.model';
 
 export class ItemState extends Item{
 
-	public type : ItemType = ItemType.State;
+	public type: ItemType = ItemType.State;
 
 	//-------------------------------------------------------------------------
 

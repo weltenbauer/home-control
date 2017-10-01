@@ -15,8 +15,6 @@
 
 	.item{
 		position: relative;
-		width: $itemSize;
-		height: $itemSize;
 		margin: 0 15px 15px 0;
 
 		&__background{
@@ -28,11 +26,9 @@
 		}
 
 		&__content{
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
+			position: relative;
+			width: $itemSize;
+			height: $itemSize;
 
 			display: flex;
 			flex-direction: column;

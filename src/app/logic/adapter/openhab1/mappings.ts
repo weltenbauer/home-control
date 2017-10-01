@@ -7,18 +7,6 @@
 
 //-----------------------------------------------------------------------------
 
-import { ItemState } from '../../models/items/itemState.model';
-import { ItemSwitchOpenhab1 } from './items/itemSwitchOpenhab1.model';
-
-//-----------------------------------------------------------------------------
-
-export const itemTypeMapping = {
-	'Text': ItemState,
-	'Switch': ItemSwitchOpenhab1
-};
-
-//-----------------------------------------------------------------------------
-
 export const iconMapping = {
 	'boy1': 'boy',
 	'boy2': 'boy',
