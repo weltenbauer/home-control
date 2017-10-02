@@ -2,14 +2,20 @@
 
 	<div class="itemWeather__box itemWeather__box--big">
 		<hc-icon class="item__content__icon" [icon]="'weather-' + item.value.condition" [size]="'big'"></hc-icon>
+		<div class="itemWeather__box__label item__content__label item__content__label--big">{{ item.value.location }}</div>
+		<div class="itemWeather__box__value item__content__value item__content__value--big">{{ item.value.conditionLabel }}</div>
 	</div>
 	<div class="itemWeather__box itemWeather__box--small">
 		<hc-icon class="item__content__icon" [icon]="'thermometer'" [size]="'smaller'"></hc-icon>
 		<div class="itemWeather__box__value item__content__value">{{ item.value.temperature }}</div>
 	</div>
-	<div class="itemWeather__box itemWeather__box--small"></div>
-	<div class="itemWeather__box itemWeather__box--small"></div>
-	<div class="itemWeather__box itemWeather__box--small"></div>
+	<div class="itemWeather__box itemWeather__box--small">
+		<hc-icon class="item__content__icon" [icon]="'sunrise'" [size]="'smaller'"></hc-icon>
+		<div class="itemWeather__box__value item__content__value">{{ item.value.sunrise }}</div></div>
+	<div class="itemWeather__box itemWeather__box--small">
+		<hc-icon class="item__content__icon" [icon]="'sunset'" [size]="'smaller'"></hc-icon>
+		<div class="itemWeather__box__value item__content__value">{{ item.value.sunset }}</div>
+	</div>
 
 </div>
 

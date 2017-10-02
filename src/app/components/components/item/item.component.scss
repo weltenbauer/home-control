@@ -32,7 +32,7 @@
 
 			display: flex;
 			flex-direction: column;
-			justify-content: center;
+			justify-content: space-around;
 			align-items: center;
 
 			text-align: center;
@@ -44,9 +44,14 @@
 
 			&__label{
 				width: 100%;
-				margin-top: 5px;
+				padding-top: 5px;
 				text-overflow: ellipsis;
 				text-transform: uppercase;
+
+				&--big{
+					font-size: $fontSizeBig;
+					font-weight: 100;
+				}
 			}
 
 			&__value{
@@ -54,6 +59,17 @@
 				text-overflow: ellipsis;
 				font-weight: bold;
 				text-transform: uppercase;
+
+				background-color: $baseColor;
+				color: transparent;
+				text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.25);
+				-webkit-background-clip: text;
+				-moz-background-clip: text;
+				background-clip: text;
+
+				&--big{
+					font-size: $fontSizeBig;
+				}
 			}
 		}
 

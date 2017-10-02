@@ -34,17 +34,23 @@
 
 			&--big{
 				width: 100%;
-				height: 50%;
+				height: 68%;
 				border-bottom: 1px solid $baseColor;
 			}
 
 			&--small{
-				width: 50%;
-				height: 25%;
+				width: 33.3%;
+				height: 33%;
+				margin-top: 10px;
+				font-size: $fontSizeBigger;
+			}
+
+			&__label{
+				margin-top: 15px;
 			}
 
 			&__value{
-				margin-top: 5px;
+				margin-top: 10px;
 			}
 		}
 	}
