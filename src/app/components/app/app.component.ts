@@ -14,6 +14,8 @@ import { routeFadeAnimation } from './app.animation';
 import { BgWeatherImage } from '../../services/bgWeatherImage.service';
 import { DataProvider } from '../../services/dataProvider.service';
 
+import { WebSocketService } from '../../services/websocket.service';
+
 //-----------------------------------------------------------------------------
 
 @Component({
@@ -31,7 +33,7 @@ export class AppComponent {
 
 	//-------------------------------------------------------------------------
 
-	constructor(private dataProvider: DataProvider, private weatherImage: BgWeatherImage, private router: Router ){
+	constructor(private dataProvider: DataProvider, private weatherImage: BgWeatherImage, private router: Router, private webSocket: WebSocketService ){
 
 		// Init Data Provider
 		this.dataProvider.init();
@@ -43,6 +45,8 @@ export class AppComponent {
 		setInterval(()=>{
 			this.localTime = Date.now();
 		}, 1000);
+
+		webSocket.connect();
 	}
 
 	//-------------------------------------------------------------------------

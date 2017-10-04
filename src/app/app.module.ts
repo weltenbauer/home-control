@@ -12,10 +12,7 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-
 import { Routing } from './app.routing';
-import { DataProvider } from './services/dataProvider.service';
-import { Settings } from './services/settings.service';
 
 // Components
 import { AppComponent } from './components/app/app.component';
@@ -40,6 +37,9 @@ import { InfoComponent } from './components/routes/info/info.component';
 
 // Services
 import { BgWeatherImage } from "./services/bgWeatherImage.service";
+import { DataProvider } from './services/dataProvider.service';
+import { Settings } from './services/settings.service';
+import { WebSocketService } from './services/websocket.service';
 
 //-----------------------------------------------------------------------------
 
@@ -76,7 +76,8 @@ import '../styles/base.scss';
 	providers: [
 		BgWeatherImage,
 		DataProvider,
-		Settings
+		Settings,
+		WebSocketService
 	],
 	bootstrap: [
 		AppComponent
