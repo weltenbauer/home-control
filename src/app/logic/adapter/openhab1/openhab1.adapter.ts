@@ -193,7 +193,7 @@ export class Openhab1Adapter extends BaseAdapter{
 		// Check for complex item types
 		try {
 			const complexItem = JSON.parse(sourceWidget.label);
-			itemType = complexItem.type;
+			itemType = complexItem[0].type;
 		}
 		catch(e){};
 

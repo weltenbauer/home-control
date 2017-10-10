@@ -18,10 +18,11 @@ import { Util } from '../misc/util';
 export class BgWeatherImage {
 
 	private bgImages = {
-		fog: ['fog01.jpg', 'fog02.jpg'],
+		fog: ['fog01.jpg', 'fog02.jpg', 'fog03.jpg'],
 		sunny: ['sunny01.jpg'],
 		morning: ['morning01.jpg', 'morning02.jpg'],
-		cloudy: ['cloudy01.jpg']
+		cloudy: ['cloudy01.jpg'],
+		night: ['night01.jpg', 'night02.jpg']
 	};
 
 	private imagePath = './backgrounds/';
@@ -35,10 +36,13 @@ export class BgWeatherImage {
 		}, 6000);
 		setTimeout(()=>{
 			this.setBackground('cloudy');
-		}, 60000);
+		}, 12000);
 		setTimeout(()=>{
-			this.setBackground('morning');
-		}, 120000);
+			this.setBackground('fog');
+		}, 18000);
+		setTimeout(()=>{
+			this.setBackground('night');
+		}, 24000);
 	}
 
 	//-------------------------------------------------------------------------

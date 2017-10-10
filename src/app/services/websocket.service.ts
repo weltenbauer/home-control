@@ -9,13 +9,13 @@ export class WebSocketService {
 
 	public connect() {
 
-		let request = {
+		/*let request = {
 			url: 'ws://home-control:8080/rest/items',
+			//url: 'http://home-control:8080/rest/sitemapsss?sitemap=homecontrol&poll=true',
 			contentType: 'application/json',
 			headers: {"Accept": "application/json", "type": "json"},
 			logLevel: 'debug',
 			transport: 'websocket',
-			fallbackTransport: 'long-polling',
 			attachHeadersAsQueryString: true,
 
 			onOpen: (response) => {
@@ -32,7 +32,7 @@ export class WebSocketService {
 			}
 		};
 
-		atmosphere.subscribe(request);
+		atmosphere.subscribe(request);*/
 
 	}
 }

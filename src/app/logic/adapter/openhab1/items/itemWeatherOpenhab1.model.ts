@@ -15,7 +15,7 @@ import { Openhab1Adapter } from '../openhab1.adapter';
 export class ItemWeatherOpenhab1 extends ItemWeather{
 
 	constructor(protected adapter: Openhab1Adapter, public sourceWidget: any){
-		super(JSON.parse(sourceWidget.label).value);
-		this.label = JSON.parse(sourceWidget.label).label;
+		super(JSON.parse(sourceWidget.label)[0].value);
+		this.label = JSON.parse(sourceWidget.label)[0].label;
 	}
 }
