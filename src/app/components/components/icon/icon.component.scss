@@ -24,7 +24,7 @@
 		width: 100%;
 		height: 100%;
 
-		& path{
+		& path, & polygon{
 			fill: $baseColor;
 		}
 	}
@@ -60,13 +60,13 @@
 	}
 
 	&--state-normal{
-		& svg path{
+		& svg path, & svg polygon{
 			fill: $baseColor;
 		}
 	}
 
 	&--state-active{
-		& svg path{
+		& svg path, & svg polygon{
 			fill: $activeColor;
 		}
 	}
