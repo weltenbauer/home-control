@@ -19,6 +19,7 @@ import { Item, ItemType } from '../../models/item.model';
 import { iconMapping } from './mappings';
 import { ItemStateOpenhab1 } from "./items/itemStateOpenhab1.model";
 import { ItemSwitchOpenhab1 } from "./items/itemSwitchOpenhab1.model";
+import { ItemButtonOpenhab1 } from "./items/itemButtonOpenhab1.model";
 import { ItemLinkOpenhab1 } from "./items/itemLinkOpenhab1.model";
 import { ItemColorOpenhab1 } from "./items/itemColorOpenhab1.model";
 import { ItemWeatherOpenhab1 } from "./items/itemWeatherOpenhab1.model";
@@ -27,20 +28,20 @@ import { ItemWeatherOpenhab1 } from "./items/itemWeatherOpenhab1.model";
 
 export class Openhab1Adapter extends BaseAdapter{
 
-	private initPromise : any = null;
-	private items : any[] = [];
-	private sitemaps : any[] = [];
-	private pages : any = {};
+	private initPromise: any = null;
+	private items: any[] = [];
+	private sitemaps: any[] = [];
+	private pages: any = {};
 
 	//-------------------------------------------------------------------------
 
-	constructor(private http : Http, private settings : Settings){
+	constructor(private http: Http, private settings: Settings){
 		super();
 	}
 
 	//-------------------------------------------------------------------------
 
-	public init(backendData : BackendData){
+	public init(backendData: BackendData){
 
 		// Create new promise
 		this.initPromise = new Promise((resolve, reject) => {
@@ -50,7 +51,7 @@ export class Openhab1Adapter extends BaseAdapter{
 			const options = { headers: headers };
 
 			// Collect all requests
-			const requestPromises : Promise<void>[] = [];
+			const requestPromises: Promise<void>[] = [];
 
 			// Request items
 			requestPromises.push(this.http.get(backendData.getUrl() + '/items', options).toPromise()
@@ -78,7 +79,7 @@ export class Openhab1Adapter extends BaseAdapter{
 				.then((response) => {
 
 					// Select all sitemap requests
-					const requestSitemapsPromises : Promise<void>[] = [];
+					const requestSitemapsPromises: Promise<void>[] = [];
 
 					// Check for multiple sitemaps
 					let sitemaps = response.json().sitemap;
@@ -201,8 +202,11 @@ export class Openhab1Adapter extends BaseAdapter{
 		if(itemType === 'Text'){
 			item = new ItemStateOpenhab1(this, sourceWidget);
 		}
-		else if(itemType === 'Switch'){
+		else if(itemType === 'Switch' && this.isSwitch(sourceWidget)){
 			item = new ItemSwitchOpenhab1(this, sourceWidget);
+		}
+		else if(itemType === 'Switch' && !this.isSwitch(sourceWidget)){
+			item = new ItemButtonOpenhab1(this, sourceWidget);
 		}
 		else if(itemType === 'Colorpicker'){
 			item = new ItemColorOpenhab1(this, sourceWidget);
@@ -218,6 +222,12 @@ export class Openhab1Adapter extends BaseAdapter{
 
 		// Save item
 		parentSection.items.push(item);
+	}
+
+	//-------------------------------------------------------------------------
+
+	private isSwitch(sourceWidget){
+		return !sourceWidget.mapping || sourceWidget.mapping instanceof Array;
 	}
 
 	//-------------------------------------------------------------------------
@@ -277,7 +287,7 @@ export class Openhab1Adapter extends BaseAdapter{
 
 	//-------------------------------------------------------------------------
 
-	public updateValue(url : string, value : any){
+	public updateValue(url: string, value: any){
 
 		const headers = new Headers();
 		headers.append('Content-Type', 'text/plain');

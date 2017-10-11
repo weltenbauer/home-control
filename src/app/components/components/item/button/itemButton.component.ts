@@ -1,5 +1,5 @@
 /*
- * brief    ItemColor component
+ * brief    ItemSwitch component
  * author   Christian Rathemacher (christian@weltenbauer-se.com)
  * company  weltenbauer. Software Entwicklung GmbH
  * date     February 2017
@@ -8,15 +8,15 @@
 //-----------------------------------------------------------------------------
 
 import { Component, Input } from '@angular/core';
-import { ItemColor } from '../../../../logic/models/items/itemColor.model';
+import { ItemButton } from '../../../../logic/models/items/itemButton.model';
 
 //-----------------------------------------------------------------------------
 
 @Component({
-	selector: 'hc-item-color',
-	templateUrl: 'itemColor.component.html',
+	selector: 'hc-item-button',
+	templateUrl: 'itemButton.component.html',
 	styleUrls: ['../item.component.scss']
 })
-export class ItemColorComponent {
-	@Input() item: ItemColor;
+export class ItemButtonComponent {
+	@Input() item: ItemButton;
 }

@@ -20,6 +20,7 @@ import { BgImageComponent } from './components/components/bg-image/bg-image.comp
 import { ButtonComponent } from './components/components/button/button.component';
 import { IconComponent } from './components/components/icon/icon.component';
 import { ItemComponent } from './components/components/item/item.component';
+import { ItemButtonComponent } from './components/components/item/button/itemButton.component';
 import { ItemColorComponent } from './components/components/item/color/itemColor.component';
 import { ItemLinkComponent } from './components/components/item/link/itemLink.component';
 import { ItemStateComponent } from './components/components/item/state/itemState.component';
@@ -63,6 +64,7 @@ import '../styles/base.scss';
 		IconComponent,
 		InfoComponent,
 		ItemComponent,
+		ItemButtonComponent,
 		ItemColorComponent,
 		ItemLinkComponent,
 		ItemStateComponent,

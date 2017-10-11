@@ -14,15 +14,10 @@ export enum ItemType { Undefined, State, Switch, Button, Link, Color, Weather };
 export class Item {
 
 	public type: ItemType = ItemType.Undefined;
-	public label: string = '';
-	public icon: string = 'undefined';
 
 	//-------------------------------------------------------------------------
 
-	constructor(label: string = '', icon: string = 'undefined'){
-		this.label = label;
-		this.icon = icon;
-	}
+	constructor(public label: string = '', public icon: string = 'undefined'){}
 
 	//-------------------------------------------------------------------------
 

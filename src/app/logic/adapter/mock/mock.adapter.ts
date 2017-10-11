@@ -21,13 +21,13 @@ import { ItemLink } from '../../models/items/itemLink.model';
 
 export class MockAdapter extends BaseAdapter{
 
-	constructor(private http : Http, private settings : Settings){
+	constructor(private http: Http, private settings: Settings){
 		super();
 	}
 
 	//-------------------------------------------------------------------------
 
-	init(backendData : BackendData){
+	init(backendData: BackendData){
 		return Promise.resolve();
 	}
 

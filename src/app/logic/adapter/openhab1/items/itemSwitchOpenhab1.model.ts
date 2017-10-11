@@ -25,13 +25,33 @@ export class ItemSwitchOpenhab1 extends ItemSwitch{
 
 	//-------------------------------------------------------------------------
 
+	public getValueLabel(){
+
+		// Check if there is a mapping available
+		if(this.sourceWidget.mapping instanceof Array && this.sourceWidget.mapping.length === 2){
+
+			let labelArray = this.sourceWidget.mapping.filter((element)=>{
+				return this.value ? (element.command === 'ON') : (element.command === 'OFF');
+			}).map((element)=>{
+				return element.label;
+			});
+
+			return labelArray.length > 0 ? labelArray[0] : '';
+		}
+		else{
+			return this.value ? 'On': 'Off';
+		}
+	}
+
+	//-------------------------------------------------------------------------
+
 	public toggelSwitch(){
 
 		// Toggel Switch
 		super.toggelSwitch();
 
 		// Update data on server
-		const newValue = this.value ? 'ON' : 'OFF';
+		const newValue = this.value ? 'ON': 'OFF';
 		this.adapter.updateValue(this.sourceWidget.item.link, newValue);
 	}
 }

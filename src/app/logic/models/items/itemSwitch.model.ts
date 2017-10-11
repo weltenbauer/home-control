@@ -29,7 +29,7 @@ export class ItemSwitch extends Item{
 
 	//-------------------------------------------------------------------------
 
-	public getValueLabel(){
-		return this.value ? 'On' : 'Off';
+	public getValueLabel(): string{
+		return this.value ? 'On': 'Off';
 	}
 }

@@ -13,6 +13,6 @@ import { Item } from '../models/item.model';
 //-----------------------------------------------------------------------------
 
 export abstract class BaseAdapter {
-	abstract init(backendData : BackendData) : Promise<any>;
-	abstract getPages() : Promise<any>;
+	abstract init(backendData: BackendData): Promise<any>;
+	abstract getPages(): Promise<any>;
 }

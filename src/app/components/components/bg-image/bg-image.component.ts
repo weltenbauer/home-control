@@ -17,18 +17,20 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './bg-image.component.html',
   styleUrls: ['./bg-image.component.scss']
 })
-export class BgImageComponent {
+export class BgImageComponent implements OnInit, OnDestroy{
 
-	@Input('image') image: BehaviorSubject<string>;
+	@Input('image') imageStream: BehaviorSubject<string>;
 
-	private imageUrl : string = '';
+	private imageUrl = '';
 	private bgVisible = false;
 	private fadingTime = 1500;
+
+	private imageStreamHandle = null;
 
 	//-------------------------------------------------------------------------
 
 	ngOnInit() {
-		this.image.subscribe((data : string) => {
+		this.imageStreamHandle = this.imageStream.subscribe((data: string) => {
 			this.bgVisible = false;
 			setTimeout(()=>{
 				this.imageUrl = data;
@@ -39,7 +41,7 @@ export class BgImageComponent {
 	//-------------------------------------------------------------------------
 
 	ngOnDestroy() {
-		this.image.unsubscribe();
+		this.imageStreamHandle.unsubscribe();
 	}
 
 	//-------------------------------------------------------------------------

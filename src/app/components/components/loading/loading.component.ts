@@ -22,7 +22,7 @@ import { DataProvider, DataProviderState } from '../../../services/dataProvider.
 			state('hide', style({
 				opacity: 0
 			})),
-			state('show',   style({
+			state('show', style({
 				opacity: 1
 			})),
 			transition('hide => show', animate('250ms ease-in')),
@@ -36,6 +36,7 @@ import { DataProvider, DataProviderState } from '../../../services/dataProvider.
 export class LoadingComponent implements OnInit, OnDestroy{
 
 	private visibleState = 'show';
+	private stateStreamHandle = null
 
 	//-------------------------------------------------------------------------
 
@@ -44,14 +45,14 @@ export class LoadingComponent implements OnInit, OnDestroy{
 	//-------------------------------------------------------------------------
 
 	ngOnInit(){
-		this.dataProvider.stateSubject.subscribe((state)=>{
-			this.visibleState = state === DataProviderState.Ok ? 'hide' : 'show';
+		this.stateStreamHandle = this.dataProvider.stateStream.subscribe((state)=>{
+			this.visibleState = state === DataProviderState.Ok ? 'hide': 'show';
 		});
 	}
 
 	//-------------------------------------------------------------------------
 
 	ngOnDestroy(){
-		this.dataProvider.stateSubject.unsubscribe();
+		this.stateStreamHandle.unsubscribe();
 	}
 }

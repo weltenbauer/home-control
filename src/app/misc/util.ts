@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------------------
 
 export const Util = {
-	randomNumber: (nr : number) => {
+	randomNumber: (nr: number) => {
 		return Math.floor(Math.random() * nr);
 	}
 };

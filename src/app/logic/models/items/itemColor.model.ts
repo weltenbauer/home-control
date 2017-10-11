@@ -23,7 +23,7 @@ export class ItemColor extends Item{
 
 	//-------------------------------------------------------------------------
 
-	public setColor(color : string){
+	public setColor(color: string){
 		this.color = color;
 	}
 

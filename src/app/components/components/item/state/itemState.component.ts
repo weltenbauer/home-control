@@ -18,5 +18,5 @@ import { ItemState } from '../../../../logic/models/items/itemState.model';
 	styleUrls: ['../item.component.scss']
 })
 export class ItemStateComponent {
-	@Input() item : ItemState;
+	@Input() item: ItemState;
 }

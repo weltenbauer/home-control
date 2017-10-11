@@ -18,6 +18,6 @@ import { Item, ItemType } from '../../../logic/models/item.model';
 	styleUrls: ['item.component.scss']
 })
 export class ItemComponent {
-	@Input() item : Item;
+	@Input() item: Item;
 	private _ItemType = ItemType;
 }

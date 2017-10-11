@@ -20,11 +20,11 @@ import { ItemLink } from '../../../../logic/models/items/itemLink.model';
 })
 export class ItemLinkComponent {
 
-	@Input() item : ItemLink;
+	@Input() item: ItemLink;
 
 	//-------------------------------------------------------------------------
 
-	constructor(private router : Router){}
+	constructor(private router: Router){}
 
 	//-------------------------------------------------------------------------
 

@@ -5,6 +5,7 @@
 	<div [ngSwitch]="item.type">
 
 		<hc-item-switch 	*ngSwitchCase="_ItemType.Switch" [item]="item"></hc-item-switch>
+		<hc-item-button 	*ngSwitchCase="_ItemType.Button" [item]="item"></hc-item-button>
 		<hc-item-link   	*ngSwitchCase="_ItemType.Link"   [item]="item"></hc-item-link>
 		<hc-item-state  	*ngSwitchCase="_ItemType.State"  [item]="item"></hc-item-state>
 		<hc-item-color  	*ngSwitchCase="_ItemType.Color"  [item]="item"></hc-item-color>

@@ -53,7 +53,7 @@ export class BgWeatherImage {
 
 	//-------------------------------------------------------------------------
 
-	public setBackground(weatherCondition : string){
+	public setBackground(weatherCondition: string){
 		let imageUrl = this.bgImages[weatherCondition][Util.randomNumber(this.bgImages[weatherCondition].length)];
 		this.imageSubject.next(this.imagePath + imageUrl);
 	}

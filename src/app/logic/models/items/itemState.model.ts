@@ -17,7 +17,7 @@ export class ItemState extends Item{
 
 	//-------------------------------------------------------------------------
 
-	constructor(protected state : string = ''){
+	constructor(protected state: string = ''){
 		super();
 	}
 
